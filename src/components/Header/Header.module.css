@@ -1,0 +1,136 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 0;
+    border-bottom: 1px solid #EEEEEE;
+}
+
+.link+.link {
+    margin-left: 24px;
+}
+
+.navlink {
+    text-decoration: none;
+}
+
+.linkItem {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 21px;
+    color: #393939;
+}
+
+.phone {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 21px;
+    color: #393939;
+}
+
+.phone span {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 21px;
+    text-align: right;
+    color: #979797;
+}
+
+.logo {
+    margin-right: 34px;
+}
+
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 9px;
+    border-bottom: 1px solid #EEEEEE;
+}
+
+.searchInput {
+    width: 662px;
+    padding: 11px 0 13px 20px;
+    background-color: #F8F8F8;
+    border: 1px solid #E0E0E0;
+}
+
+.searchInput::placeholder {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    color: #858F9B;
+}
+
+.searchButton {
+    position: relative;
+    top: 0;
+    right: 41px;
+    padding: 10px;
+    border: none;
+    background-color: #F8F8F8;
+}
+
+.fav {
+    display: flex;
+}
+
+.icon {
+    margin-right: 10px;
+    width: 22px;
+}
+
+.favorite {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-right: 1px solid #D3D3D3;
+    margin-right: 20px;
+    padding-right: 20px;
+}
+
+.favText {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #393939;
+    text-decoration: none;
+}
+
+.cart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #393939;
+}

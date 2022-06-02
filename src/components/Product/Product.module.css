@@ -1,0 +1,111 @@
+.product {
+    position: relative;
+    background-color: #fff;
+    border: 1px solid #F1F1F1;
+}
+
+.favoriteIcon {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    /* z-index: 100; */
+}
+
+.saleIcon {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.saleIcon div {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: center;
+    text-transform: uppercase;
+    position: absolute;
+    top: 10px;
+    left: 4px;
+    color: #FFFFFF;
+    transform: matrix(0.71, -0.7, 0.71, 0.71, 0, 0);
+    /* transform:rotate(10deg); */
+}
+
+.description {
+    text-align: start;
+    padding: 6px 8px;
+}
+
+.productTitle {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #393939;
+    margin-bottom: 6px;
+}
+
+.productPrice {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #393939;
+    margin-bottom: 6px;
+}
+
+.productPrice span {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 12px;
+    margin-left: 6px;
+
+    text-decoration-line: line-through;
+    color: #ADADAD;
+}
+
+.productSize {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    color: #7C7C7C;
+    margin-bottom: 6px;
+}
+
+.productSize span {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    color: #7C7C7C;
+    margin-right: 4px;
+}
+
+.productColor {
+    display: flex;
+}
+
+.productColorItemBorder {
+    border: 1px solid #E7E7E7;
+    width: 16px;
+    height: 16px;
+    padding: 3px;
+    border-radius: 10px;
+    margin-left: 10px;
+}
+
+.productColorItem {
+    width: 8px;
+    height: 8px;
+    border-radius: 5px;
+    /* margin-left: 10px; */
+}

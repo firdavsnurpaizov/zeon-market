@@ -1,0 +1,47 @@
+.slider {
+    position: relative;
+    width: 100%;
+    height: 70vh;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: all 1s;
+}
+
+.box {
+    position: absolute;
+    transition: all 1s;
+}
+
+.btn {
+    border: none;
+    position: fixed;
+    top: 523px;
+    left: 1300px;
+    z-index: 10;
+}
+
+.upIcon {
+    width: 44px;
+}
+
+.imgPrev {
+    transform: translateX(-150%);
+}
+
+.imgNext {
+    transform: translateX(150%);
+}
+
+/* 
+.imgLeft {
+     transform: translateX(-200%) scale(0);
+}
+
+.imgRight {
+    transform: translateX(200%) scale(0);
+} */

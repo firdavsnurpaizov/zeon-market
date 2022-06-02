@@ -1,0 +1,17 @@
+.btn {
+    /* padding: 8px 38px; */
+    width: 107px;
+    height: 32px;
+    background: #1D1D1B;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 16px;
+    color: #FFFFFF;
+    cursor: pointer;
+    text-align: center;
+
+    margin: 16px 0 44px 0;
+}

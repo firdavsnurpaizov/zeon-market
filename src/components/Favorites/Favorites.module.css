@@ -1,0 +1,35 @@
+/* .favorites {
+} */
+
+.favorites h3 {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    color: #393939;
+    text-align: start;
+    /* margin-top: 11px; */
+    padding-top: 11px;
+}
+
+.quantityFav {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: #979797;
+    text-align: start;
+    margin-bottom: 16px;
+}
+
+.quantityFav span {
+    margin-right: 6px;
+}
+
+.product {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}

@@ -1,0 +1,21 @@
+.cart {
+    padding-top: 11px;
+    position: relative;
+}
+
+.delete {
+    position: absolute;
+    top: 20px;
+    /* left: 730px; */
+    right: 410px;
+}
+
+.cartItem {
+    display: flex;
+    padding: 12px;
+    gap: 16px;
+    width: 768px;
+
+    background: #FFFFFF;
+
+}

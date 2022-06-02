@@ -1,0 +1,51 @@
+.collection:hover  .button {
+    background: #fff;
+}
+.collection:hover  .button span {
+    color: #000;
+}
+
+.collection:hover .arrowRight {
+    fill: #000;
+}
+
+.avatar {
+    width: 286px;
+    height: 330px;
+    /* object-fit: cover; */
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.avatar span {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 625px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 18px 12px 30px;
+    gap: 10px;
+
+    width: 286px;
+    height: 44px;
+    border: none;
+    background: #1D1D1B;
+}
+
+.button span {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: #FFFFFF;
+}

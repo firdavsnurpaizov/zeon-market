@@ -1,0 +1,14 @@
+.collections{
+    margin-bottom: 16px;
+}
+
+.collections h3 {
+    text-align: left;
+    padding-top: 32px;
+}
+
+.product {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
