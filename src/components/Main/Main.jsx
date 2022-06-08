@@ -26,7 +26,6 @@ const Main = () => {
     (state) => state.main
   );
 
-
   const [limitNovelty, setLimitNovelty] = useState(4);
   const [limitBestseller, setLimitBestseller] = useState(8);
   const [limitCollections, setCollections] = useState(4);
@@ -57,15 +56,16 @@ const Main = () => {
     setCollections(limitCollections + 4);
   };
 
-//   const icons = {
-//     1: <Money/>,
-//     2: <Truck/>,
-//     3:<Headphones/>,
-//     4: <Shop/>
-// }
+  //   const icons = {
+  //     1: <Money/>,
+  //     2: <Truck/>,
+  //     3:<Headphones/>,
+  //     4: <Shop/>
+  // }
 
   return (
     <div className={style.main}>
+  
       <div className="container">
         <Carousel>
           <img src={carouselImage} alt="carouse iImage" />
@@ -98,9 +98,9 @@ const Main = () => {
         <Button onClick={() => alsoC()}>Ещё</Button>
         <h3>Наши преимущества</h3>
         <div className={style.advantages}>
-        {advantages.map((a) => {
-          return <Advantages data={a} key={a.id} />;
-        })}
+          {advantages.map((a) => {
+            return <Advantages data={a} key={a.id} />;
+          })}
         </div>
       </div>
     </div>

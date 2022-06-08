@@ -1,13 +1,73 @@
 .cart {
-    padding-top: 11px;
     position: relative;
+}
+
+.description h4 {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #393939;
+    margin-bottom: 15px;
+}
+
+.size {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    color: #7C7C7C;
+    margin-bottom: 6px;
+    gap: 4px;
+}
+
+.color {
+    display: flex;
+    align-items: center;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    color: #7C7C7C;
+    /* border: 1px solid #E7E7E7; */
+    margin-bottom: 6px;
+}
+
+.color span {
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
+    margin-left: 8px;
+}
+
+.price {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    color: #393939;
+    margin-bottom: 12px;
+}
+
+.price span {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    text-decoration-line: line-through;
+    color: #ADADAD;
 }
 
 .delete {
     position: absolute;
-    top: 20px;
+    top: 17px;
     /* left: 730px; */
-    right: 410px;
+    right: 17px;
 }
 
 .cartItem {
@@ -15,7 +75,32 @@
     padding: 12px;
     gap: 16px;
     width: 768px;
-
+    margin-bottom: 8px;
     background: #FFFFFF;
+}
 
+.buttons {
+    /* width: 120px; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.buttons span {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    color: #393939;
+}
+
+
+
+.btn {
+    width: 32px;
+    height: 32px;
+    background: #F8F8F8;
+    border: 1px solid #EFEFEF;
+    border-radius: 6px;
 }

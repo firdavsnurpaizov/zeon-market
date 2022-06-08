@@ -20,8 +20,7 @@ const Product = ({ data }) => {
   }, []);
 
   const addToFavorites = (e) => {
-    e.preventDefault();
-
+    e.preventDefault();                  
     const isFavoritesPresent = localStorage.getItem("favorites");
     let favorites = isFavoritesPresent ? JSON.parse(isFavoritesPresent) : [];
     if (found) {
@@ -62,7 +61,7 @@ const Product = ({ data }) => {
             /> */}
           <div className={style.description}>
           <div className={style.productTitle}>{data.title}</div>
-          <div className={style.productPrice}>{data.price} р  {data.sale ? <span>{data.previous} c.</span> : ''}</div>
+          <div className={style.productPrice}>{data.price.toLocaleString()} р  {data.sale ? <span>{data.previous.toLocaleString()} p</span> : ''}</div>
           <div className={style.productSize}>
             <span>Размер:</span>
             {data.size}

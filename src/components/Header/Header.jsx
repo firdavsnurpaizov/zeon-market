@@ -4,16 +4,22 @@ import style from "./Header.module.css";
 import { ReactComponent as FavoriteIcon } from "./../../assets/svg/favorite.svg";
 import { ReactComponent as FullFavoriteIcon } from "./../../assets/svg/fullFavoriteIcon.svg";
 import { ReactComponent as ShoppingBagIcon } from "./../../assets/svg/shoppingBagIcon.svg";
-// import {ReactComponent as FullShoppingBagIcon} from "./../../assets/svg/fullShoppingBagIcon.svg";
-import searchIcon from "./../../assets/svg/searchIcon.svg";
+import { ReactComponent as FullShoppingBagIcon } from "./../../assets/svg/fullShoppingBagIcon.svg";
+import { ReactComponent as SearchIcon } from "./../../assets/svg/searchIcon.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { getContactsThunk, getLogoThunk } from "../../redux/main-reducer";
 import BreadCrumb from "../Breadcrumb/BreadCrumbs";
+import Modal from "../UI/Modal/Modal";
+import Input from "../UI/Input/Input";
+import Success from "../UI/Success/Success";
 
 const Header = () => {
   const dispatch = useDispatch();
-  const { logo, contacts, favorites } = useSelector((state) => state.main);
-  // console.log(favorites);
+  const [modal, setModal] = useState(false);
+  const [success, setSuccess] = useState(false)
+  const { logo, contacts, favorites, cart } = useSelector(
+    (state) => state.main
+  );
   useEffect(() => {
     dispatch(getLogoThunk());
     dispatch(getContactsThunk());
@@ -25,6 +31,9 @@ const Header = () => {
     <>
       <div className={style.header}>
         <div className="container">
+          <Modal visible={modal} >
+            {success ? <Success setVisible={setModal} /> : <Input setVisible={setModal} order={setSuccess} />}
+          </Modal>
           <div className={style.menu}>
             <div className={style.nav}>
               <div className={style.link}>
@@ -43,7 +52,7 @@ const Header = () => {
                 </NavLink>
               </div>
             </div>
-            <div className={style.phone}>
+            <div className={style.phone} onClick={() => setModal(true)}>
               <span>Тел:</span> {phone?.tel}
             </div>
           </div>
@@ -60,28 +69,26 @@ const Header = () => {
               type="text"
               placeholder="Поиск"
             />
-            {/* <button > */}
-            <img
-              className={style.searchButton}
-              src={searchIcon}
-              alt="search icon"
-            />
-            {/* </button> */}
+
+            <SearchIcon className={style.searchButton} />
 
             <div className={style.fav}>
               <div className={style.favorite}>
                 {favorites.length ? (
                   <FullFavoriteIcon className={style.icon} />
-                  ) : (
-                    <FavoriteIcon className={style.icon} />
+                ) : (
+                  <FavoriteIcon className={style.icon} />
                 )}
-                <NavLink to={"/favorites"} className={style.favText}>
+                <NavLink  to={"/favorites"} className={style.favText}>
                   Избранное
                 </NavLink>
               </div>
               <div className={style.cart}>
-                <ShoppingBagIcon className={style.icon} />
-                {/* <FullShoppingBagIcon className={style.icon} /> */}
+                {cart.length ? (
+                  <FullShoppingBagIcon className={style.icon} />
+                ) : (
+                  <ShoppingBagIcon className={style.icon} />
+                )}
                 <NavLink to={"/cart"} className={style.favText}>
                   Корзина
                 </NavLink>

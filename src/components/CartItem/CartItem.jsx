@@ -1,40 +1,64 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import style from "./CartItem.module.css";
-import {ReactComponent as Delete} from './../../assets/svg/delete.svg'
+import { ReactComponent as Delete } from "./../../assets/svg/delete.svg";
+import { useDispatch, useSelector } from "react-redux";
+import { setDecrement, setInctement, removeItemFromCart } from "../../redux/main-reducer";
 
 const CartItem = ({ data }) => {
+  const dispatch = useDispatch();
 
-    const isCartPresent = localStorage.getItem("cart");
-    let cart = isCartPresent ? JSON.parse(isCartPresent) : [];
+  const remove = () => {
+   dispatch(removeItemFromCart(data))
+  };
 
-const remove = () => {
-    cart = cart.filter(item => item.id !== data.id)
-    localStorage.setItem(`cart`, JSON.stringify(cart));
-}
-
-
+  const addQuantity = () => {
+    dispatch(setInctement(data))
+  };
+  const removeQuantity = () => {
+    dispatch(setDecrement(data))
+  };
 
   return (
     <>
       <div className={style.cart}>
         <div className={style.cartItem}>
-                <Delete className={style.delete} onClick={remove} />
-            <div>
-                {
-                    data.images.map(image => (
-                        <img style={{width: 112, height: 142, objectFit: "cover" }} src={image.src} key={image.id} alt="product image" />
-                    ))
-                }
-            </div>
-          <div style={{ textAlign: 'start'}}>
+          <Delete className={style.delete} onClick={remove} />
+          <div>
+            {data.images.map((image) => (
+              <img
+                style={{ width: 112, height: 142, objectFit: "cover" }}
+                src={image.src}
+                key={image.id}
+                alt="product image"
+              />
+            ))}
+          </div>
+          <div style={{ textAlign: "start" }} className={style.description}>
             <h4>{data.title}</h4>
-            <div>Размер: {data.size}</div>
-            <div style={{ display: "flex", alignItems: "center" }}>  Цвет: <div style={{backgroundColor: `${data.colors}`, width: 8, height:8}}></div></div>
-            <span>{data.price} р</span>
-            <div>
-              <button>-</button>
-              кол-во
-              <button>+</button>
+            <div className={style.size}>Размер: {data.size}</div>
+            <div className={style.color}>
+              Цвет:
+              <span
+                style={{
+                  backgroundColor: `${data.colors}`,
+                }}
+              ></span>
+            </div>
+            <div className={style.price}>
+              {data.price.toLocaleString()} р <span>{data.sale ? data.previous.toLocaleString() : ""}</span>{" "}
+            </div>
+            <div className={style.buttons}>
+              <button
+                className={style.btn}
+
+                onClick={removeQuantity}
+              >
+                -
+              </button>
+              <span>{data.count}</span>
+              <button className={style.btn} onClick={addQuantity}>
+                +
+              </button>
             </div>
           </div>
         </div>

@@ -39,34 +39,47 @@ const Footer = () => {
 
             <div className={style.contacts}>
               <h3>Контакты</h3>
-              <div className={style.phoneIcon}>
+              <a href={`tel:${phone?.phone}`} className={style.phoneIcon}>
                 <img src={phoneIcon} alt="phoneIcon" />
                 <div className={style.contactsItem}>{phone?.phone}</div>
-              </div>
-              <div className={style.phoneIcon}>
+              </a>
+              <a href={`tel:${phone?.phone}`} className={style.phoneIcon}>
                 <img src={phoneIcon} alt="phoneIcon" />
                 <div className={style.contactsItem}>{phone?.phone}</div>
-              </div>
-              <div className={style.phoneIcon}>
+              </a>
+              <a href={`mailto:${phone?.email}`} className={style.phoneIcon}>
                 <img src={emailIcon} alt="phoneIcon" />
                 <div className={style.contactsItem}>{phone?.email}</div>
-              </div>
+              </a>
             </div>
 
             <div className={style.media}>
               <h3>Мы в социальных сетях:</h3>
-              <div className={style.phoneIcon}>
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                className={style.phoneIcon}
+              >
                 <img src={instagramIcon} alt="instagramIcon" />
                 <div className={style.mediaItem}>{phone?.instagram}</div>
-              </div>
-              <div className={style.phoneIcon}>
+              </a>
+              <a
+                href="https://telegram.org"
+                target="_blank"
+                className={style.phoneIcon}
+              >
                 <img src={telegramIcon} alt="telegramIcon" />
+
                 <div className={style.mediaItem}>{phone?.telegram}</div>
-              </div>
-              <div className={style.phoneIcon}>
+              </a>
+              <a
+                href="https://www.whatsapp.com"
+                target="_blank"
+                className={style.phoneIcon}
+              >
                 <img src={whatsappIcon} alt="whatsappIcon" />
                 <div className={style.mediaItem}>{phone?.whatsapp}</div>
-              </div>
+              </a>
             </div>
           </div>
           <div className={style.copyright}>Developed by Zeon 2022</div>

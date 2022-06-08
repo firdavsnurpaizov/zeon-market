@@ -58,6 +58,10 @@
     margin-bottom: 20px;
 }
 
+.productColor div {
+    /* margin-right: 10px; */
+}
+
 .productColor span {
     font-family: 'Montserrat';
     font-style: normal;
@@ -67,18 +71,11 @@
     color: #1D1D1B;
 }
 
-.productColorItemBorder {
-    border: 1px solid #E7E7E7;
-    width: 16px;
-    height: 16px;
-    padding: 3px;
-    margin-left: 10px;
-}
-
 .productColorItem {
     width: 8px;
     height: 8px;
     border-radius: 5px;
+    margin-left: 10px;
 }
 
 .productPrice {

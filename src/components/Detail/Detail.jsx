@@ -1,32 +1,64 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import style from "./Detail.module.css";
+import { ReactComponent as FavoritesIcon } from "./../../assets/svg/favoritesIcon.svg";
+import { ReactComponent as WhiteHeart } from "./../../assets/svg/whiteHeart.svg";
+import { ReactComponent as ShopBag } from "./../../assets/svg/shopBag.svg";
+import Active from "./Active/Active";
 
 const Detail = ({ data }) => {
+  const dispatch = useDispatch();
+  // const { favorites } = useSelector((state) => state.main);
   const [choosedColor, setChoosedColor] = useState("#BDD3D1");
-
   const [inCart, setInCart] = useState(false);
-  const found = !!JSON.parse(localStorage.getItem("cart"))?.find(
-    (c) => c.id === data.id
-  );
+  const [quantity, setQuantity] = useState(0);
 
+
+  const found = !!JSON.parse(localStorage.getItem("cart"))?.find(
+    (c) => c.id === data.id && c.colors === choosedColor
+  );
+ 
   useEffect(() => {
     found ? setInCart(true) : setInCart(false);
   }, [choosedColor]);
 
   const addToCart = (e) => {
-    e.preventDefault();
-
     const isCartPresent = localStorage.getItem("cart");
     let cart = isCartPresent ? JSON.parse(isCartPresent) : [];
-
+    setQuantity(quantity + 1)
     if (found) {
-      // cart = cart.filter((c) => c.id !== data.id);
-      setInCart(false);
+      setInCart(true);
     } else {
-      cart.push({ ...data, colors: choosedColor });
+      cart.push({ ...data, colors: choosedColor, count: 1 });
       setInCart(true);
     }
     localStorage.setItem(`cart`, JSON.stringify(cart));
+    dispatch({ type: "ADD_TO_CART", cart });
+    dispatch({ type: "ADD_QUANTITY", quantity: 1 })
+  };
+
+  const [inFavorites, setInFavorites] = useState(false);
+  const foundFav = !!JSON.parse(localStorage.getItem("favorites"))?.find(
+    (f) => f.id === data.id
+  );
+
+  useEffect(() => {
+    foundFav ? setInFavorites(true) : setInFavorites(false);
+  }, []);
+
+  const addToFavorites = (e) => {
+    const isFavoritesPresent = localStorage.getItem("favorites");
+    let favorites = isFavoritesPresent ? JSON.parse(isFavoritesPresent) : [];
+    if (foundFav) {
+      favorites = favorites.filter((f) => f.id !== data.id);
+      setInFavorites(false);
+    } else {
+      favorites.push(data);
+      setInFavorites(true);
+    }
+    localStorage.setItem(`favorites`, JSON.stringify(favorites));
+    dispatch({type: "ADD_TO_STATE", favorites})
   };
 
   return (
@@ -96,20 +128,10 @@ const Detail = ({ data }) => {
             </div>
             <div className={style.productColor}>
               <span>Цвет:</span>
-              {data.colors.map((c) => (
-                <div key={c.id} className={style.productColorItemBorder}>
-                  <div
-                    onClick={() => setChoosedColor(c.color)}
-                    className={style.productColorItem}
-                    style={{ backgroundColor: `${c.color}` }}
-                  >
-                    {" "}
-                  </div>
-                </div>
-              ))}
+              {data.colors?.map((c) => <Active setColor={setChoosedColor} id={data.id} color={c} key={c.id} />)}
             </div>
             <div className={style.productPrice}>
-              {data.price} р {data.sale ? <span>{data.previous} c.</span> : ""}
+              {data.price.toLocaleString()} р {data.sale ? <span>{data.previous.toLocaleString()} c.</span> : ""}
             </div>
             <div className={style.about}>
               <div>О товаре:</div>
@@ -138,12 +160,26 @@ const Detail = ({ data }) => {
               </div>
             </div>
             <div className={style.buttons}>
-              <button className={style.btn} onClick={addToCart}>
-                <span>Добавить в корзину</span>
-              </button>
-              <button className={style.fav}></button>
+              {inCart ? (
+                <Link to={"/cart"}>
+                  <button className={style.btn}>
+                    <span>Перейти в корзину</span>
+                  </button>
+                </Link>
+              ) : (
+                <button className={style.btn} onClick={addToCart}>
+                  <ShopBag/>
+                  <span>Добавить в корзину</span>
+                </button>
+              )}
+              {inFavorites ? (
+                <WhiteHeart className={style.fav} onClick={addToFavorites} />
+                ) : (
+                  <FavoritesIcon className={style.fav} onClick={addToFavorites} />
+              )}
             </div>
           </div>
+
         </div>
       </div>
     </>

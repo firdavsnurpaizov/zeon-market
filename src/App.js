@@ -27,6 +27,7 @@ function App() {
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/:name/:id" element={<Details />} />
           <Route path="/cart" element={<Cart />} />
+          {/* <Route path="*" element={<div> Ошибка в запросе!</div> } /> */}
         </Routes>
       </div>
       <Footer />

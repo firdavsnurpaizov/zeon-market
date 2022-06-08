@@ -1,0 +1,72 @@
+.input h3 {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 25px;
+    color: #393939;
+    text-align: start;
+    margin-bottom: 6px;
+}
+
+.text {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 27px;
+    color: #393939;
+    text-align: start;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.inputUser {
+    display: flex;
+    padding: 10px 12px;
+    width: 360px;
+    border: 1px solid rgba(31, 31, 31, 0.08);
+    border-radius: 3px;
+    gap: 8px;
+    cursor: text;
+}
+
+.inputUser input {
+ outline: none;
+ border: none;
+}
+
+.btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 14px 20px 13px;
+    border: none;
+
+    width: 360px;
+
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), #1D1D1B;
+    cursor: pointer;
+}
+
+.btn span {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: #FFFFFF;
+}
+
+.delete {
+    position: absolute;
+    top: 17px;
+    right: 17px;
+}

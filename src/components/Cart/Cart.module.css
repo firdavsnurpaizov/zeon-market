@@ -1,0 +1,42 @@
+.wrapper {
+    display: flex;
+    padding: 11px 0 96px 0;
+    justify-content: space-between;
+}
+
+.total {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px;
+    gap: 10px;
+
+    width: 384px;
+    height: 311px;
+    background: #FFFFFF;
+}
+
+.dashed {
+    border: 1px dashed #BFBFBF;
+    width: 100%;
+}
+
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    width: 336px;
+    height: 44px;
+    background: #E5271B;
+    cursor: pointer;
+}
+
+.btn span {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: #FFFFFF;
+}
