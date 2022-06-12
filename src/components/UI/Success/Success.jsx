@@ -2,12 +2,7 @@ import React from "react";
 import style from "./Success.module.css";
 import { ReactComponent as SuccessIcon } from "./../../../assets/svg/success.svg";
 
-const Success = ({ setVisible }) => {
-
-const continueShopping = () => {
-    setVisible(false)
-}
-
+const Success = ({...props }) => {
 
   return (
     <div className={style.success}>
@@ -17,7 +12,7 @@ const continueShopping = () => {
       <div className={style.text}>
          скоро Вам перезвонят
       </div>
-      <button onClick={continueShopping} className={style.btn}><span>Продолжить покупки</span></button>
+      <button {...props} className={style.btn}><span>Продолжить покупки</span></button>
     </div>
   )
 }

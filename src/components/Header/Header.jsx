@@ -6,6 +6,13 @@ import { ReactComponent as FullFavoriteIcon } from "./../../assets/svg/fullFavor
 import { ReactComponent as ShoppingBagIcon } from "./../../assets/svg/shoppingBagIcon.svg";
 import { ReactComponent as FullShoppingBagIcon } from "./../../assets/svg/fullShoppingBagIcon.svg";
 import { ReactComponent as SearchIcon } from "./../../assets/svg/searchIcon.svg";
+import { ReactComponent as Upicon } from "./../../assets/svg/up.svg";
+import { ReactComponent as Chaticon } from "./../../assets/svg/callback.svg";
+import { ReactComponent as Telegram } from "./../../assets/svg/telegram.svg";
+import { ReactComponent as Telephone } from "./../../assets/svg/telephone.svg";
+import { ReactComponent as Whatsapp } from "./../../assets/svg/whatsapp.svg";
+import { ReactComponent as Delete } from "./../../assets/svg/delete.svg";
+
 import { useDispatch, useSelector } from "react-redux";
 import { getContactsThunk, getLogoThunk } from "../../redux/main-reducer";
 import BreadCrumb from "../Breadcrumb/BreadCrumbs";
@@ -16,7 +23,8 @@ import Success from "../UI/Success/Success";
 const Header = () => {
   const dispatch = useDispatch();
   const [modal, setModal] = useState(false);
-  const [success, setSuccess] = useState(false)
+  const [success, setSuccess] = useState(false);
+  const [visible, setVisible] = useState(false);
   const { logo, contacts, favorites, cart } = useSelector(
     (state) => state.main
   );
@@ -25,14 +33,41 @@ const Header = () => {
     dispatch(getContactsThunk());
   }, []);
 
+  const openOrderCall = () => {
+    setModal(true);
+    setVisible(false);
+  };
+
+  const openChat = () => {
+    setVisible(true);
+  };
+
+  const deleteChat = () => {
+    setVisible(false);
+  };
+
+  const classes = [style.chat];
+  if (visible) {
+    classes.push(style.active);
+  }
+
+  const styles = [style.chatIcon];
+  if (visible) {
+    styles.push(style.passive);
+  }
+
   const logoURL = logo[1];
   const phone = contacts[0];
   return (
     <>
       <div className={style.header}>
         <div className="container">
-          <Modal visible={modal} >
-            {success ? <Success setVisible={setModal} /> : <Input setVisible={setModal} order={setSuccess} />}
+          <Modal visible={modal}>
+            {success ? (
+              <Success onClick={() => setModal(false)} />
+            ) : (
+              <Input setVisible={setModal} order={setSuccess} />
+            )}
           </Modal>
           <div className={style.menu}>
             <div className={style.nav}>
@@ -52,9 +87,9 @@ const Header = () => {
                 </NavLink>
               </div>
             </div>
-            <div className={style.phone} onClick={() => setModal(true)}>
+            <a href={`tel:${phone?.tel}`} className={style.phone}>
               <span>Тел:</span> {phone?.tel}
-            </div>
+            </a>
           </div>
 
           <div className={style.toolbar}>
@@ -79,7 +114,7 @@ const Header = () => {
                 ) : (
                   <FavoriteIcon className={style.icon} />
                 )}
-                <NavLink  to={"/favorites"} className={style.favText}>
+                <NavLink to={"/favorites"} className={style.favText}>
                   Избранное
                 </NavLink>
               </div>
@@ -93,6 +128,18 @@ const Header = () => {
                   Корзина
                 </NavLink>
               </div>
+            </div>
+            <Upicon className={style.upIcon} />
+            <Chaticon className={styles.join(" ")} onClick={openChat} />
+            <div className={classes.join(" ")}>
+              <a href="https://telegram.org" target="_blank">
+                <Telegram />
+              </a>
+              <a href="https://www.whatsapp.com" target="_blank">
+                <Whatsapp />
+              </a>
+              <Telephone style={{ marginBottom: 6}} onClick={openOrderCall} />
+              <Delete onClick={deleteChat} />
             </div>
           </div>
           <BreadCrumb />

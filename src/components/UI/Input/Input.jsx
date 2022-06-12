@@ -33,7 +33,7 @@ const Input = ({order, setVisible}) => {
     }
     const phoneHandler = (e) => {
         setPhone(e.target.value)
-        const re = /(?:\+|\d)[\d\-\(\) ]{9,}\d/g;
+        const re = /(?:\+|\d)[\d\-\(\) ]{9,}\d/g
         if(!re.test(String(e.target.value).toLowerCase())) {
             setPhoneError("Некорректный номер")
         }else {
@@ -41,8 +41,8 @@ const Input = ({order, setVisible}) => {
         }
     }
 
-    const blurHandler = (e) => {
-        switch(e.target.name) {
+    const blurHandler = (e) => {   
+        switch(e.target.name) { 
             case 'name': 
             setNameDirty(true)
             break

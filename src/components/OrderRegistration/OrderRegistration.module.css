@@ -1,0 +1,183 @@
+.wrapper {
+    padding: 32px 24px;
+}
+
+.OrderRegistration {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.OrderRegistration h3 {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    color: #393939;
+
+}
+
+
+.title {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 16px;
+    color: #808080;
+    margin-top: 12px;
+}
+
+.input {
+    text-align: start;
+}
+
+/* .inputItem:focus {
+    outline: none;
+  } */
+
+.inputItem {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 13px 10px 13px 12px;
+    gap: 10px;
+    width: 392px;
+    background: #FFFFFF;
+    border: 1px solid #E7E7E7;
+}
+
+.phoneInput {
+    text-align: start;
+    position: relative;
+}
+
+.phoneInput input {
+    position: relative;
+    padding: 13px 10px 13px 45px;
+    gap: 10px;
+    width: 392px;
+    background: #FFFFFF;
+    border: 1px solid #E7E7E7;
+}
+
+:root {
+	--PhoneInput-color--focus: #03b2cb;
+	--PhoneInputInternationalIconPhone-opacity: 0.8;
+	--PhoneInputInternationalIconGlobe-opacity: 0.65;
+	--PhoneInputCountrySelect-marginRight: 0.35em;
+	--PhoneInputCountrySelectArrow-width: 0.3em;
+	--PhoneInputCountrySelectArrow-marginLeft: var(--PhoneInputCountrySelect-marginRight);
+	--PhoneInputCountrySelectArrow-borderWidth: 1px;
+	--PhoneInputCountrySelectArrow-opacity: 0.45;
+	--PhoneInputCountrySelectArrow-color: inherit;
+	--PhoneInputCountrySelectArrow-color--focus: var(--PhoneInput-color--focus);
+	--PhoneInputCountrySelectArrow-transform: rotate(45deg);
+	--PhoneInputCountryFlag-aspectRatio: 1.5;
+	--PhoneInputCountryFlag-height: 1em;
+	--PhoneInputCountryFlag-borderRadiust: 10px;
+	--PhoneInputCountryFlag-borderWidth: 0 !important;
+    	--PhoneInputCountryFlag-borderColor: rgba(0,0,0,0.5);
+	--PhoneInputCountryFlag-borderColor--focus: var(--PhoneInput-color--focus);
+	--PhoneInputCountryFlag-backgroundColor--loading: rgba(0,0,0,0.1);
+}
+
+
+
+
+
+
+
+
+
+
+.errorPhone input {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 13px 10px 13px 45px;
+    gap: 10px;
+    width: 392px;
+    background: #FFFFFF;
+    border: 1px solid #E5271B;
+}
+
+.errorPhone input::placeholder {
+    color: #E5271B;
+} 
+
+.error {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 13px 10px 13px 12px;
+    gap: 10px;
+    width: 392px;
+    background: #FFFFFF;
+    border: 1px solid #E5271B;
+}
+
+
+
+.inputItem::placeholder {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    display: flex;
+    align-items: center;
+    color: #D0D0D0;
+}
+
+.error::placeholder {
+    color: #E5271B;
+}
+
+.agree {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 344px;
+    /* height: 24px; */
+    margin-top: 18px;
+}
+
+.agree h4 {
+    margin: 0;
+}
+
+.checkbox {
+    width: 18px;
+    height: 18px;
+    border: 1.2px solid #919191;
+    border-radius: 3px;
+    accent-color: #393939;
+}
+
+.btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 14px 20px 13px;
+    width: 392px;
+    border: none;
+    margin-top: 34px;
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), #1D1D1B;
+}
+
+.active {
+    background: #1D1D1B;
+}
+
+.btn span {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: #FFFFFF;
+}

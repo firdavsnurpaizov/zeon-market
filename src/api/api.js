@@ -27,44 +27,45 @@ export const getDataFromAPI = {
     getNovelty(limit) {
         return instance.get(`novelty`, {
             params: {
-                _limit: limit 
+                _limit: limit
             }
         })
+            .then(response => {
+                return response
+            })
+    },
+    getCollections(limit = 4, page = 1) {
+        return instance.get(`collections?_limit=${limit}&_page=${page}`)
+            .then(response => {
+                return response
+            })
+    },
+    getCollection(name) {
+        return instance.get(`${name}`)
             .then(response => {
                 return response.data
             })
     },
-    getCollections(limit= 4) {
-        return instance.get(`collections?_limit=${limit}`)
-        .then(response => {
-            return response.data
-        })
-    },
-    getCollection(name) {
-        return instance.get(`${name}`)
-        .then(response => {
-            return response.data
-        })
-    },
     getAdvantages() {
         return instance.get(`advantages`)
-        .then(response => {
-            return response.data
-        })
+            .then(response => {
+                return response.data
+            })
     },
 
     // news-reducer
 
-    getNews() {
-        return instance.get(`news`)
-        .then(response => {
-            return response
-        })
+    getNews(limit, currentPage) {
+        return instance.get(`news?_limit=${limit}&_page=${currentPage}`)
+            .then(response => {
+                console.log(response);
+                return response
+            })
     },
 
     // about-reducer
 
-        getAbout() {
+    getAbout() {
         return instance.get(`about`)
             .then(response => {
                 // console.log(response.data);
@@ -76,9 +77,9 @@ export const getDataFromAPI = {
 
     getDetails(name, id) {
         return instance.get(`${name}?id=${id}`)
-        .then(response => {
-            // console.log(response.data);
-            return response.data
-        })
+            .then(response => {
+                // console.log(response.data);
+                return response.data
+            })
     }
 }

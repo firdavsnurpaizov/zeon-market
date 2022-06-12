@@ -180,9 +180,9 @@ export const getNoveltyThunk = (limit) => {
         return data
     }
 }
-export const getCollectionsThunk = (limitCollections) => {
+export const getCollectionsThunk = (limitCollections, page) => {
     return async (dispatch) => {
-        const data = await getDataFromAPI.getCollections(limitCollections)
+        const data = await getDataFromAPI.getCollections(limitCollections, page)
         dispatch(setCollections(data))
         return data
     }

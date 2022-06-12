@@ -36,13 +36,13 @@ const Favorites = () => {
           {favorites.length ? (
             fav.map((f) => <Product key={f.id} data={f} />)
           ) : (
-            <div>
-              <div style={{ textAlign: "start" }}>
+            <div style={{paddingBottom: 64 }}>
+              <div className={style.attention} >
                 У Вас пока нет избранных товаров
               </div>
                 <h3>Возможно Вас заинтересует</h3>
               <div style={{ display: "flex", gap: 8 }}>
-                {novelty.map((item) => (
+                {novelty.data?.map((item) => (
                   <Recommendation data={item} key={item.id} />
                 ))}
               </div>

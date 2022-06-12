@@ -63,7 +63,7 @@ const Footer = () => {
                 <img src={instagramIcon} alt="instagramIcon" />
                 <div className={style.mediaItem}>{phone?.instagram}</div>
               </a>
-              <a
+              <a  
                 href="https://telegram.org"
                 target="_blank"
                 className={style.phoneIcon}

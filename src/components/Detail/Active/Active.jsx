@@ -5,13 +5,12 @@ const Active = ({ color, setColor, id }) => {
   //   const found = !!JSON.parse(localStorage.getItem("cart"))?.find(
   //     (c) => c.id === id && c.colors === color.color
   //   );
-  const [active, setActive] = useState(true);
+  // const [active, setActive] = useState(true);
 
-  const border = active ? style.activeBorder : null;
+  // const border = active ? style.activeBorder : null;
 
   const itemHandler = () => {
     setColor(color.color);
-    setActive();
   };
 
   return (

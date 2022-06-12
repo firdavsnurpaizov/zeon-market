@@ -11,6 +11,7 @@ import Favorites from './components/Favorites/Favorites';
 import Collection from './components/Collection/Collection';
 import Details from './components/Details/Details';
 import Cart from './components/Cart/Cart';
+import Offer from './components/Offer/Offer';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/:name/:id" element={<Details />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/public" element={<Offer />} />
           {/* <Route path="*" element={<div> Ошибка в запросе!</div> } /> */}
         </Routes>
       </div>

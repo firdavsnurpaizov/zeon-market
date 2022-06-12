@@ -4,6 +4,38 @@
     box-sizing: border-box;
 }
 
+.upIcon {
+    position: fixed;
+    bottom: 230px;
+    right: 185px;
+    z-index: 5;
+}
+
+.chatIcon {
+    position: fixed;
+    bottom: 190px;
+    right: 185px;
+    z-index: 5;
+}
+
+.chat {
+    display: none;
+    gap: 6px;
+    position: fixed;
+    bottom: 190px;
+    right: 195px;
+    z-index: 5;
+}
+
+.active {
+    display: flex;
+    align-items: center;
+}
+
+.passive {
+    display: none;
+}
+
 .nav {
     display: flex;
     justify-content: space-around;
@@ -44,6 +76,11 @@
     color: #393939;
     cursor: pointer;
 }
+
+.phone:hover {
+    color: #393939;
+}
+
 
 .phone span {
     font-family: 'Montserrat';
