@@ -4,10 +4,56 @@
     border: 1px solid #F1F1F1;
 }
 
+.hover {
+    position: absolute;
+    height: 100%;
+    display: flex;
+    top: 0;
+    left: 0;
+}
+
+.progress {
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    padding: 0 8px;
+    display: none;
+}
+
+.progressBar {
+    width: 25%;
+    height: 3px;
+    background: #FFF;
+}
+
+.product:hover .progress {
+    display: block;
+}
+
+.hover img {
+    height: 100%;
+    opacity: 0;
+    z-index: 3;
+    width: 25%;
+}
+
 .favoriteIcon {
+    display: none;
+    z-index: 10;
+}
+
+.product:hover .favoriteIcon {
     position: absolute;
     top: 12px;
     right: 12px;
+    display: block;
+}
+
+.fullFavoriteIcon {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 10;
 }
 
 .saleIcon {
@@ -109,4 +155,3 @@
     border-radius: 5px;
     margin-right: 10px;
 }
-

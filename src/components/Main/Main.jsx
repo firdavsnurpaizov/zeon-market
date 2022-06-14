@@ -50,15 +50,21 @@ const Main = () => {
     setCollections(limitCollections + 4);
   };
 
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1
+  };
+
   return (
     <div className={style.main}>
       <div className="container">
         <Carousel>
           <img src={carouselImage} alt="carouseL image" />
-          {/* <img src={fullFavoriteIcon} alt="full favorite icon" /> */}
         </Carousel>
-
-       
+     
 
         <h3>Хит продаж</h3>
         <div className={style.product}>

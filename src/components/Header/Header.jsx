@@ -14,7 +14,7 @@ import { ReactComponent as Whatsapp } from "./../../assets/svg/whatsapp.svg";
 import { ReactComponent as Delete } from "./../../assets/svg/delete.svg";
 
 import { useDispatch, useSelector } from "react-redux";
-import { getContactsThunk, getLogoThunk } from "../../redux/main-reducer";
+import { getAllCollectionsThunk, getContactsThunk, getLogoThunk } from "../../redux/main-reducer";
 import BreadCrumb from "../Breadcrumb/BreadCrumbs";
 import Modal from "../UI/Modal/Modal";
 import Input from "../UI/Input/Input";
@@ -56,6 +56,11 @@ const Header = () => {
     styles.push(style.passive);
   }
 
+  const continueShopping = () => {
+    setModal(false)
+    setSuccess(false)
+  }
+
   const logoURL = logo[1];
   const phone = contacts[0];
   return (
@@ -64,7 +69,7 @@ const Header = () => {
         <div className="container">
           <Modal visible={modal}>
             {success ? (
-              <Success onClick={() => setModal(false)} />
+              <Success onClick={continueShopping} />
             ) : (
               <Input setVisible={setModal} order={setSuccess} />
             )}
@@ -91,7 +96,9 @@ const Header = () => {
               <span>Тел:</span> {phone?.tel}
             </a>
           </div>
-
+          </div>
+              <div className={style.line}></div>
+              <div className="container">
           <div className={style.toolbar}>
             <div className={style.logo}>
               <NavLink to={"/"}>
@@ -141,9 +148,12 @@ const Header = () => {
               <Telephone style={{ marginBottom: 6}} onClick={openOrderCall} />
               <Delete onClick={deleteChat} />
             </div>
-          </div>
-          <BreadCrumb />
         </div>
+          </div>
+          <div className={style.line}></div>
+          <div className="container">
+          <BreadCrumb />
+          </div>
       </div>
     </>
   );

@@ -5,6 +5,7 @@ const SET_CONTACTS = 'SET_CONTACTS';
 const SET_BESTSELLER = 'SET_BESTSELLER';
 const SET_NOVELTY = 'SET_NOVELTY';
 const SET_COLLECTIONS = 'SET_COLLECTIONS';
+const SET_ALL_COLLECTIONS = 'SET_ALL_COLLECTIONS';
 const SET_COLLECTION = 'SET_COLLECTION';
 const SET_ADVANTAGES = 'SET_ADVANTAGES';
 const ADD_TO_STATE = 'ADD_TO_STATE';
@@ -20,6 +21,7 @@ let initialState = {
     bestseller: [],
     novelty: [],
     collections: [],
+    allCollections: [],
     collection: [],
     advantages: [],
     favorites: JSON.parse(localStorage.getItem("favorites")) || [],
@@ -58,6 +60,12 @@ const mainReducer = (state = initialState, action) => {
                 collections: action.collections
             }
         }
+        case SET_ALL_COLLECTIONS: {
+            return {
+                ...state,
+                allCollections: action.allCollections
+            }
+        }
         case SET_COLLECTION: {
             return {
                 ...state,
@@ -85,14 +93,13 @@ const mainReducer = (state = initialState, action) => {
         case REMOVE_ITEM_FROM_CART: {
             const index = state.cart.findIndex(
                 (item) =>
-                  item.id === action.data.id &&
-                  item.colors === action.data.colors
-              );
-              const copyState = [...state.cart];
-              copyState.splice(index, 1);
-        
-              localStorage.setItem("cart", JSON.stringify(copyState));
-              return { ...state, cart: copyState }
+                    item.id === action.data.id && item.colors === action.data.colors
+            );
+            const copyState = [...state.cart];
+            copyState.splice(index, 1);
+
+            localStorage.setItem("cart", JSON.stringify(copyState));
+            return { ...state, cart: copyState }
         }
         case ADD_QUANTITY: {
             return {
@@ -144,6 +151,7 @@ export const setContacts = (contacts) => ({ type: SET_CONTACTS, contacts })
 export const setBestseller = (bestseller) => ({ type: SET_BESTSELLER, bestseller })
 export const setNovelty = (novelty) => ({ type: SET_NOVELTY, novelty })
 export const setCollections = (collections) => ({ type: SET_COLLECTIONS, collections })
+export const setAllCollections = (allCollections) => ({ type: SET_ALL_COLLECTIONS, allCollections })
 export const setCollection = (collection) => ({ type: SET_COLLECTION, collection })
 export const setAdvantages = (advantages) => ({ type: SET_ADVANTAGES, advantages })
 export const setInctement = (data) => ({ type: SET_INCREMENT, data })
@@ -183,13 +191,21 @@ export const getNoveltyThunk = (limit) => {
 export const getCollectionsThunk = (limitCollections, page) => {
     return async (dispatch) => {
         const data = await getDataFromAPI.getCollections(limitCollections, page)
+
         dispatch(setCollections(data))
         return data
     }
 }
-export const getCollectionThunk = (name) => {
+export const getAllCollectionsThunk = () => {
     return async (dispatch) => {
-        const data = await getDataFromAPI.getCollection(name)
+        const data = await getDataFromAPI.getAllCollections()
+        dispatch(setAllCollections(data))
+        return data
+    }
+}
+export const getCollectionThunk = (name, limit, page) => {
+    return async (dispatch) => {
+        const data = await getDataFromAPI.getCollection(name, limit, page)
         dispatch(setCollection(data))
         return data
     }

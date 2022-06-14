@@ -33,7 +33,7 @@ const Active = ({ color, setColor, id }) => {
         type="radio"
         id={color.color}
         name="color"
-        defaultChecked={"#BDD3D1" && true}
+        defaultChecked={color.color === "#BDD3D1"}
       />
       <label htmlFor={color.color}></label>
     </div>

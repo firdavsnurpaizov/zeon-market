@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ReactComponent as Delete } from "./../../assets/svg/delete.svg";
 import { Link } from "react-router-dom";
-import 'react-phone-number-input/style.css'
+import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import style from "./OrderRegistration.module.css";
 
@@ -63,12 +63,12 @@ const useInput = (initialValue, validations) => {
   const valid = useValidation(value, validations);
 
   const onChange = (e) => {
-    setValue(e?.target?.value)
+    setValue(e?.target?.value);
   };
 
   const onChangePhone = (e) => {
-      setValue(e)
-  }
+    setValue(e);
+  };
 
   const onBlur = (e) => {
     setDirty(true);
@@ -110,10 +110,11 @@ const OrderRegistration = ({ setVisible, data, total, order }) => {
   };
 
   const orderP = () => {
-    order(true)
+    order(true);
+    // name.value = "";
   };
 
-//   console.log(orderProduct);
+  //   console.log(orderProduct);
 
   const classes = [style.btn];
   if (
@@ -128,8 +129,6 @@ const OrderRegistration = ({ setVisible, data, total, order }) => {
     classes.push(style.active);
   }
 
-
-
   return (
     <div className={style.wrapper}>
       <div className={style.OrderRegistration}>
@@ -137,7 +136,13 @@ const OrderRegistration = ({ setVisible, data, total, order }) => {
         <Delete className={style.delete} onClick={() => setVisible(false)} />
       </div>
       <div className={style.input}>
-        <h4 className={style.title}>Ваше имя</h4>
+        <h4
+          className={
+            name.isDirty && name.isEmpty ? style.errortitle : style.title
+          }
+        >
+          Ваше имя
+        </h4>
         <input
           onBlur={(e) => name.onBlur(e)}
           onChange={(e) => name.onChange(e)}
@@ -151,7 +156,13 @@ const OrderRegistration = ({ setVisible, data, total, order }) => {
         />
       </div>
       <div className={style.input}>
-        <h4 className={style.title}>Ваше фамилия</h4>
+        <h4
+          className={
+            surname.isDirty && surname.isEmpty ? style.errortitle : style.title
+          }
+        >
+          Ваше фамилия
+        </h4>
         <input
           onBlur={(e) => surname.onBlur(e)}
           onChange={(e) => surname.onChange(e)}
@@ -165,7 +176,13 @@ const OrderRegistration = ({ setVisible, data, total, order }) => {
         />
       </div>
       <div className={style.input}>
-        <h4 className={style.title}>Электронная почта</h4>
+        <h4
+          className={
+            email.isDirty && email.emailError ? style.errortitle : style.title
+          }
+        >
+          Электронная почта
+        </h4>
 
         <input
           onBlur={(e) => email.onBlur(e)}
@@ -180,21 +197,33 @@ const OrderRegistration = ({ setVisible, data, total, order }) => {
         />
       </div>
       <div className={style.phoneInput}>
-        <h4 className={style.title}>Ваш номер телефона</h4>
-        {/* <PhoneInput
-          value={phone?.value}
-          onBlur={(e) => phone.onBlur(e)}
-          onChange={(e) => phone.onChangePhone(e)}
-          international 
-          defaultCountry="KG"
-          name="phone"
+        <h4
           className={
-            phone.isDirty && phone.phoneError ? style.errorPhone : style.PhoneInput
+            phone.isDirty && phone.isEmpty ? style.errortitle : style.title
           }
-          placeholder="Введите номер телефона"
-          style={{border: "none", outline: "none"}}
-        /> */}
-        <input
+        >
+          Ваш номер телефона
+        </h4>
+        <div
+          className={
+            phone.isDirty && phone.phoneError
+              ? style.errorPhone
+              : style.phoneWrapper
+          }
+        >
+          <PhoneInput
+            value={phone?.value}
+            onBlur={(e) => phone.onBlur(e)}
+            onChange={(e) => phone.onChangePhone(e)}
+            international
+            defaultCountry="KG"
+            name="phone"
+            className={style.PhoneInput}
+            placeholder="Введите номер телефона"
+            style={{ border: "none", outline: "none" }}
+          />
+        </div>
+        {/* <input
           onBlur={(e) => phone.onBlur(e)}
           onChange={(e) => phone.onChange(e)}
           value={phone.value}
@@ -204,10 +233,16 @@ const OrderRegistration = ({ setVisible, data, total, order }) => {
           }
           placeholder="Введите номер телефона"
           type="text"
-        />
+        /> */}
       </div>
       <div className={style.input}>
-        <h4 className={style.title}>Страна</h4>
+        <h4
+          className={
+            country.isDirty && country.isEmpty ? style.errortitle : style.title
+          }
+        >
+          Страна
+        </h4>
         <input
           onBlur={(e) => country.onBlur(e)}
           onChange={(e) => country.onChange(e)}
@@ -221,7 +256,13 @@ const OrderRegistration = ({ setVisible, data, total, order }) => {
         />
       </div>
       <div className={style.input}>
-        <h4 className={style.title}>Город</h4>
+        <h4
+          className={
+            city.isDirty && city.isEmpty ? style.errortitle : style.title
+          }
+        >
+          Город
+        </h4>
         <input
           onBlur={(e) => city.onBlur(e)}
           onChange={(e) => city.onChange(e)}
@@ -246,21 +287,21 @@ const OrderRegistration = ({ setVisible, data, total, order }) => {
         </h4>
       </div>
       {/* <Link to="/"> */}
-        <button
-          disabled={
-            !name.inputValid ||
-            !surname.inputValid ||
-            !email.inputValid ||
-            !phone.inputValid ||
-            !country.inputValid ||
-            !city.inputValid ||
-            !checkbox
-          }
-          className={classes.join(" ")}
-          onClick={orderP}
-        >
-          <span>Заказать</span>
-        </button>
+      <button
+        disabled={
+          !name.inputValid ||
+          !surname.inputValid ||
+          !email.inputValid ||
+          !phone.inputValid ||
+          !country.inputValid ||
+          !city.inputValid ||
+          !checkbox
+        }
+        className={classes.join(" ")}
+        onClick={orderP}
+      >
+        <span>Заказать</span>
+      </button>
       {/* </Link> */}
     </div>
   );

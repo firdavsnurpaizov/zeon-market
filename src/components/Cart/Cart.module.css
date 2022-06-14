@@ -8,12 +8,28 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+
     padding: 24px;
     gap: 10px;
 
     width: 384px;
     height: 311px;
     background: #FFFFFF;
+}
+
+.totalOrder {
+    width: 336px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.totalOrder span {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #393939;
 }
 
 .dashed {
@@ -39,4 +55,41 @@
     font-size: 14px;
     line-height: 17px;
     color: #FFFFFF;
+}
+
+.emptyCart {
+    padding-bottom: 64px;
+}
+
+.emptyCart h3 {
+    padding-top: 11px;
+    text-align: start;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    color: #393939;
+}
+
+.default {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    color: #393939;
+    margin-top: 16px;
+    text-align: left;
+}
+
+.interested {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    color: #393939;
+    margin-top: 48px;
+    margin-bottom: 16px;
 }

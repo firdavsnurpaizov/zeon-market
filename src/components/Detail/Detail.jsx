@@ -14,11 +14,10 @@ const Detail = ({ data }) => {
   const [inCart, setInCart] = useState(false);
   const [quantity, setQuantity] = useState(0);
 
-
   const found = !!JSON.parse(localStorage.getItem("cart"))?.find(
     (c) => c.id === data.id && c.colors === choosedColor
   );
- 
+
   useEffect(() => {
     found ? setInCart(true) : setInCart(false);
   }, [choosedColor]);
@@ -26,7 +25,7 @@ const Detail = ({ data }) => {
   const addToCart = (e) => {
     const isCartPresent = localStorage.getItem("cart");
     let cart = isCartPresent ? JSON.parse(isCartPresent) : [];
-    setQuantity(quantity + 1)
+    setQuantity(quantity + 1);
     if (found) {
       setInCart(true);
     } else {
@@ -35,7 +34,7 @@ const Detail = ({ data }) => {
     }
     localStorage.setItem(`cart`, JSON.stringify(cart));
     dispatch({ type: "ADD_TO_CART", cart });
-    dispatch({ type: "ADD_QUANTITY", quantity: 1 })
+    dispatch({ type: "ADD_QUANTITY", quantity: 1 });
   };
 
   const [inFavorites, setInFavorites] = useState(false);
@@ -58,7 +57,7 @@ const Detail = ({ data }) => {
       setInFavorites(true);
     }
     localStorage.setItem(`favorites`, JSON.stringify(favorites));
-    dispatch({type: "ADD_TO_STATE", favorites})
+    dispatch({ type: "ADD_TO_STATE", favorites });
   };
 
   return (
@@ -68,46 +67,6 @@ const Detail = ({ data }) => {
           <div className={style.galery}>
             {data.images.map((i) => {
               return <img key={i.id} src={i.src} alt="" />;
-            })}
-            {data.images.map((i) => {
-              return <img key={i.id} src={i.src} alt="" />;
-            })}
-            {data.images.map((i) => {
-              return <img key={i.id} src={i.src} alt="" />;
-            })}
-            {data.images.map((i) => {
-              return <img key={i.id} src={i.src} alt="" />;
-            })}
-
-            {data.images.map((i) => {
-              return (
-                <img
-                  style={{ width: 140, height: 240, objectFit: "cover" }}
-                  key={i.id}
-                  src={i.src}
-                  alt=""
-                />
-              );
-            })}
-            {data.images.map((i) => {
-              return (
-                <img
-                  style={{ width: 140, height: 240, objectFit: "cover" }}
-                  key={i.id}
-                  src={i.src}
-                  alt=""
-                />
-              );
-            })}
-            {data.images.map((i) => {
-              return (
-                <img
-                  style={{ width: 140, height: 240, objectFit: "cover" }}
-                  key={i.id}
-                  src={i.src}
-                  alt=""
-                />
-              );
             })}
             {data.images.map((i) => {
               return (
@@ -120,7 +79,6 @@ const Detail = ({ data }) => {
               );
             })}
           </div>
-
           <div className={style.detail}>
             <h3>{data.title}</h3>
             <div className={style.article}>
@@ -128,10 +86,22 @@ const Detail = ({ data }) => {
             </div>
             <div className={style.productColor}>
               <span>Цвет:</span>
-              {data.colors?.map((c) => <Active setColor={setChoosedColor} id={data.id} color={c} key={c.id} />)}
+              {data.colors?.map((c) => (
+                <Active
+                  setColor={setChoosedColor}
+                  id={data.id}
+                  color={c}
+                  key={c.id}
+                />
+              ))}
             </div>
             <div className={style.productPrice}>
-              {data.price.toLocaleString()} р {data.sale ? <span>{data.previous.toLocaleString()} c.</span> : ""}
+              {data.price.toLocaleString()} р{" "}
+              {data.sale ? (
+                <span>{data.previous.toLocaleString()} c.</span>
+              ) : (
+                ""
+              )}
             </div>
             <div className={style.about}>
               <div>О товаре:</div>
@@ -168,18 +138,17 @@ const Detail = ({ data }) => {
                 </Link>
               ) : (
                 <button className={style.btn} onClick={addToCart}>
-                  <ShopBag/>
+                  <ShopBag />
                   <span>Добавить в корзину</span>
                 </button>
               )}
               {inFavorites ? (
                 <WhiteHeart className={style.fav} onClick={addToFavorites} />
-                ) : (
-                  <FavoritesIcon className={style.fav} onClick={addToFavorites} />
+              ) : (
+                <FavoritesIcon className={style.fav} onClick={addToFavorites} />
               )}
             </div>
           </div>
-
         </div>
       </div>
     </>

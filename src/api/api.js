@@ -37,13 +37,21 @@ export const getDataFromAPI = {
     getCollections(limit = 4, page = 1) {
         return instance.get(`collections?_limit=${limit}&_page=${page}`)
             .then(response => {
+                // console.log(response);
                 return response
             })
     },
-    getCollection(name) {
-        return instance.get(`${name}`)
+    getAllCollections() {
+        return instance.get(`collections`)
             .then(response => {
                 return response.data
+            })
+    },
+    getCollection(name, limit, page) {
+        return instance.get(`${name}?_limit=${limit}&_page=${page}`)
+            .then(response => {
+                // console.log(response);
+                return response
             })
     },
     getAdvantages() {

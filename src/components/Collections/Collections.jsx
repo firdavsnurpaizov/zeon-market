@@ -1,26 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCollectionsThunk } from "../../redux/main-reducer";
 import CollectionItem from "../CollectionItem/CollectionItem";
-
+import { Pagination } from "antd";
 import style from "./Collections.module.css";
+import {
+  getAllCollectionsThunk,
+  getCollectionsThunk
+} from "../../redux/main-reducer";
 
 const Collections = () => {
   const dispatch = useDispatch();
-  const { collections } = useSelector((state) => state.main);
+  const { collections, allCollections } = useSelector((state) => state.main);
   const [limit, setLimit] = useState(8);
-  const [totalPages, setTotalPages] = useState(0)
-  const [page, setPage] = useState(1)
-  let pagesArray = []
-  for (let i = 0; i < totalPages; i++) {
-    pagesArray.push(i + 1)
-  }
-console.log(collections);
+  const [page, setPage] = useState(1);
+
   useEffect(() => {
     dispatch(getCollectionsThunk(limit, page));
-    const totalCount = collections?.headers['x-total-count']
-    setTotalPages(Math.ceil(+totalCount / limit))
   }, [page]);
+
+  useEffect(() => {
+    dispatch(getAllCollectionsThunk());
+  }, []);
+
+  const onChange = (page) => {
+    setPage(page);
+  };
 
   return (
     <>
@@ -32,15 +36,14 @@ console.log(collections);
               return <CollectionItem data={c} key={c.id} />;
             })}
           </div>
-          {
-          pagesArray.map(p =>
-            <button
-              onClick={() => setPage(p)}
-              className={page === p ? 'btn btnActive' : 'btn'}
-              key={p}>{p}
-            </button>
-          )
-        }
+          <Pagination
+            defaultCurrent={1}
+            current={page}
+            onChange={onChange}
+            total={allCollections?.length}
+            showSizeChanger={false}
+            className={style.pagination}
+          />
         </div>
       </div>
     </>

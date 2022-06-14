@@ -2,20 +2,24 @@ import React, { useEffect, useState } from "react";
 import style from "./CartItem.module.css";
 import { ReactComponent as Delete } from "./../../assets/svg/delete.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { setDecrement, setInctement, removeItemFromCart } from "../../redux/main-reducer";
+import {
+  setDecrement,
+  setInctement,
+  removeItemFromCart,
+} from "../../redux/main-reducer";
 
 const CartItem = ({ data }) => {
   const dispatch = useDispatch();
 
   const remove = () => {
-   dispatch(removeItemFromCart(data))
+    dispatch(removeItemFromCart(data));
   };
 
   const addQuantity = () => {
-    dispatch(setInctement(data))
+    dispatch(setInctement(data));
   };
   const removeQuantity = () => {
-    dispatch(setDecrement(data))
+    dispatch(setDecrement(data));
   };
 
   return (
@@ -24,14 +28,11 @@ const CartItem = ({ data }) => {
         <div className={style.cartItem}>
           <Delete className={style.delete} onClick={remove} />
           <div>
-            {data.images.map((image) => (
-              <img
-                style={{ width: 112, height: 142, objectFit: "cover" }}
-                src={image.src}
-                key={image.id}
-                alt="product image"
-              />
-            ))}
+            <img
+              style={{ width: 112, height: 142, objectFit: "cover" }}
+              src={data.images[0].src}
+              alt="product image"
+            />
           </div>
           <div style={{ textAlign: "start" }} className={style.description}>
             <h4>{data.title}</h4>
@@ -45,14 +46,11 @@ const CartItem = ({ data }) => {
               ></span>
             </div>
             <div className={style.price}>
-              {data.price.toLocaleString()} р <span>{data.sale ? data.previous.toLocaleString() : ""}</span>{" "}
+              {data.price.toLocaleString()} р{" "}
+              <span>{data.sale ? data.previous.toLocaleString() : ""}</span>{" "}
             </div>
             <div className={style.buttons}>
-              <button
-                className={style.btn}
-
-                onClick={removeQuantity}
-              >
+              <button className={style.btn} onClick={removeQuantity}>
                 -
               </button>
               <span>{data.count}</span>

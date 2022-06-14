@@ -12,6 +12,8 @@ import Collection from './components/Collection/Collection';
 import Details from './components/Details/Details';
 import Cart from './components/Cart/Cart';
 import Offer from './components/Offer/Offer';
+import 'antd/dist/antd.css';
+import Search from './components/Search/Search';
 
 function App() {
   return (
@@ -29,6 +31,7 @@ function App() {
           <Route path="/:name/:id" element={<Details />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/public" element={<Offer />} />
+          <Route path="/search" element={<Search />} />
           {/* <Route path="*" element={<div> Ошибка в запросе!</div> } /> */}
         </Routes>
       </div>

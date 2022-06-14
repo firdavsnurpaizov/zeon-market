@@ -1,0 +1,13 @@
+.accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+}
+
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 72px;
+    padding-top: 11px;
+}

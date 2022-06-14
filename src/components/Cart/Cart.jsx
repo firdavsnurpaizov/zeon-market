@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 import { getNoveltyThunk } from "../../redux/main-reducer";
 import CartItem from "../CartItem/CartItem";
 import OrderRegistration from "../OrderRegistration/OrderRegistration";
@@ -29,13 +30,13 @@ const Cart = () => {
   );
   const totalLines = cart.reduce((acc, item) => (acc += item?.count), 0);
   const totalPrice = cart.reduce(
-    (acc, item) => (acc += item?.price * item.quantity * item.count),
+    (acc, item) => (acc += item?.price * item.count),
     0
   );
   const discount = cart.reduce(
     (acc, item) =>
       (acc += item?.previous
-        ? (item.previous - item.price) * item.quantity * item.count
+        ? (item.previous - item.price) * item.count
         : 0),
     0
   );
@@ -46,7 +47,8 @@ const Cart = () => {
 
   const order = () => {
       localStorage.clear("cart");
-      setModal(false)
+      dispatch()
+      setModal(false)      
   }
 
   return (
@@ -54,7 +56,11 @@ const Cart = () => {
       <div className="container">
         <Modal visible={modal}>
     
-        {success ? <Success onClick={order} setVisible={setModal} /> : <OrderRegistration data={cart}  total={(totalPrice - discount).toLocaleString()} setVisible={setModal} order={setSuccess} />}
+        {success ? (
+        <NavLink to={"/"}>
+          <Success onClick={order} setVisible={setModal} />
+        </NavLink>
+        ) : <OrderRegistration data={cart}  total={(totalPrice - discount).toLocaleString()} setVisible={setModal} order={setSuccess} />}
         </Modal>
         {carts?.length ? (
           <div className={style.wrapper}>
@@ -67,13 +73,13 @@ const Cart = () => {
               <div className={style.total}>
                 <h4>Сумма заказа</h4>
 
-                <div>Количество линеек: {totalLines}</div>
-                <div>Количество товаров: {totalQuantity}</div>
-                <div>Стоимость: {totalPrice.toLocaleString()}</div>
-                <div>Скидка: {discount.toLocaleString()}</div>
+                <div className={style.totalOrder}>Количество линеек: <span>{totalLines} шт</span></div>
+                <div className={style.totalOrder}>Количество товаров: <span>{totalQuantity} шт</span></div>
+                <div className={style.totalOrder}>Стоимость: <span>{totalPrice.toLocaleString()} рублей</span></div>
+                <div className={style.totalOrder}>Скидка:  <span> {discount.toLocaleString()} рублей</span> </div>
                 <div className={style.dashed}></div>
-                <div>
-                  Итого к оплате: {(totalPrice - discount).toLocaleString()}
+                <div className={style.totalOrder}>
+                  Итого к оплате: <span>{(totalPrice - discount).toLocaleString()} рублей</span>
                 </div>
                 <button className={style.btn} onClick={() => setModal(true)}>
                   <span>Оформить заказ</span>
@@ -82,12 +88,12 @@ const Cart = () => {
             ) : null}
           </div>
         ) : (
-          <div>
-            <h3 style={{ marginTop: 11, textAlign: "start" }}>Корзина</h3>
-            <div style={{ textAlign: "start" }}>
+          <div className={style.emptyCart}>
+            <h3>Корзина</h3>
+            <div className={style.default}>
               У Вас пока нет товаров в корзине
             </div>
-            <h3 style={{ textAlign: "start" }}>Возможно Вас заинтересует</h3>
+            <h3 className={style.interested}>Возможно Вас заинтересует</h3>
             <div style={{ display: "flex", gap: 8 }}>
               {novelty.data?.map((item) => (
                 <Recommendation data={item} key={item.id} />

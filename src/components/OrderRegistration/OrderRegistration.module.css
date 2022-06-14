@@ -30,6 +30,16 @@
     margin-top: 12px;
 }
 
+.errortitle {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 16px;
+    color: #E5271B;
+    margin-top: 12px;
+}
+
 .input {
     text-align: start;
 }
@@ -54,17 +64,38 @@
     position: relative;
 }
 
+.phoneWrapper {
+    border: 1px solid #E7E7E7;
+    padding-left: 10px;
+}
+
+.errorPhone {
+    border: 1px solid #E5271B;
+    padding-left: 10px;
+}
+/* .errorPhone input {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 13px 10px 13px 6px;
+    gap: 10px;
+    width: 345px;
+    background: #FFFFFF;
+    border: 1px solid #E5271B;
+} */
+
 .phoneInput input {
     position: relative;
-    padding: 13px 10px 13px 45px;
+    padding: 13px 10px 13px 6px;
     gap: 10px;
-    width: 392px;
+    width: 345px;
     background: #FFFFFF;
-    border: 1px solid #E7E7E7;
+    border: none;
+    outline: none;
 }
 
 :root {
-	--PhoneInput-color--focus: #03b2cb;
+	/* --PhoneInput-color--focus: #03b2cb;
 	--PhoneInputInternationalIconPhone-opacity: 0.8;
 	--PhoneInputInternationalIconGlobe-opacity: 0.65;
 	--PhoneInputCountrySelect-marginRight: 0.35em;
@@ -77,11 +108,11 @@
 	--PhoneInputCountrySelectArrow-transform: rotate(45deg);
 	--PhoneInputCountryFlag-aspectRatio: 1.5;
 	--PhoneInputCountryFlag-height: 1em;
-	--PhoneInputCountryFlag-borderRadiust: 10px;
+	--PhoneInputCountryFlag-borderRadiust: 10px; */
 	--PhoneInputCountryFlag-borderWidth: 0 !important;
-    	--PhoneInputCountryFlag-borderColor: rgba(0,0,0,0.5);
+    	/* --PhoneInputCountryFlag-borderColor: rgba(0,0,0,0.5);
 	--PhoneInputCountryFlag-borderColor--focus: var(--PhoneInput-color--focus);
-	--PhoneInputCountryFlag-backgroundColor--loading: rgba(0,0,0,0.1);
+	--PhoneInputCountryFlag-backgroundColor--loading: rgba(0,0,0,0.1); */
 }
 
 
@@ -93,16 +124,7 @@
 
 
 
-.errorPhone input {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    padding: 13px 10px 13px 45px;
-    gap: 10px;
-    width: 392px;
-    background: #FFFFFF;
-    border: 1px solid #E5271B;
-}
+
 
 .errorPhone input::placeholder {
     color: #E5271B;
@@ -118,6 +140,7 @@
     background: #FFFFFF;
     border: 1px solid #E5271B;
 }
+
 
 
 
