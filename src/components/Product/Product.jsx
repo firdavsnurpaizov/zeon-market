@@ -60,25 +60,27 @@ const Product = ({ data }) => {
               className={style.fullFavoriteIcon}
             />
           )}
-          <div onMouseLeave={() => setIndex(0)} style={{position: 'relative'}}>
+          <div
+            onMouseLeave={() => setIndex(0)}
+            style={{ position: "relative" }}
+          >
             <img src={data.images[index].src} alt="image" />
             <div className={style.hover}>
               {data.images?.map((image, i) => {
                 return (
-                  // <div>
-                    <img
-                      onMouseMove={() => setIndex(i)}
-                      src={image.src}
-                      alt="img"
-                    />
-                  // </div>
+                  <img
+                    onMouseMove={() => setIndex(i)}
+                    src={image.src}
+                    alt="img"
+                    key={image.id}
+                  />
                 );
               })}
             </div>
             <div className={style.progress}>
               <div
                 className={style.progressBar}
-                style={{ marginLeft: (25 * index) +'%' }}
+                style={{ marginLeft: 25 * index + "%" }}
               ></div>
             </div>
           </div>

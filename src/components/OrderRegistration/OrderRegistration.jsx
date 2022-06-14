@@ -286,7 +286,7 @@ const OrderRegistration = ({ setVisible, data, total, order }) => {
           Согласен с условиями <Link to="/public">публичной оферты</Link>
         </h4>
       </div>
-      {/* <Link to="/"> */}
+
       <button
         disabled={
           !name.inputValid ||
@@ -302,7 +302,6 @@ const OrderRegistration = ({ setVisible, data, total, order }) => {
       >
         <span>Заказать</span>
       </button>
-      {/* </Link> */}
     </div>
   );
 };

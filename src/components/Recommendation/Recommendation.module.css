@@ -9,12 +9,26 @@
     position: absolute;
     top: 12px;
     right: 12px;
+    z-index: 10;
+    display: none;
+}
+
+.product:hover .favoriteIcon {
+    display: block;
+}
+
+.fullFavoriteIcon {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 10;
 }
 
 .saleIcon {
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 10;
 }
 
 .saleIcon div {
@@ -94,18 +108,52 @@
     display: flex;
 }
 
-.productColorItemBorder {
+/* .productColorItemBorder {
     border: 1px solid #E7E7E7;
     width: 16px;
     height: 16px;
     padding: 3px;
     border-radius: 10px;
     margin-left: 10px;
-}
+} */
 
 .productColorItem {
     width: 8px;
     height: 8px;
     border-radius: 5px;
-    /* margin-left: 10px; */
+    margin-right: 10px;
+}
+
+
+.hover {
+    position: absolute;
+    height: 100%;
+    display: flex;
+    top: 0;
+    left: 0;
+}
+
+.progress {
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    padding: 0 8px;
+    display: none;
+}
+
+.progressBar {
+    width: 25%;
+    height: 3px;
+    background: #FFF;
+}
+
+.product:hover .progress {
+    display: block;
+}
+
+.hover img {
+    height: 100%;
+    opacity: 0;
+    z-index: 3;
+    width: 25%;
 }

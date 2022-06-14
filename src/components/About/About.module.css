@@ -1,11 +1,8 @@
 .about {
-    background-color: #F8F8F8;
-}
-
-.df {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    padding-top: 12px;
+    padding-bottom: 72px;
 }
 
 .description {
@@ -15,6 +12,12 @@
 }
 
 .description h3 {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    color: #393939;
     text-align: start;
 }
 

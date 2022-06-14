@@ -1,6 +1,5 @@
 .new {
     display: flex;
-    flex-direction: column;
     align-items: start;
     justify-content: center;
     padding: 16px;
@@ -8,4 +7,23 @@
     background: #FFFFFF;
     box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.02);
     margin-bottom: 12px;
+    text-align: left;
+}
+
+.title {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #393939;
+}
+
+.body {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 23px;
+    color: #5B5B5B;
 }

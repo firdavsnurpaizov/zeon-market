@@ -14,13 +14,13 @@ const Cart = () => {
   const dispatch = useDispatch();
   const { cart, novelty } = useSelector((state) => state.main);
   const [carts, setCarts] = useState([]);
-  const [limit, setLimit] = useState(5);
+  // const [limit, setLimit] = useState(5);
   const [modal, setModal] = useState(false);
   const [success, setSuccess] = useState(false)
 
   useEffect(() => {
     if (!cart.length) {
-      dispatch(getNoveltyThunk(limit));
+      dispatch(getNoveltyThunk(5));
     }
   }, [cart]);
 
@@ -55,7 +55,6 @@ const Cart = () => {
     <>
       <div className="container">
         <Modal visible={modal}>
-    
         {success ? (
         <NavLink to={"/"}>
           <Success onClick={order} setVisible={setModal} />

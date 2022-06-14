@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 
 const Recommendation = ({ data }) => {
   const dispatch = useDispatch();
+  const [index, setIndex] = useState(0);
 
   const [inFavorites, setInFavorites] = useState(false);
   const found = !!JSON.parse(localStorage.getItem("favorites"))?.find(
@@ -33,10 +34,6 @@ const Recommendation = ({ data }) => {
     dispatch({ type: "ADD_TO_STATE", favorites });
   };
 
-  const image = data.images.map((i) => {
-    return <img style={{ width: 226}} key={i.id} src={i.src} alt="product image" />;
-  });
-
   return (
     <>
       <NavLink
@@ -60,18 +57,39 @@ const Recommendation = ({ data }) => {
           ) : (
             <FullFavoritesIcon
               onClick={addToFavorites}
-              className={style.favoriteIcon}
+              className={style.fullFavoriteIcon}
             />
           )}
 
-          <div>{image}</div>
-
-          {/* <img
-              src={data.images.map((i) => {
-                return (i.src)
+          <div
+            onMouseLeave={() => setIndex(0)}
+            style={{ position: "relative" }}
+          >
+            <img
+              style={{ width: 226 }}
+              src={data.images[index].src}
+              alt="image"
+            />
+            <div className={style.hover}>
+              {data.images?.map((image, i) => {
+                return (
+                  <img
+                    onMouseMove={() => setIndex(i)}
+                    src={image.src}
+                    alt="img"
+                    key={image.id}
+                  />
+                );
               })}
-              alt="product"
-              /> */}
+            </div>
+            <div className={style.progress}>
+              <div
+                className={style.progressBar}
+                style={{ marginLeft: 25 * index + "%" }}
+              ></div>
+            </div>
+          </div>
+
           <div className={style.description}>
             <div className={style.productTitle}>{data.title}</div>
             <div className={style.productPrice}>
@@ -87,7 +105,16 @@ const Recommendation = ({ data }) => {
                 <div key={c.id} className={style.productColorItemBorder}>
                   <div
                     className={style.productColorItem}
-                    style={{ backgroundColor: `${c.color}` }}
+                    style={
+                      c.color === "#FFFFFF"
+                        ? {
+                            backgroundColor: `${c.color}`,
+                            border: "1px solid #D1D1D1",
+                          }
+                        : {
+                            backgroundColor: `${c.color}`,
+                          }
+                    }
                   >
                     {" "}
                   </div>

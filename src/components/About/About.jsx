@@ -7,32 +7,33 @@ const About = () => {
   const dispatch = useDispatch();
   const { about, loading } = useSelector((state) => state.about);
 
-  // console.log(loading);
-
   useEffect(() => {
     dispatch(getAboutThunk());
   }, []);
 
   return (
-    <div className={style.about}>
-      <div className="container">
-        <div className={style.df}>
-          <div className={style.galery}>
-            <div>
-              <div className="row">
-                <div className="col-6">
-                  <img src="" alt="" />
-                  {loading ? <span>Loading</span> : about[0].images.map(item => {
-                    return <img key={item.id} src={item.src}/>
-                  })}
-                  {/* <img src={about[0]?.images[0]?.src} alt="" />
-                  <img src={about[0]?.images[2]?.src} alt="" />
-                  <img src={about[0]?.images[1]?.src} alt="" /> */}
-                </div>
-              </div>
-            </div>
-          </div>
-
+    <div className="container">
+      <div className={style.about}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+          <img
+            style={{ width: 327 }}
+            src={about[0]?.images[0].src}
+            alt="image"
+          />
+          <img
+            style={{ width: 327 }}
+            src={about[0]?.images[1].src}
+            alt="image"
+          />
+        </div>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <img
+            style={{ width: 327 }}
+            src={about[0]?.images[2].src}
+            alt="image"
+          />
+        </div>
+        <div style={{ display: "flex", alignItems: "center" }}>
           <div className={style.description}>
             <h3>О нас</h3>
             <div className={style.text}>
