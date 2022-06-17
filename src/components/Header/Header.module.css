@@ -144,21 +144,57 @@
 .hint {
     position: absolute;
     background-color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
     padding: 18px 20px;
     gap: 10px;
     z-index: 5;
     width: 701px;
-    overflow-y: auto;
     height: 309px;
     top: 0;
     left: -20px;
     right: -2px;
     border: 1px solid #d3d3d3;
     border-radius: 3px;
-    padding-top: 48px;
+    padding-top: 50px;
+}
+
+.hintItem {
+    width: 660px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 250px;
+    top: 0;
+    left: -20px;
+    right: -2px;
+    border-radius: 3px;
+
+}
+
+.hintItem span {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 53px;
+    /* border-top: 1px solid #d3d3d3; */
+    border-bottom: 1px solid #EEEEEE;
+    width: 650px;
+    text-align: left;
+}
+
+.hintItem::-webkit-scrollbar {
+    /* display: none; */
+    width: 3px;
+    margin-right: 20px;
+    background-color: #eee;
+    border-radius: 5px;
+}
+
+.hintItem::-webkit-scrollbar-thumb {
+    background: #979797;
+    border-radius: 5px;
+
 }
 
 .fav {

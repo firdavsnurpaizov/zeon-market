@@ -72,7 +72,7 @@ const Header = () => {
 
   const searchInput = (e) => {
     setValue(e.target.value);
-    setHint(true)
+    setHint(true);
 
     const searchedData = search.data?.filter((item) => {
       console.log(item.title);
@@ -138,15 +138,17 @@ const Header = () => {
                 className={style.searchInput}
                 type="text"
                 placeholder="Поиск"
-                onClick={()=>setHint(true)}
+                onClick={() => setHint(true)}
                 onChange={(e) => searchInput(e)}
-                onBlur={()=>setHint(false)}
+                onBlur={() => setHint(false)}
               />
               {hint && value ? (
                 <div className={style.hint}>
-                  {filteredData.map((item) => {
-                    return <div>{item.title}</div>;
-                  })}
+                  <div className={style.hintItem}>
+                      {filteredData.map((item) => {
+                        return <span>{item.title}</span>;
+                      })}
+                  </div>
                 </div>
               ) : null}
             </div>
