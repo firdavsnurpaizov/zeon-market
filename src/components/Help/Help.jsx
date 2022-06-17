@@ -33,13 +33,13 @@ const Help = () => {
         </div>
         <div className={style.accordion}>
           {helps.map((help, i) => (
-                     <div className={style.item}> 
-                      <div onClick={()=> toggle(i)} className={style.title}>
-                        <h3>{help.title}</h3>
+                     <div key={help.id} className={style.item} onClick={()=> toggle(i)} > 
+                      <div className={style.title}>
+                        <h3>{help.question}</h3>
                         {handle == i ? <Hide /> : <Show />}
                       </div>
                       <div className={handle ===i ? style.contentShow : style.content}>
-                        {help.content}
+                        {help.answer}
                       </div>
                      </div>
           ))}

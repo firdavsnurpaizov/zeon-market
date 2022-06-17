@@ -20,7 +20,7 @@ const CollectionItem = ({ data }) => {
         </div>
         <NavLink
           style={{ textDecoration: "none" }}
-          to={`/${data.collection}`}
+          to={`/collections/${data.collection}`}
         >
           <button className={style.button}>
             <span> Смотреть все</span>

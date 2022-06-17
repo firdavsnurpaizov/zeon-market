@@ -14,8 +14,12 @@ import { ReactComponent as Whatsapp } from "./../../assets/svg/whatsapp.svg";
 import { ReactComponent as Delete } from "./../../assets/svg/delete.svg";
 
 import { useDispatch, useSelector } from "react-redux";
-import { getAllCollectionsThunk, getContactsThunk, getLogoThunk } from "../../redux/main-reducer";
-import BreadCrumb from "../Breadcrumb/BreadCrumbs";
+import {
+  getAllCollectionsThunk,
+  getContactsThunk,
+  getLogoThunk,
+  getSearchThunk,
+} from "../../redux/main-reducer";
 import Modal from "../UI/Modal/Modal";
 import Input from "../UI/Input/Input";
 import Success from "../UI/Success/Success";
@@ -25,13 +29,16 @@ const Header = () => {
   const [modal, setModal] = useState(false);
   const [success, setSuccess] = useState(false);
   const [visible, setVisible] = useState(false);
-  const { logo, contacts, favorites, cart } = useSelector(
+  const [value, setValue] = useState("");
+  const [hint, setHint] = useState(false);
+  const { logo, contacts, favorites, cart, search } = useSelector(
     (state) => state.main
   );
   useEffect(() => {
-    dispatch(getLogoThunk());
-    dispatch(getContactsThunk());
+    dispatch(getSearchThunk());
   }, []);
+
+  // console.log(search.data);
 
   const openOrderCall = () => {
     setModal(true);
@@ -57,9 +64,30 @@ const Header = () => {
   }
 
   const continueShopping = () => {
-    setModal(false)
-    setSuccess(false)
-  }
+    setModal(false);
+    setSuccess(false);
+  };
+
+  const [filteredData, setFilteredData] = useState([]);
+
+  const searchInput = (e) => {
+    setValue(e.target.value);
+    setHint(true)
+
+    const searchedData = search.data?.filter((item) => {
+      console.log(item.title);
+      return item.title
+        .toLowerCase()
+        .trim()
+        .includes(e.target.value.toLowerCase().trim());
+    });
+
+    e.target.value === "" ? setFilteredData([]) : setFilteredData(searchedData);
+  };
+  // console.log(search);
+  // search.includes(value)
+
+  console.log(filteredData);
 
   const logoURL = logo[1];
   const phone = contacts[0];
@@ -96,21 +124,32 @@ const Header = () => {
               <span>Тел:</span> {phone?.tel}
             </a>
           </div>
-          </div>
-              <div className={style.line}></div>
-              <div className="container">
+        </div>
+        <div className={style.line}></div>
+        <div className="container">
           <div className={style.toolbar}>
             <div className={style.logo}>
               <NavLink to={"/"}>
                 <img src={logoURL?.srcURL} alt="logo" />
               </NavLink>
             </div>
-
-            <input
-              className={style.searchInput}
-              type="text"
-              placeholder="Поиск"
-            />
+            <div className={style.label}>
+              <input
+                className={style.searchInput}
+                type="text"
+                placeholder="Поиск"
+                onClick={()=>setHint(true)}
+                onChange={(e) => searchInput(e)}
+                onBlur={()=>setHint(false)}
+              />
+              {hint && value ? (
+                <div className={style.hint}>
+                  {filteredData.map((item) => {
+                    return <div>{item.title}</div>;
+                  })}
+                </div>
+              ) : null}
+            </div>
 
             <SearchIcon className={style.searchButton} />
 
@@ -136,7 +175,10 @@ const Header = () => {
                 </NavLink>
               </div>
             </div>
-            <Upicon className={style.upIcon} />
+            <Upicon
+              className={style.upIcon}
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            />
             <Chaticon className={styles.join(" ")} onClick={openChat} />
             <div className={classes.join(" ")}>
               <a href="https://telegram.org" target="_blank">
@@ -145,15 +187,12 @@ const Header = () => {
               <a href="https://www.whatsapp.com" target="_blank">
                 <Whatsapp />
               </a>
-              <Telephone style={{ marginBottom: 6}} onClick={openOrderCall} />
+              <Telephone style={{ marginBottom: 6 }} onClick={openOrderCall} />
               <Delete onClick={deleteChat} />
             </div>
+          </div>
         </div>
-          </div>
-          <div className={style.line}></div>
-          <div className="container">
-          <BreadCrumb />
-          </div>
+        <div className={style.line}></div>
       </div>
     </>
   );

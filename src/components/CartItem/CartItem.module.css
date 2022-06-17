@@ -70,6 +70,13 @@
     right: 17px;
 }
 
+@media screen and (max-width: 320px) {
+    .delete {
+        top: 7px;
+        right: 7px;
+    }
+}
+
 .cartItem {
     display: flex;
     padding: 12px;
@@ -77,6 +84,25 @@
     width: 768px;
     margin-bottom: 8px;
     background: #FFFFFF;
+}
+
+.cartItem img {
+    width: 112px;
+    height: 142px;
+    object-fit: cover;
+}
+
+@media screen and (max-width: 320px) {
+    .cartItem img {
+        width: 96px;
+        height: 172px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .cartItem {
+        width: 288px;
+    }
 }
 
 .buttons {

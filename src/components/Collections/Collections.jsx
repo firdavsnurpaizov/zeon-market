@@ -5,8 +5,9 @@ import { Pagination } from "antd";
 import style from "./Collections.module.css";
 import {
   getAllCollectionsThunk,
-  getCollectionsThunk
+  getCollectionsThunk,
 } from "../../redux/main-reducer";
+import BreadCrumbs from "../BreadCrumbs/BreadCrumbs";
 
 const Collections = () => {
   const dispatch = useDispatch();
@@ -28,6 +29,11 @@ const Collections = () => {
 
   return (
     <>
+      <div style={{ backgroundColor: "#FFF" }}>
+        <div className="container">
+          <BreadCrumbs />
+        </div>
+      </div>
       <div className="container">
         <div className={style.collections}>
           <h3>Коллекции</h3>

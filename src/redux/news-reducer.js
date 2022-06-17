@@ -12,7 +12,7 @@ const newsReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_NEWS: {
             const news = [...state.news, ...action.news.data]
-            console.log(news);
+            // console.log(news);
             return {
                     ...state, news: news, totalCount: action.news.headers["x-total-count"]
             }

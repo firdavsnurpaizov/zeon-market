@@ -1,5 +1,6 @@
 import { getDataFromAPI } from "../api/api";
 
+const SET_SEARCH = 'SET_SEARCH';
 const SET_LOGO = 'SET_LOGO';
 const SET_CONTACTS = 'SET_CONTACTS';
 const SET_BESTSELLER = 'SET_BESTSELLER';
@@ -16,6 +17,7 @@ const SET_DECREMENT = 'SET_DECREMENT';
 const REMOVE_ITEM_FROM_CART = 'REMOVE_ITEM_FROM_CART';
 
 let initialState = {
+    search: [],
     logo: [],
     contacts: [],
     bestseller: [],
@@ -30,6 +32,12 @@ let initialState = {
 
 const mainReducer = (state = initialState, action) => {
     switch (action.type) {
+        case SET_SEARCH: {
+            return {
+                ...state,
+                search: action.search
+            }
+        }
         case SET_LOGO: {
             return {
                 ...state,
@@ -146,6 +154,7 @@ const mainReducer = (state = initialState, action) => {
     }
 }
 
+export const setSearch = (search) => ({ type: SET_SEARCH, search })
 export const setLogo = (logo) => ({ type: SET_LOGO, logo })
 export const setContacts = (contacts) => ({ type: SET_CONTACTS, contacts })
 export const setBestseller = (bestseller) => ({ type: SET_BESTSELLER, bestseller })
@@ -159,6 +168,15 @@ export const setDecrement = (data) => ({ type: SET_DECREMENT, data })
 export const removeItemFromCart = (data) => ({ type: REMOVE_ITEM_FROM_CART, data })
 
 
+
+
+export const getSearchThunk = () => {
+    return async (dispatch) => {
+        const data = await getDataFromAPI.getSearch()
+        dispatch(setSearch(data))
+        return data
+    }
+}
 export const getLogoThunk = () => {
     return async (dispatch) => {
         const data = await getDataFromAPI.getLogo()
@@ -217,10 +235,6 @@ export const getAdvantagesThunk = () => {
         return data
     }
 }
-
-// export const increment = (data) => {
-//     console.log(data);
-// }
 
 
 

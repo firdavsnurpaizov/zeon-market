@@ -10,6 +10,35 @@
     text-align: left;
 }
 
+.new img {
+    width: 264px;
+}
+
+@media screen and (max-width: 320px) {
+    .new {
+        flex-direction: column;
+        padding: 14px 12px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .wrapper {
+        padding: 0 16px;
+    }
+}
+
+.heading {
+    text-align: start;
+    padding-top: 8px;
+    margin-bottom: 21px;
+}
+
+@media screen and (max-width: 320px) {
+    .heading {
+        padding-left: 16px;
+    }
+}
+
 .title {
     font-family: 'Montserrat';
     font-style: normal;

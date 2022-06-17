@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getNoveltyThunk } from "../../redux/main-reducer";
+import BreadCrumbs from "../BreadCrumbs/BreadCrumbs";
 import Product from "../Product/Product";
 import Recommendation from "../Recommendation/Recommendation";
 import style from "./Favorites.module.css";
@@ -26,6 +27,11 @@ const Favorites = () => {
 
   return (
     <div className={style.favorites}>
+      <div style={{ backgroundColor: "#FFF" }}>
+        <div className="container">
+          <BreadCrumbs />
+        </div>
+      </div>
       <div className="container">
         <h3>Избранное</h3>
         {favorites.length ? (
@@ -39,7 +45,7 @@ const Favorites = () => {
           {favorites.length ? (
             fav.map((f) => <Product key={f.id} data={f} />)
           ) : (
-            <div >
+            <div>
               <div className={style.attention}>
                 У Вас пока нет избранных товаров
               </div>

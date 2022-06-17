@@ -29,7 +29,6 @@ const CartItem = ({ data }) => {
           <Delete className={style.delete} onClick={remove} />
           <div>
             <img
-              style={{ width: 112, height: 142, objectFit: "cover" }}
               src={data.images[0].src}
               alt="product image"
             />
@@ -40,9 +39,16 @@ const CartItem = ({ data }) => {
             <div className={style.color}>
               Цвет:
               <span
-                style={{
-                  backgroundColor: `${data.colors}`,
-                }}
+                style={
+                  data.colors === "#FFFFFF"
+          ? {
+              backgroundColor: `${data.colors}`,
+              border: "1px solid #D1D1D1",
+            }
+          : {
+              backgroundColor: `${data.colors}`,
+            }
+              }
               ></span>
             </div>
             <div className={style.price}>

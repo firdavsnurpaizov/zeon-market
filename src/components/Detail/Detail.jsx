@@ -6,8 +6,10 @@ import { ReactComponent as FavoritesIcon } from "./../../assets/svg/favoritesIco
 import { ReactComponent as WhiteHeart } from "./../../assets/svg/whiteHeart.svg";
 import { ReactComponent as ShopBag } from "./../../assets/svg/shopBag.svg";
 import Active from "./Active/Active";
+import BreadCrumbs from "../BreadCrumbs/BreadCrumbs";
 
 const Detail = ({ data }) => {
+  // console.log(data);
   const dispatch = useDispatch();
   // const { favorites } = useSelector((state) => state.main);
   const [choosedColor, setChoosedColor] = useState("#BDD3D1");
@@ -62,16 +64,23 @@ const Detail = ({ data }) => {
 
   return (
     <>
+      <div style={{ backgroundColor: "#FFF" }}>
+        <div className="container">
+          <BreadCrumbs />
+        </div>
+      </div>
       <div className="container">
         <div className={style.product}>
           <div className={style.galery}>
             {data.images.map((i) => {
-              return <img key={i.id} src={i.src} alt="" />;
+              return (
+                <img style={{ width: 308 }} key={i.id} src={i.src} alt="" />
+              );
             })}
             {data.images.map((i) => {
               return (
                 <img
-                  style={{ width: 140, height: 240, objectFit: "cover" }}
+                  style={{ width: 150, height: 240, objectFit: "cover" }}
                   key={i.id}
                   src={i.src}
                   alt=""

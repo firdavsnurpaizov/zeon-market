@@ -1,0 +1,9 @@
+.breadcrumb {
+    padding: 22px 0 21px 0;
+}
+
+@media screen and (max-width: 320px) {
+    .breadcrumb {
+        padding: 22px 0 21px 16px;
+    }
+  }

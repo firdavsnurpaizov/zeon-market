@@ -2,6 +2,12 @@
     padding: 32px 24px;
 }
 
+@media screen and (max-width: 320px) {
+   .wrapper {
+    width: 288px;
+   }
+}
+
 .OrderRegistration {
     display: flex;
     justify-content: space-between;
@@ -59,6 +65,12 @@
     border: 1px solid #E7E7E7;
 }
 
+@media screen and (max-width: 320px) {
+    .iinputItem {
+        width: 264px;
+    }
+}
+
 .phoneInput {
     text-align: start;
     position: relative;
@@ -93,6 +105,8 @@
     border: none;
     outline: none;
 }
+
+
 
 :root {
 	/* --PhoneInput-color--focus: #03b2cb;

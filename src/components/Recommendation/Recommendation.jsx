@@ -38,7 +38,8 @@ const Recommendation = ({ data }) => {
     <>
       <NavLink
         style={{ textDecoration: "none" }}
-        to={`/${data.collection}/${data.id}`}
+        to={`/collections/${data.collection}/${data.id}`}
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       >
         <div className={style.product}>
           {data.sale ? (

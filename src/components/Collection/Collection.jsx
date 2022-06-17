@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getCollectionThunk, getNoveltyThunk } from "../../redux/main-reducer";
+import BreadCrumbs from "../BreadCrumbs/BreadCrumbs";
 import Product from "../Product/Product";
 import style from "./Collection.module.css";
 
@@ -13,6 +14,8 @@ const Collection = () => {
   const [limitNovelty, setLimitNovelty] = useState(4);
   const [limit, setLimit] = useState(4);
   const [page, setPage] = useState(1);
+
+  // console.log(collection);
 
   useEffect(() => {
     dispatch(getCollectionThunk(params.name, limit, page));
@@ -28,8 +31,16 @@ const Collection = () => {
 
   return (
     <>
+      <div style={{ backgroundColor: "#FFF" }}>
+        <div className="container">
+          <BreadCrumbs />
+        </div>
+      </div>
       <div className="container">
-        <h3 style={{ paddingTop: 32, margin:0, paddingBottom: 18 }}>Коллекция {params.name}</h3>
+        <h3 style={{ paddingTop: 32, margin: 0, paddingBottom: 18 }}>
+          {/* Коллекция {params.name} */}
+          {/* Коллекция {collection?.data[0]?.title} */}
+        </h3>
 
         <div className={style.product}>
           {collection.data?.map((item) => {

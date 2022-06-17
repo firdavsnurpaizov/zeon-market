@@ -38,7 +38,7 @@ const Product = ({ data }) => {
     <>
       <NavLink
         style={{ textDecoration: "none" }}
-        to={`/${data.collection}/${data.id}`}
+        to={`/collections/${data.collection}/${data.id}`}
       >
         <div className={style.product}>
           {data.sale ? (
@@ -80,7 +80,7 @@ const Product = ({ data }) => {
             <div className={style.progress}>
               <div
                 className={style.progressBar}
-                style={{ marginLeft: 25 * index + "%" }}
+                style={{ marginLeft: 25 * index + "%", transition: "all 0.3s" }}
               ></div>
             </div>
           </div>
@@ -99,7 +99,16 @@ const Product = ({ data }) => {
                 <div key={c.id} className={style.productColorItemBorder}>
                   <div
                     className={style.productColorItem}
-                    style={{ backgroundColor: `${c.color}` }}
+                    style={
+                      c.color === "#FFFFFF"
+                        ? {
+                            backgroundColor: `${c.color}`,
+                            border: "1px solid #D1D1D1",
+                          }
+                        : {
+                            backgroundColor: `${c.color}`,
+                          }
+                    }
                   >
                     {" "}
                   </div>

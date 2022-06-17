@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getNewsThunk } from "../../redux/news-reducer";
+import BreadCrumbs from "../BreadCrumbs/BreadCrumbs";
 import style from "./News.module.css";
 
 const News = () => {
@@ -15,7 +16,7 @@ const News = () => {
 
   useEffect(() => {
     if (fetching) {
-      console.log("fetching");
+      // console.log("fetching");
       dispatch(getNewsThunk(limit, currentPage));
       setCurrentPage((prev) => prev + 1);
     }
@@ -44,22 +45,29 @@ const News = () => {
 
   return (
     <>
+      <div style={{ backgroundColor: "#FFF" }}>
+        <div className="container">
+          <BreadCrumbs />
+        </div>
+      </div>
       <div className="container">
-        <h3 style={{ textAlign: "start", paddingTop: 8, marginBottom: 21 }}>Новости</h3>
-        <div>
-          {news?.map((n) => {
-            return (
-              <div className={style.new} key={n.id}>
-                <div>
-                  <img style={{width: 226}} src={n?.images[0].src} alt="image" />
+        <div className={style.wrapper}>
+          <h3 className={style.heading}>Новости</h3>
+          <div>
+            {news?.map((n) => {
+              return (
+                <div className={style.new} key={n.id}>
+                  <div>
+                    <img src={n?.images[0].src} alt="image" />
+                  </div>
+                  <div>
+                    <h4 className={style.title}>{n.title}</h4>
+                    <div className={style.body}>{n.body}</div>
+                  </div>
                 </div>
-                <div>
-                  <h4 className={style.title}>{n.title}</h4>
-                  <div className={style.body}>{n.body}</div>
-                </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
     </>

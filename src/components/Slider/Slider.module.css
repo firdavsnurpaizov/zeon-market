@@ -1,0 +1,28 @@
+.carousel {
+    position: relative;
+}
+
+.carousel ul {
+    position: absolute;
+    bottom: 10px;
+
+}
+
+.carousel ul li button {
+    width: 8px !important;
+    height: 8px !important;
+    border-radius: 5px !important;
+    border: 1px solid rgba(29, 29, 27, 0.3) !important;
+}
+
+:global .ant-carousel .slick-dots li.slick-active {
+    width: 16px !important;
+}
+
+:global .ant-carousel .slick-dots li.slick-active button {
+    background-color: #000 !important;
+}
+
+:global .ant-carousel .slick-dots-bottom {
+    bottom: -10px !important;
+}

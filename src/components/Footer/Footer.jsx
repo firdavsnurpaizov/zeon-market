@@ -1,5 +1,5 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import style from "./Footer.module.css";
 import phoneIcon from "./../../assets/svg/phoneIcon.svg";
@@ -7,11 +7,18 @@ import emailIcon from "./../../assets/svg/emailIcon.svg";
 import instagramIcon from "./../../assets/svg/instagramIcon.svg";
 import telegramIcon from "./../../assets/svg/telegramIcon.svg";
 import whatsappIcon from "./../../assets/svg/whatsappIcon.svg";
+import { getContactsThunk, getLogoThunk } from "../../redux/main-reducer";
 
 const Footer = () => {
   const { logo, contacts } = useSelector((state) => state.main);
+  const dispatch = useDispatch();
   const logoURL = logo[0];
   const phone = contacts[0];
+
+  useEffect(() => {
+    dispatch(getLogoThunk());
+    dispatch(getContactsThunk());
+  }, []);
 
   return (
     <>
@@ -63,7 +70,7 @@ const Footer = () => {
                 <img src={instagramIcon} alt="instagramIcon" />
                 <div className={style.mediaItem}>{phone?.instagram}</div>
               </a>
-              <a  
+              <a
                 href="https://telegram.org"
                 target="_blank"
                 className={style.phoneIcon}

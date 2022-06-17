@@ -5,7 +5,7 @@ import style from "./Offert.module.css"
 const Offer = () => {
 
     const [offert, setOffert] = useState([])
-    console.log(offert);
+    // console.log(offert);
 
     useEffect(() => {
         axios(' http://localhost:3000/oofert').then((response) => {

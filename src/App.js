@@ -24,15 +24,14 @@ function App() {
           <Route path="/" element={<Main />} />
           <Route path="/about" element={<About />} />
           <Route path="/collections" element={<Collections />} />
-          <Route path="/:name" element={<Collection />} />
+          <Route path="/collections/:name" element={<Collection />} />
           <Route path="/news" element={<News />} />
           <Route path="/help" element={<Help />} />
           <Route path="/favorites" element={<Favorites />} />
-          <Route path="/:name/:id" element={<Details />} />
+          <Route path="/collections/:name/:id" element={<Details />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/public" element={<Offer />} />
           <Route path="/search" element={<Search />} />
-          {/* <Route path="*" element={<div> Ошибка в запросе!</div> } /> */}
         </Routes>
       </div>
       <Footer />

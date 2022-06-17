@@ -3,6 +3,7 @@
     justify-content: space-between;
     padding-top: 10px;
     padding-bottom: 32px;
+    gap: 24px;
 }
 
 .galery {
@@ -11,10 +12,11 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 8px;
+
 }
 
 .detail {
-    width: 520px;
+    width: 624px;
     height: 434px;
     padding: 20px;
     background-color: #fff;

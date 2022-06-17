@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from "react";
-import Carousel from "../Carousel/Carousel";
-import carouselImage from "./../../assets/img/carousel.png";
+// import Carousel from "../Carousel/Carousel";
+// import carouselImage from "./../../assets/img/carousel.png";
 // import fullFavoriteIcon from "./../../assets/svg/fullFavoriteIcon.svg";
 import style from "./Main.module.css";
 import {
   getAdvantagesThunk,
   getBestsellerThunk,
   getCollectionsThunk,
-  getNoveltyThunk,
+  getNoveltyThunk
 } from "../../redux/main-reducer";
 import { useDispatch, useSelector } from "react-redux";
 import Product from "../Product/Product";
 import Button from "../UI/Button/Button";
 import CollectionItem from "../CollectionItem/CollectionItem";
 import Advantages from "../Аdvantages/Advantages";
+import Slider from "../Slider/Slider";
 const Main = () => {
   const dispatch = useDispatch();
   const { bestseller, novelty, collections, advantages } = useSelector(
@@ -26,6 +27,7 @@ const Main = () => {
 
   useEffect(() => {
     dispatch(getAdvantagesThunk());
+
   }, []);
 
   useEffect(() => {
@@ -50,22 +52,12 @@ const Main = () => {
     setCollections(limitCollections + 4);
   };
 
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1
-  };
-
   return (
     <div className={style.main}>
       <div className="container">
-        <Carousel>
-          <img src={carouselImage} alt="carouseL image" />
-        </Carousel>
-     
-
+        <div>
+          <Slider/>
+        </div>
         <h3>Хит продаж</h3>
         <div className={style.product}>
           {bestseller?.data?.map((b) => (
@@ -74,9 +66,8 @@ const Main = () => {
         </div>
 
         {16 === bestseller?.data?.length ? null : (
-          <Button onClick={() => alsoB()}>Ещё</Button>
-        )}
-
+          <Button onClick={alsoB}>Ещё</Button>
+        )}       
         <h3 style={{ marginTop: 44 }}>Новинки</h3>
         <div className={style.product}>
           {novelty?.data?.map((b) => (

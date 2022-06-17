@@ -6,6 +6,12 @@ const instance = axios.create({
 
 export const getDataFromAPI = {
     // main-reducer
+    getSearch() {
+        return instance.get(`search`)
+            .then(response => {
+                return response
+            })
+    },
     getLogo() {
         return instance.get(`logo`)
             .then(response => {
@@ -85,6 +91,13 @@ export const getDataFromAPI = {
 
     getDetails(name, id) {
         return instance.get(`${name}?id=${id}`)
+            .then(response => {
+                // console.log(response.data);
+                return response.data
+            })
+    },
+    getSimilar(name, id) {
+        return instance.get(`${name}?id_ne=${id}&_limit=5`)
             .then(response => {
                 // console.log(response.data);
                 return response.data

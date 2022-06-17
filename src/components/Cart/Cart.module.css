@@ -2,6 +2,14 @@
     display: flex;
     padding: 11px 0 96px 0;
     justify-content: space-between;
+    position: relative;
+}
+
+@media screen and (max-width: 320px) {
+    .wrapper {
+        flex-direction: column;
+        padding: 16px;
+    }
 }
 
 .total {
@@ -17,11 +25,61 @@
     background: #FFFFFF;
 }
 
+
 .totalOrder {
     width: 336px;
     display: flex;
     justify-content: space-between;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #979797;
 }
+
+.totalForMobile {
+    display: none;
+}
+
+
+
+@media screen and (max-width: 320px) {
+    .total {
+        display: none;
+    }
+
+    .totalForMobile {
+        display: block;
+    }
+
+    .totalOrder {
+        width: 288px;
+        align-items: center;
+        padding: 0;
+    }
+
+    .totalForMobile h4 {
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 17px;
+        color: #393939;
+        text-align: left;
+    }
+
+    .totalForMobile {
+        position: sticky !important;
+        background-color: #fff;
+        right: 0;
+        left: 0;
+        bottom: 0;
+    }
+
+
+}
+
 
 .totalOrder span {
     font-family: 'Montserrat';
@@ -48,6 +106,55 @@
     cursor: pointer;
 }
 
+.btnHandler {
+    border: 1px solid #EDEDED;
+    background-color: #fff;
+    margin-top: 32px;
+    margin-bottom: 32px;
+    padding: 8px 118px;
+}
+
+.btnInfo {
+    border: 1px solid #EDEDED;
+    background-color: #fff;
+    margin-top: 32px;
+    margin-bottom: 32px;
+    padding: 8px 68px;
+}
+
+.btnInfo span {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    color: #1D1D1B;
+}
+
+.active {
+    display: none;
+}
+
+.info {
+    display: block;
+}
+
+.btnHandler span {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    color: #1D1D1B;
+
+}
+
+@media screen and (max-width: 320px) {
+    .btn {
+        width: 288px;
+    }
+}
+
 .btn span {
     font-family: 'Montserrat';
     font-style: normal;
@@ -61,7 +168,7 @@
     padding-bottom: 64px;
 }
 
-.emptyCart h3 {
+.emptyCart h4 {
     padding-top: 11px;
     text-align: start;
     font-family: 'Montserrat';
