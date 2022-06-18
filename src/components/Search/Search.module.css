@@ -1,0 +1,10 @@
+.search {
+    padding-top: 11px;
+    padding-bottom: 64px;
+}
+
+.recommendation {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}

@@ -102,5 +102,20 @@ export const getDataFromAPI = {
                 // console.log(response.data);
                 return response.data
             })
+    },
+
+    getUser(id) {
+        return instance.get(`users/${id}`)
+        .then(response => {
+            // console.log(response.data);
+            return response.data
+        })
+    },
+
+    // USER SIGNUP
+
+    setUser(user) {
+        return instance.post(`users`, user)
     }
+
 }

@@ -7,7 +7,8 @@ import {
   getAdvantagesThunk,
   getBestsellerThunk,
   getCollectionsThunk,
-  getNoveltyThunk
+  getNoveltyThunk,
+  getUserThunk,
 } from "../../redux/main-reducer";
 import { useDispatch, useSelector } from "react-redux";
 import Product from "../Product/Product";
@@ -15,11 +16,11 @@ import Button from "../UI/Button/Button";
 import CollectionItem from "../CollectionItem/CollectionItem";
 import Advantages from "../Аdvantages/Advantages";
 import Slider from "../Slider/Slider";
+
 const Main = () => {
   const dispatch = useDispatch();
-  const { bestseller, novelty, collections, advantages } = useSelector(
-    (state) => state.main
-  );
+  const { bestseller, novelty, collections, advantages, currentUser } =
+    useSelector((state) => state.main);
 
   const [limitNovelty, setLimitNovelty] = useState(4);
   const [limitBestseller, setLimitBestseller] = useState(8);
@@ -27,8 +28,9 @@ const Main = () => {
 
   useEffect(() => {
     dispatch(getAdvantagesThunk());
-
   }, []);
+
+  // console.log(currentUser);
 
   useEffect(() => {
     dispatch(getBestsellerThunk(limitBestseller));
@@ -56,7 +58,7 @@ const Main = () => {
     <div className={style.main}>
       <div className="container">
         <div>
-          <Slider/>
+          <Slider />
         </div>
         <h3>Хит продаж</h3>
         <div className={style.product}>
@@ -67,7 +69,7 @@ const Main = () => {
 
         {16 === bestseller?.data?.length ? null : (
           <Button onClick={alsoB}>Ещё</Button>
-        )}       
+        )}
         <h3 style={{ marginTop: 44 }}>Новинки</h3>
         <div className={style.product}>
           {novelty?.data?.map((b) => (

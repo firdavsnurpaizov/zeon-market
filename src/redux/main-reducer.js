@@ -15,6 +15,8 @@ const ADD_QUANTITY = 'ADD_QUANTITY';
 const SET_INCREMENT = 'SET_INCREMENT';
 const SET_DECREMENT = 'SET_DECREMENT';
 const REMOVE_ITEM_FROM_CART = 'REMOVE_ITEM_FROM_CART';
+const ADD_SEARCH_RESULT = 'ADD_SEARCH_RESULT';
+const SET_USER = 'SET_USER';
 
 let initialState = {
     search: [],
@@ -27,15 +29,30 @@ let initialState = {
     collection: [],
     advantages: [],
     favorites: JSON.parse(localStorage.getItem("favorites")) || [],
-    cart: JSON.parse(localStorage.getItem("cart")) || []
+    cart: JSON.parse(localStorage.getItem("cart")) || [],
+    searchResult: [],
+    currentUser: null
 }
 
 const mainReducer = (state = initialState, action) => {
     switch (action.type) {
+        case SET_USER: {
+            return {
+                ...state,
+                currentUser: action.data
+            }
+        }
         case SET_SEARCH: {
             return {
                 ...state,
                 search: action.search
+            }
+        }
+        case ADD_SEARCH_RESULT: {
+            console.log(action);
+            return {
+                ...state,
+                searchResult: action.data
             }
         }
         case SET_LOGO: {
@@ -166,9 +183,20 @@ export const setAdvantages = (advantages) => ({ type: SET_ADVANTAGES, advantages
 export const setInctement = (data) => ({ type: SET_INCREMENT, data })
 export const setDecrement = (data) => ({ type: SET_DECREMENT, data })
 export const removeItemFromCart = (data) => ({ type: REMOVE_ITEM_FROM_CART, data })
+export const setSearchData = (data) => ({ type: ADD_SEARCH_RESULT, data })
+export const setUser = (data) => ({ type: SET_USER, data })
 
-
-
+export const getUserThunk = (id) => {
+    return async (dispatch) => {
+        if (id) {
+            const data = await getDataFromAPI.getUser(id)
+            dispatch(setUser(data))
+            return data
+        } else {
+            dispatch(setUser(null))
+        }
+    }
+}
 
 export const getSearchThunk = () => {
     return async (dispatch) => {

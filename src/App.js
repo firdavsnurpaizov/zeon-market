@@ -14,14 +14,20 @@ import Cart from './components/Cart/Cart';
 import Offer from './components/Offer/Offer';
 import 'antd/dist/antd.css';
 import Search from './components/Search/Search';
+import Registration from './components/Auth/Registration';
+import Login from './components/Auth/Login';
+import { useAuth } from "./firebase";
 
 function App() {
+  useAuth();
   return (
     <div className="App">
       <Header />
       <div className="content">
         <Routes>
           <Route path="/" element={<Main />} />
+          <Route path="/register" element={<Registration />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/about" element={<About />} />
           <Route path="/collections" element={<Collections />} />
           <Route path="/collections/:name" element={<Collection />} />

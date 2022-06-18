@@ -12,13 +12,16 @@ import { ReactComponent as Telegram } from "./../../assets/svg/telegram.svg";
 import { ReactComponent as Telephone } from "./../../assets/svg/telephone.svg";
 import { ReactComponent as Whatsapp } from "./../../assets/svg/whatsapp.svg";
 import { ReactComponent as Delete } from "./../../assets/svg/delete.svg";
+import { auth } from "./../../firebase";
+import { signOut } from "firebase/auth";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
-  getAllCollectionsThunk,
-  getContactsThunk,
-  getLogoThunk,
+  // getAllCollectionsThunk,
+  // getContactsThunk,
+  // getLogoThunk,
   getSearchThunk,
+  setSearchData,
 } from "../../redux/main-reducer";
 import Modal from "../UI/Modal/Modal";
 import Input from "../UI/Input/Input";
@@ -31,14 +34,12 @@ const Header = () => {
   const [visible, setVisible] = useState(false);
   const [value, setValue] = useState("");
   const [hint, setHint] = useState(false);
-  const { logo, contacts, favorites, cart, search } = useSelector(
+  const { logo, contacts, favorites, cart, search, currentUser } = useSelector(
     (state) => state.main
   );
   useEffect(() => {
     dispatch(getSearchThunk());
   }, []);
-
-  // console.log(search.data);
 
   const openOrderCall = () => {
     setModal(true);
@@ -74,7 +75,7 @@ const Header = () => {
     setValue(e.target.value);
     setHint(true);
 
-    const searchedData = search.data?.filter((item) => {
+    const searchedData = search?.data?.filter((item) => {
       console.log(item.title);
       return item.title
         .toLowerCase()
@@ -83,11 +84,19 @@ const Header = () => {
     });
 
     e.target.value === "" ? setFilteredData([]) : setFilteredData(searchedData);
-  };
-  // console.log(search);
-  // search.includes(value)
+    let result = [searchedData, e.target.value];
 
-  console.log(filteredData);
+    dispatch(setSearchData({ result }));
+  };
+
+  const getSearchedData = () => {
+    console.log("work");
+    setHint(false);
+  };
+
+  async function logOut() {
+    await signOut(auth);
+  }
 
   const logoURL = logo[1];
   const phone = contacts[0];
@@ -123,6 +132,20 @@ const Header = () => {
             <a href={`tel:${phone?.tel}`} className={style.phone}>
               <span>Тел:</span> {phone?.tel}
             </a>
+            {/* <div>
+              {currentUser ? (
+                <button onClick={logOut}>Выйти</button>
+              ) : (
+                <div>
+                  <NavLink to={"/login"}>
+                    <button>Войти</button>
+                  </NavLink>
+                  <NavLink to={"/register"}>
+                    <button>Регистрация</button>
+                  </NavLink>
+                </div>
+              )}
+            </div> */}
           </div>
         </div>
         <div className={style.line}></div>
@@ -140,20 +163,29 @@ const Header = () => {
                 placeholder="Поиск"
                 onClick={() => setHint(true)}
                 onChange={(e) => searchInput(e)}
-                onBlur={() => setHint(false)}
               />
               {hint && value ? (
                 <div className={style.hint}>
-                  <div className={style.hintItem}>
+                  <NavLink to={"/search"}>
+                    <div className={style.hintItem} onClick={getSearchedData}>
                       {filteredData.map((item) => {
                         return <span>{item.title}</span>;
                       })}
-                  </div>
+                    </div>
+                  </NavLink>
                 </div>
               ) : null}
             </div>
-
-            <SearchIcon className={style.searchButton} />
+            {value ? (
+              <NavLink to={"/search"}>
+                <SearchIcon
+                  className={style.searchButton}
+                  onClick={getSearchedData}
+                />
+              </NavLink>
+            ) : (
+              <SearchIcon className={style.searchButton} />
+            )}
 
             <div className={style.fav}>
               <div className={style.favorite}>
