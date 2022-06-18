@@ -31,7 +31,8 @@ let initialState = {
     favorites: JSON.parse(localStorage.getItem("favorites")) || [],
     cart: JSON.parse(localStorage.getItem("cart")) || [],
     searchResult: [],
-    currentUser: null
+    currentUser: null,
+    
 }
 
 const mainReducer = (state = initialState, action) => {

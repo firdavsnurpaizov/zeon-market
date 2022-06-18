@@ -27,7 +27,7 @@ const BreadCrumbs = () => {
             // ) :
             <Breadcrumb.Item>
               {" "}
-              <Link to="/">Главная</Link>
+              <Link to="/home">Главная</Link>
             </Breadcrumb.Item>
           }
           {pathnames.map((name, index) => {

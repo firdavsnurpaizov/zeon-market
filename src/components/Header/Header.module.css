@@ -242,3 +242,14 @@
     line-height: 20px;
     color: #393939;
 }
+
+.login {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 21px;
+    color: #393939;
+    background-color: inherit;
+    border: none;
+}

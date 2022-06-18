@@ -22,13 +22,13 @@ const firebaseConfig = {
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-
 export function useAuth() {
     const [currentUser, setCurrentUser] = useState()
     const dispatch = useDispatch();
     useEffect(() => {
         const unsub = onAuthStateChanged(auth, user => {
             if (user) {
+                // console.log(user);
                 setCurrentUser(user)
                 dispatch(getUserThunk(user.uid));
             } else {

@@ -37,8 +37,10 @@ const Header = () => {
   const { logo, contacts, favorites, cart, search, currentUser } = useSelector(
     (state) => state.main
   );
+
   useEffect(() => {
     dispatch(getSearchThunk());
+    console.log(currentUser);
   }, []);
 
   const openOrderCall = () => {
@@ -132,20 +134,20 @@ const Header = () => {
             <a href={`tel:${phone?.tel}`} className={style.phone}>
               <span>Тел:</span> {phone?.tel}
             </a>
-            {/* <div>
+            <div>
               {currentUser ? (
-                <button onClick={logOut}>Выйти</button>
+                <button onClick={logOut} className={style.login} >Выйти</button>
               ) : (
                 <div>
                   <NavLink to={"/login"}>
-                    <button>Войти</button>
+                    <button className={style.login}>Войти</button>
                   </NavLink>
                   <NavLink to={"/register"}>
-                    <button>Регистрация</button>
+                    <button className={style.login} style={{marginLeft: 20, borderLeft: '1px solid #d3d3d3', paddingLeft: 20}}>Регистрация</button>
                   </NavLink>
                 </div>
               )}
-            </div> */}
+            </div>
           </div>
         </div>
         <div className={style.line}></div>

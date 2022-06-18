@@ -1,0 +1,66 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 22px;
+    padding-top: 12;
+}
+
+h5 {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    /* line-height: 29px; */
+    color: #393939;
+    padding-bottom: 64px;
+}
+
+.wrapper h4 {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 16px;
+    color: #808080;
+    text-align: start;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.inputItem {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 13px 10px 13px 12px;
+    gap: 8px;
+    width: 392px;
+    background: #FFFFFF;
+    border: 1px solid #E7E7E7;
+}
+
+.btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 14px 20px 13px;
+    border: none;
+    width: 392px;
+
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), #1D1D1B;
+    cursor: pointer;
+}
+
+.btn span {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: #FFFFFF;
+}
