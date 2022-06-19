@@ -7,26 +7,35 @@ import { getDataFromAPI } from "../../api/api";
 import { useNavigate } from "react-router-dom";
 import BreadCrumbs from "../BreadCrumbs/BreadCrumbs";
 import { useAuth } from "./../../firebase";
+import PhoneInput from "react-phone-number-input";
 
 const Registration = () => {
   useAuth();
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [surname, setSurname] = useState("");
+  const [phone, setPhone] = useState("");
+  const [country, setCountry] = useState("");
+  const [city, setCity] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const register = async (e) => {
     e.preventDefault();
     const user = await createUserWithEmailAndPassword(auth, email, password);
-    console.log(user);
     const data = {
       id: user.user.uid,
       name,
       email,
+      surname,
+      country,
+      city,
+      phone
     };
+    console.log(data);
     getDataFromAPI.setUser(data);
-    // await signOut(auth)
+
     navigate("/");
   };
 
@@ -48,6 +57,13 @@ const Registration = () => {
               placeholder="Введите Ваше имя"
               className={style.inputItem}
             />
+            <h4>Ваша фамилия</h4>
+            <input
+              onChange={(e) => setSurname(e.target.value)}
+              className={style.inputItem}
+              type="text"
+              placeholder="Введите фамилию"
+            />
             <h4>Электронный адрес</h4>
             <input
               onChange={(e) => setEmail(e.target.value)}
@@ -61,6 +77,37 @@ const Registration = () => {
               type="password"
               placeholder="Введите пароль"
               className={style.inputItem}
+            />
+            <h4>Ваш номер телефона</h4>
+            <PhoneInput
+              onChange={(e) => setPhone(e)}
+              international
+              defaultCountry="KG"
+              name="phone"
+              className={style.PhoneInput}
+              placeholder="Введите номер телефона"
+              style={{ border: "none", outline: "none" }}
+            />
+
+            {/* <input
+              onChange={(e) => setPhone(e.target.value)}
+              className={style.inputItem}
+              type="phone"
+              placeholder="Введите номер телефона"
+            /> */}
+            <h4>Страна</h4>
+            <input
+              onChange={(e) => setCountry(e.target.value)}
+              className={style.inputItem}
+              type="text"
+              placeholder="Введите страну"
+            />
+            <h4>Город</h4>
+            <input
+              onChange={(e) => setCity(e.target.value)}
+              className={style.inputItem}
+              type="text"
+              placeholder="Введите город"
             />
             <button type="submit" className={style.btn}>
               {" "}

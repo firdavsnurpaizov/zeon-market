@@ -10893,10 +10893,127 @@
   ],
   "users": [
     {
-      "id": "nVwOWrcoQ1Pxm8R8PXX2GL66nmD2",
-      "name": "qwerty",
-      "email": "qwerty@gmail.com"
+      "id": "uWZ67zq5P3RQvygU73wTyadslDf2",
+      "name": "Фирдавс",
+      "email": "qwerty1@gmail.com",
+      "surname": "Нурпаизов",
+      "country": "Кыргызстан",
+      "city": "Бишкек",
+      "phone": "+996123456789"
     }
   ],
-  "orders": []
+  "orders": [
+    {
+      "name": "Фирдавс",
+      "surname": "Нурпаизов",
+      "email": "firdavs.nurpaizov98@gmail.com",
+      "phone": "+70702323375",
+      "country": "Кыргызстан",
+      "city": "Бишкек",
+      "product": [
+        {
+          "id": 2,
+          "title": "Вечернее платья",
+          "collection": "spring2020",
+          "new": true,
+          "bestseller": false,
+          "sale": true,
+          "previous": 1365,
+          "price": 1092,
+          "size": "42-50",
+          "quantity": 5,
+          "fabric": "Полиэстер",
+          "composition": "Полиэстер",
+          "article": "Платье PL984/dakota",
+          "description": "За последние 35 лет бренд Bonucci из обычного производителя одежды превратился в широко узнаваемую марку, а его продукция – в синоним высокого качества и актуального стиля.",
+          "colors": "#BDD3D1",
+          "images": [
+            {
+              "id": 1,
+              "src": "https://cdn.discordapp.com/attachments/978583989327638570/979297441008480326/dress2.png"
+            },
+            {
+              "id": 2,
+              "src": "https://cdn.discordapp.com/attachments/978583989327638570/979301432530464798/dress1.png"
+            },
+            {
+              "id": 3,
+              "src": "https://cdn.discordapp.com/attachments/978583989327638570/979297452383404062/dress3.png"
+            },
+            {
+              "id": 4,
+              "src": "https://cdn.discordapp.com/attachments/978583989327638570/979297432573734972/dress4.png"
+            }
+          ],
+          "count": 1
+        }
+      ],
+      "totalPrice": "819",
+      "id": 1
+    }
+  ],
+  "favourites": [
+    {
+      "id": 2,
+      "title": "Вечернее платья",
+      "collection": "spring2020",
+      "sale": true,
+      "previous": 1365,
+      "price": 1092,
+      "size": "42-50",
+      "colors": [
+        {
+          "id": 1,
+          "color": "#BDD3D1"
+        },
+        {
+          "id": 2,
+          "color": "#C5E7AB"
+        },
+        {
+          "id": 3,
+          "color": "#B5A8A1"
+        },
+        {
+          "id": 4,
+          "color": "#AB844A"
+        },
+        {
+          "id": 5,
+          "color": "#B8BFF8"
+        },
+        {
+          "id": 6,
+          "color": "#FFFFFF"
+        },
+        {
+          "id": 7,
+          "color": "#909090"
+        },
+        {
+          "id": 8,
+          "color": "#FF8787"
+        }
+      ],
+      "images": [
+        {
+          "id": 1,
+          "src": "https://cdn.discordapp.com/attachments/978583989327638570/979297441008480326/dress2.png"
+        },
+        {
+          "id": 2,
+          "src": "https://cdn.discordapp.com/attachments/978583989327638570/979301432530464798/dress1.png"
+        },
+        {
+          "id": 3,
+          "src": "https://cdn.discordapp.com/attachments/978583989327638570/979297452383404062/dress3.png"
+        },
+        {
+          "id": 4,
+          "src": "https://cdn.discordapp.com/attachments/978583989327638570/979297432573734972/dress4.png"
+        }
+      ],
+      "userId": "uWZ67zq5P3RQvygU73wTyadslDf2"
+    }
+  ]
 }

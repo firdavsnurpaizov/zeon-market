@@ -17,7 +17,7 @@
 
 @media screen and (max-width: 320px) {
     .product {
-        justify-content: center;
+        /* justify-content: center; */
         gap: 8px;
     }
 }

@@ -5,6 +5,7 @@ import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import style from "./OrderRegistration.module.css";
 import { getDataFromAPI } from "../../api/api";
+import { useSelector } from "react-redux";
 
 const useValidation = (value, validations) => {
   const [isEmpty, setEmpty] = useState(true);
@@ -17,7 +18,7 @@ const useValidation = (value, validations) => {
     for (const validation in validations) {
       switch (validation) {
         case "minLength":
-          value.length < validations[validation]
+          value?.length < validations[validation]
             ? setMinLengthError(true)
             : setMinLengthError(false);
           break;
@@ -63,8 +64,9 @@ const useInput = (initialValue, validations) => {
   const [isDirty, setDirty] = useState(false);
   const valid = useValidation(value, validations);
 
-  const onChange = (e) => {
-    setValue(e?.target?.value);
+  const onChange = (e, name) => {
+    console.log(e);
+    setValue( e?.target?.value);
   };
 
   const onChangePhone = (e) => {
@@ -88,46 +90,71 @@ const useInput = (initialValue, validations) => {
 const OrderRegistration = ({ setVisible, data, total, order }) => {
   const [checkbox, setCheckbox] = useState(false);
 
-  const name = useInput("", { isEmpty: true, minLength: 2 });
-  const surname = useInput("", { isEmpty: true, minLength: 2 });
-  const email = useInput("", { isEmpty: true, isEmail: true });
-  const phone = useInput("", { isEmpty: true, isPhone: true });
-  const country = useInput("", { isEmpty: true });
-  const city = useInput("", { isEmpty: true });
+  const { currentUser } = useSelector((state) => state.main);
+
+  // let name, surname, email, phone, country, city
+
+  // let name = useInput(currentUser?.name, { isEmpty: true, minLength: 2 });
+  // const surname = useInput(currentUser?.surname, {
+  //   isEmpty: true,
+  //   minLength: 2,
+  // });
+  // const email = useInput("", { isEmpty: true, isEmail: true });
+  // const phone = useInput("", { isEmpty: true, isPhone: true });
+  // const country = useInput("", { isEmpty: true });
+  // const city = useInput("", { isEmpty: true });
+
+  const [user, setUser] = useState({
+    name: useInput(currentUser?.name, { isEmpty: true, minLength: 2 }),
+    // name: useValidation("", { isEmpty: true, minLength: 2 }),
+    // name: currentUser?.name
+    // surname: useInput(currentUser?.surname, {
+    //   isEmpty: true,
+    //   minLength: 2,
+    // }),
+    // email: useInput(currentUser?.email, { isEmpty: true, isEmail: true }),
+    // phone: useInput("", { isEmpty: true, isPhone: true }),
+    // country: useInput("", { isEmpty: true }),
+    // city: useInput("", { isEmpty: true }),
+  });
+
+  useEffect(() => {
+    setUser(currentUser);
+  }, [currentUser]);
 
   const checkboxf = (e) => {
     setCheckbox(e.target.checked);
   };
 
   const orderP = () => {
-    const orderProduct = {
-      name: name.value,
-      surname: surname.value,
-      email: email.value,
-      phone: phone.value,
-      country: country.value,
-      city: city.value,
-      product: data,
-      totalPrice: total,
-    };
-    getDataFromAPI.setOrder(orderProduct);
+    // const orderProduct = {
+    //   name: name.value,
+    //   surname: surname.value,
+    //   email: email.value,
+    //   phone: phone.value,
+    //   country: country.value,
+    //   city: city.value,
+    //   product: data,
+    //   totalPrice: total,
+    // };
+    // getDataFromAPI.setOrder(orderProduct);
     order(true);
   };
 
   //   console.log(orderProduct);
 
-  const classes = [style.btn];
-  if (
-    name.inputValid &&
-    surname.inputValid &&
-    email.inputValid &&
-    phone.inputValid &&
-    country.inputValid &&
-    city.inputValid &&
-    checkbox
-  ) {
-    classes.push(style.active);
-  }
+  // const classes = [style.btn];
+  // if (
+  //   user.name.inputValid &&
+  //   surname.inputValid &&
+  //   email.inputValid &&
+  //   phone.inputValid &&
+  //   country.inputValid &&
+  //   city.inputValid &&
+  //   checkbox
+  // ) {
+  //   classes.push(style.active);
+  // }
 
   return (
     <div className={style.wrapper}>
@@ -138,24 +165,28 @@ const OrderRegistration = ({ setVisible, data, total, order }) => {
       <div className={style.input}>
         <h4
           className={
-            name.isDirty && name.isEmpty ? style.errortitle : style.title
+            user?.name?.isDirty && user?.name?.isEmpty
+              ? style.errortitle
+              : style.title
           }
         >
           Ваше имя
         </h4>
         <input
-          onBlur={(e) => name.onBlur(e)}
-          onChange={(e) => name.onChange(e)}
-          value={name.value}
+          onBlur={(e) => user?.name?.onBlur(e)}
+          onChange={(e) => user?.name?.onChange(e)}
+          value={user?.name}
           name="name"
           className={
-            name.isDirty && name.isEmpty ? style.error : style.inputItem
+            user?.name?.isDirty && user?.name?.isEmpty
+              ? style.error
+              : style.inputItem
           }
           placeholder="Например Иван"
           type="text"
         />
       </div>
-      <div className={style.input}>
+      {/* <div className={style.input}>
         <h4
           className={
             surname.isDirty && surname.isEmpty ? style.errortitle : style.title
@@ -174,8 +205,8 @@ const OrderRegistration = ({ setVisible, data, total, order }) => {
           placeholder="Например Иванов"
           type="text"
         />
-      </div>
-      <div className={style.input}>
+      </div> */}
+      {/* <div className={style.input}>
         <h4
           className={
             email.isDirty && email.emailError ? style.errortitle : style.title
@@ -195,16 +226,16 @@ const OrderRegistration = ({ setVisible, data, total, order }) => {
           placeholder="example@mail.com"
           type="email"
         />
-      </div>
-      <div className={style.phoneInput}>
+      </div> */}
+      {/* <div className={style.phoneInput}>
         <h4
           className={
             phone.isDirty && phone.isEmpty ? style.errortitle : style.title
           }
         >
           Ваш номер телефона
-        </h4>
-        <div
+        </h4> */}
+      {/* <div
           className={
             phone.isDirty && phone.phoneError
               ? style.errorPhone
@@ -222,8 +253,8 @@ const OrderRegistration = ({ setVisible, data, total, order }) => {
             placeholder="Введите номер телефона"
             style={{ border: "none", outline: "none" }}
           />
-        </div>
-        {/* <input
+        </div> */}
+      {/* <input
           onBlur={(e) => phone.onBlur(e)}
           onChange={(e) => phone.onChange(e)}
           value={phone.value}
@@ -234,8 +265,8 @@ const OrderRegistration = ({ setVisible, data, total, order }) => {
           placeholder="Введите номер телефона"
           type="text"
         /> */}
-      </div>
-      <div className={style.input}>
+      {/* </div> */}
+      {/* <div className={style.input}>
         <h4
           className={
             country.isDirty && country.isEmpty ? style.errortitle : style.title
@@ -254,8 +285,8 @@ const OrderRegistration = ({ setVisible, data, total, order }) => {
           placeholder="Введите страну"
           type="text"
         />
-      </div>
-      <div className={style.input}>
+      </div> */}
+      {/* <div className={style.input}>
         <h4
           className={
             city.isDirty && city.isEmpty ? style.errortitle : style.title
@@ -273,8 +304,8 @@ const OrderRegistration = ({ setVisible, data, total, order }) => {
           }
           placeholder="Введите город"
           type="text"
-        />
-      </div>
+        /> */}
+      {/* </div>
       <div className={style.agree}>
         <input
           type="checkbox"
@@ -285,9 +316,9 @@ const OrderRegistration = ({ setVisible, data, total, order }) => {
         <h4>
           Согласен с условиями <Link to="/public">публичной оферты</Link>
         </h4>
-      </div>
+      </div> */}
 
-      <button
+      {/* <button
         disabled={
           !name.inputValid ||
           !surname.inputValid ||
@@ -301,7 +332,7 @@ const OrderRegistration = ({ setVisible, data, total, order }) => {
         onClick={orderP}
       >
         <span>Заказать</span>
-      </button>
+      </button> */}
     </div>
   );
 };

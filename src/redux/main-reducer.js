@@ -29,6 +29,7 @@ let initialState = {
     collection: [],
     advantages: [],
     favorites: JSON.parse(localStorage.getItem("favorites")) || [],
+    favourites2: [],
     cart: JSON.parse(localStorage.getItem("cart")) || [],
     searchResult: [],
     currentUser: null,

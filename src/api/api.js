@@ -121,6 +121,9 @@ export const getDataFromAPI = {
 
     setUser(user) {
         return instance.post(`users`, user)
+    },
+    setFav(data) {
+        return instance.post(`favourites`, data)
     }
 
 }

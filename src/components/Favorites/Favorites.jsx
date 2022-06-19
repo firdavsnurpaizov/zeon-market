@@ -5,12 +5,23 @@ import BreadCrumbs from "../BreadCrumbs/BreadCrumbs";
 import Product from "../Product/Product";
 import Recommendation from "../Recommendation/Recommendation";
 import style from "./Favorites.module.css";
+import axios from "axios";
 
 const Favorites = () => {
   const dispatch = useDispatch();
   const [fav, setFav] = useState([]);
   const { favorites, cart, novelty } = useSelector((state) => state.main);
   const [limit, setLimit] = useState(5);
+  const { currentUser } = useSelector((state) => state.main);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3000/users/${currentUser?.id}/favourites`)
+      .then((response) => {
+        console.log(response.data);
+       return  response.data;
+      });
+  }, []);
 
   useEffect(() => {
     if (!cart.length) {

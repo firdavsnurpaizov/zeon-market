@@ -18,13 +18,14 @@ import Registration from './components/Auth/Registration';
 import Login from './components/Auth/Login';
 import Home from './components/Home/Home';
 import User from './components/User/User';
-import OrderHistory from './components/OrderHistory/OrderHistory';
+import OrderHistory from './components/User/OrderHistory/OrderHistory';
+import Profile from './components/User/Profile/Profile';
 
 function App() {
 
   return (
     <div className="App">
-      {/* <Header /> */}
+      <Header />
       <div className="content">
         <Routes>
           <Route path="/register" element={<Registration />} />
@@ -33,8 +34,12 @@ function App() {
           <Route path="/" element={<Home />} >
 
             <Route path="/" element={<Main />} />
-            <Route path="/user" element={<User />} />
-            <Route path="/history" element={<OrderHistory />} />
+
+            <Route path="/user" element={<User />} >
+              <Route path="/user/history" element={<OrderHistory />} />
+              <Route path="/user/profile" element={<Profile />} />
+            </Route>
+
             <Route path="/about" element={<About />} />
             <Route path="/collections" element={<Collections />} />
             <Route path="/collections/:name" element={<Collection />} />

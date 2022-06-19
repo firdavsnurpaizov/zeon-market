@@ -4,11 +4,15 @@ import { ReactComponent as FavoritesIcon } from "./../../assets/svg/favoritesIco
 import { ReactComponent as FullFavoritesIcon } from "./../../assets/svg/fullFavoritesIcon.svg";
 import { ReactComponent as SaleIcon } from "./../../assets/svg/saleIcon.svg";
 import { NavLink } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getDataFromAPI } from "../../api/api";
 
 const Product = ({ data }) => {
   const dispatch = useDispatch();
   const [index, setIndex] = useState(0);
+  const { currentUser } = useSelector((state) => state.main);  
+
+
 
   const [inFavorites, setInFavorites] = useState(false);
   
@@ -20,19 +24,26 @@ const Product = ({ data }) => {
     found ? setInFavorites(true) : setInFavorites(false);
   }, []);
 
+  // const addToFavorites = (e) => {
+  //   e.preventDefault();
+  //   const isFavoritesPresent = localStorage.getItem("favorites");
+  //   let favorites = isFavoritesPresent ? JSON.parse(isFavoritesPresent) : [];  
+  //   if (found) {
+  //     favorites = favorites.filter((f) => f.id !== data.id);
+  //     setInFavorites(false);
+  //   } else {
+  //     favorites.push(data);
+  //     setInFavorites(true);
+
+  //   }
+  //   localStorage.setItem(`favorites`, JSON.stringify(favorites));
+  //   dispatch({ type: "ADD_TO_STATE", favorites });
+  // };
   const addToFavorites = (e) => {
     e.preventDefault();
-    const isFavoritesPresent = localStorage.getItem("favorites");
-    let favorites = isFavoritesPresent ? JSON.parse(isFavoritesPresent) : [];  
-    if (found) {
-      favorites = favorites.filter((f) => f.id !== data.id);
-      setInFavorites(false);
-    } else {
-      favorites.push(data);
-      setInFavorites(true);
-    }
-    localStorage.setItem(`favorites`, JSON.stringify(favorites));
-    dispatch({ type: "ADD_TO_STATE", favorites });
+    getDataFromAPI.setFav({...data, userId: currentUser?.id })
+
+
   };
 
   return (

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import style from "./Header.module.css";
 import { ReactComponent as FavoriteIcon } from "./../../assets/svg/favorite.svg";
 import { ReactComponent as FullFavoriteIcon } from "./../../assets/svg/fullFavoriteIcon.svg";
@@ -136,14 +136,28 @@ const Header = () => {
             </a>
             <div>
               {currentUser ? (
-                <button onClick={logOut} className={style.login} >Выйти</button>
+                <div>
+                  <Link to={"/user/profile"}>{currentUser.name}</Link>
+                  <button onClick={logOut} className={style.login}>
+                    Выйти
+                  </button>
+                </div>
               ) : (
                 <div>
                   <NavLink to={"/login"}>
                     <button className={style.login}>Войти</button>
                   </NavLink>
                   <NavLink to={"/register"}>
-                    <button className={style.login} style={{marginLeft: 20, borderLeft: '1px solid #d3d3d3', paddingLeft: 20}}>Регистрация</button>
+                    <button
+                      className={style.login}
+                      style={{
+                        marginLeft: 20,
+                        borderLeft: "1px solid #d3d3d3",
+                        paddingLeft: 20,
+                      }}
+                    >
+                      Регистрация
+                    </button>
                   </NavLink>
                 </div>
               )}
