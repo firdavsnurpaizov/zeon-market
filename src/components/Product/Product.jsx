@@ -11,6 +11,7 @@ const Product = ({ data }) => {
   const [index, setIndex] = useState(0);
 
   const [inFavorites, setInFavorites] = useState(false);
+  
   const found = !!JSON.parse(localStorage.getItem("favorites"))?.find(
     (f) => f.id === data.id
   );
@@ -22,7 +23,7 @@ const Product = ({ data }) => {
   const addToFavorites = (e) => {
     e.preventDefault();
     const isFavoritesPresent = localStorage.getItem("favorites");
-    let favorites = isFavoritesPresent ? JSON.parse(isFavoritesPresent) : [];
+    let favorites = isFavoritesPresent ? JSON.parse(isFavoritesPresent) : [];  
     if (found) {
       favorites = favorites.filter((f) => f.id !== data.id);
       setInFavorites(false);

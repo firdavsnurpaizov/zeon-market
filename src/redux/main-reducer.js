@@ -127,6 +127,13 @@ const mainReducer = (state = initialState, action) => {
             localStorage.setItem("cart", JSON.stringify(copyState));
             return { ...state, cart: copyState }
         }
+        case "CLEAR_CART" : {
+            
+            return { 
+                ...state, 
+                cart:  localStorage.clear("cart")
+            }
+        }
         case ADD_QUANTITY: {
             return {
                 ...state,

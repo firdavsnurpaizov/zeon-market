@@ -16,8 +16,12 @@ const Collections = () => {
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    dispatch(getCollectionsThunk(limit, page));
-  }, [page]);
+    if(window.innerWidth <= 320) {
+      dispatch(getCollectionsThunk(4, page));
+    } else {
+      dispatch(getCollectionsThunk(8, page));
+    }
+  }, [page, limit, window.innerWidth]);
 
   useEffect(() => {
     dispatch(getAllCollectionsThunk());

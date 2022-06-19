@@ -13,10 +13,23 @@
     color: #393939;
 }
 
+@media screen and (max-width: 320px){
+    .collections h3 {
+        padding-left: 17px;
+    }
+}
+
 .product {
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
+}
+
+@media screen and (max-width: 320px){
+    .product {
+        justify-content: center;
+        gap: 8px;
+    }
 }
 
 ul {
@@ -31,6 +44,13 @@ ul {
     height: 44px;
     width: 44px;
     border-radius: 0;
+}
+
+@media screen and (max-width: 320px){
+    .pagination li {
+        width: 32px;
+        height: 32px;
+    }    
 }
 
 .pagination :global .ant-pagination-item-active {
@@ -54,7 +74,14 @@ ul {
     color: #979797;
     height: 44px;
     width: 44px;
-    
+}
+
+@media screen and (max-width: 320px){
+    .pagination li a {
+        width: 32px;
+        height: 32px;
+        line-height: 32px;
+    }
 }
 
 .pagination  li:hover a {

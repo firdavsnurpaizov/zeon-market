@@ -27,8 +27,8 @@ const Search = () => {
             ))}
           </div>
         ) : (
-          <div>
-            <div>По Вашему запросу ничего не найдено.</div>
+          <div className={style.wrapper}>
+            <h4>По Вашему запросу ничего не найдено.</h4>
             <h3>Вoзможно Вас заинтересует</h3>
             <div  className={style.recommendation}>
             {novelty.data?.map(item=> <Recommendation data={item} key={item.id}/>)}

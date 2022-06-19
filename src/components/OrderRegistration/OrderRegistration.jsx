@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import style from "./OrderRegistration.module.css";
+import { getDataFromAPI } from "../../api/api";
 
 const useValidation = (value, validations) => {
   const [isEmpty, setEmpty] = useState(true);
@@ -98,20 +99,19 @@ const OrderRegistration = ({ setVisible, data, total, order }) => {
     setCheckbox(e.target.checked);
   };
 
-  const orderProduct = {
-    name: name.value,
-    surname: surname.value,
-    email: email.value,
-    phone: phone.value,
-    country: country.value,
-    city: city.value,
-    product: data,
-    totalPrice: total,
-  };
-
   const orderP = () => {
+    const orderProduct = {
+      name: name.value,
+      surname: surname.value,
+      email: email.value,
+      phone: phone.value,
+      country: country.value,
+      city: city.value,
+      product: data,
+      totalPrice: total,
+    };
+    getDataFromAPI.setOrder(orderProduct);
     order(true);
-    // name.value = "";
   };
 
   //   console.log(orderProduct);

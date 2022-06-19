@@ -21,26 +21,28 @@ const About = () => {
       </div>
       <div className="container">
         <div className={style.about}>
-          <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
-            <img
-              style={{ width: 327 }}
-              src={about[0]?.images[0].src}
-              alt="image"
-            />
-            <img
-              style={{ width: 327 }}
-              src={about[0]?.images[1].src}
-              alt="image"
-            />
+          <div className={style.images}>
+            <div className={style.wrapper}>
+              <img
+                className={style.img}
+                src={about[0]?.images[0].src}
+                alt="image"
+              />
+              <img
+                className={style.img}
+                src={about[0]?.images[1].src}
+                alt="image"
+              />
+            </div>
+            <div className={style.item}>
+              <img
+                className={style.img}
+                src={about[0]?.images[2].src}
+                alt="image"
+              />
+            </div>
           </div>
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <img
-              style={{ width: 327 }}
-              src={about[0]?.images[2].src}
-              alt="image"
-            />
-          </div>
-          <div style={{ display: "flex", alignItems: "center" }}>
+          <div className={style.item}>
             <div className={style.description}>
               <h3>О нас</h3>
               <div className={style.text}>

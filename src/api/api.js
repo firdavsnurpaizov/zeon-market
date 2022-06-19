@@ -67,6 +67,10 @@ export const getDataFromAPI = {
             })
     },
 
+    setOrder(data) {
+        return instance.post(`orders`, data)
+    },
+
     // news-reducer
 
     getNews(limit, currentPage) {
@@ -86,6 +90,7 @@ export const getDataFromAPI = {
                 return response.data
             })
     },
+
 
     // details-reducer
 

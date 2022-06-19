@@ -5,10 +5,41 @@
     padding-bottom: 72px;
 }
 
+@media screen and (max-width: 320px) {
+    .about {
+        flex-direction: column;
+        padding: 12px 16px 64px 16px;
+        gap: 12px;
+    }
+}
+
+.images {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 12px;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+}
+
 .description {
     width: 465px;
     padding: 12px 24px 12px 24px;
     background-color: #fff;
+}
+
+@media screen and (max-width: 320px) {
+    .description {
+        width: 288px;
+    }
 }
 
 .description h3 {
@@ -21,6 +52,13 @@
     text-align: start;
 }
 
+@media screen and (max-width: 320px) {
+    .description h3 {
+        font-size: 18px;
+        line-height: 22px;
+    }
+}
+
 .text {
     font-family: 'Montserrat';
     font-style: normal;
@@ -28,6 +66,24 @@
     font-size: 15px;
     line-height: 24px;
     color: #979797;
-    width: 417px;
+    /* width: 417px; */
     text-align: start;
+}
+
+@media screen and (max-width: 320px) {
+    .text {
+        font-weight: 300;
+        font-size: 12px;
+        line-height: 19px;
+    }
+}
+
+.img {
+    width: 327px;
+}
+
+@media screen and (max-width: 320px) {
+    .img {
+        width: 138px;
+    }
 }

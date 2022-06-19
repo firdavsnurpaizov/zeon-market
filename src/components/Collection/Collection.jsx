@@ -37,31 +37,33 @@ const Collection = () => {
         </div>
       </div>
       <div className="container">
-        <h3 style={{ paddingTop: 32, margin: 0, paddingBottom: 18 }}>
-          {/* Коллекция {params.name} */}
-          {/* Коллекция {collection?.data[0]?.title} */}
-        </h3>
+        <div className={style.wrapper}>
+          <h3 style={{ paddingTop: 32, margin: 0, paddingBottom: 18 }}>
+            {/* Коллекция {params.name} */}
+            {/* Коллекция {collection?.data[0]?.title} */}
+          </h3>
 
-        <div className={style.product}>
-          {collection.data?.map((item) => {
-            return <Product data={item} key={item.id} />;
-          })}
-        </div>
+          <div className={style.product}>
+            {collection.data?.map((item) => {
+              return <Product data={item} key={item.id} />;
+            })}
+          </div>
 
-        <Pagination
-          defaultCurrent={1}
-          current={page}
-          onChange={onChange}
-          total={16}
-          showSizeChanger={false}
-          className={style.pagination}
-        />
+          <Pagination
+            defaultCurrent={1}
+            current={page}
+            onChange={onChange}
+            total={16}
+            showSizeChanger={false}
+            className={style.pagination}
+          />
 
-        <h3>Новинки</h3>
-        <div className={style.productN}>
-          {novelty?.data?.map((b) => (
-            <Product data={b} key={b.id} />
-          ))}
+          <h3>Новинки</h3>
+          <div className={style.productN}>
+            {novelty?.data?.map((b) => (
+              <Product data={b} key={b.id} />
+            ))}
+          </div>
         </div>
       </div>
     </>

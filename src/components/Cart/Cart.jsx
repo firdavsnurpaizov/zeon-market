@@ -38,15 +38,14 @@ const Cart = () => {
     (acc, item) =>
       (acc += item?.previous ? (item.previous - item.price) * item.count : 0),
     0
-  )
+  );
 
   useEffect(() => {
     setCarts(JSON.parse(localStorage.getItem("cart")));
   }, [cart]);
 
   const order = () => {
-    localStorage.clear("cart");
-    dispatch();
+    dispatch({ type: "CLEAR_CART" });
     setModal(false);
   };
 

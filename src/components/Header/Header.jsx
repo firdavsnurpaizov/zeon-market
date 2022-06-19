@@ -201,7 +201,7 @@ const Header = () => {
                 </NavLink>
               </div>
               <div className={style.cart}>
-                {cart.length ? (
+                {cart?.length ? (
                   <FullShoppingBagIcon className={style.icon} />
                 ) : (
                   <ShoppingBagIcon className={style.icon} />

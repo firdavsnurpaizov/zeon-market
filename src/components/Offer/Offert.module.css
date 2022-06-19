@@ -1,3 +1,5 @@
+
+
 .offert {
     padding: 16px;
     text-align: left;
@@ -10,4 +12,17 @@ h3 {
     margin: 0;
     margin-top: 12px;
     margin-bottom: 18px;
+}
+
+@media screen and (max-width: 320px) {
+    h3 {
+        font-size: 18px;
+        line-height: 22px;
+    }
+    .wrapper {
+        padding-left: 16px;
+        padding-right: 16px;
+        padding-bottom: 37px;
+    }
+
 }

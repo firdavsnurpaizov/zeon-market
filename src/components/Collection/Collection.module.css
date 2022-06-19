@@ -1,13 +1,39 @@
+.wrapper {
+
+}
+
+@media screen and (max-width: 320px){
+    .wrapper {
+        padding-left: 16px;
+        orphans: 16px;
+    }
+}
+
 .product {
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
 }
+
+@media screen and (max-width: 320px) {
+    .product {
+        justify-content: center;
+        gap: 8px;
+    }
+}
+
 .productN {
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
     padding-bottom: 64px;
+}
+
+@media screen and (max-width: 320px){
+    .productN {
+        flex-wrap: nowrap;
+        overflow: auto;
+    }
 }
 
 h3 {
@@ -34,6 +60,13 @@ ul {
     border-radius: 0;
 }
 
+@media screen and (max-width: 320px) {
+    .pagination li {
+        width: 32px;
+        height: 32px;
+    }
+}
+
 .pagination :global .ant-pagination-item-active {
     background: #1D1D1B;
 }
@@ -55,10 +88,19 @@ ul {
     color: #979797;
     height: 44px;
     width: 44px;
-    
+
 }
 
-.pagination  li:hover a {
+
+@media screen and (max-width: 320px) {
+    .pagination li a {
+        width: 32px;
+        height: 32px;
+        line-height: 32px;
+    }
+}
+
+.pagination li:hover a {
     color: #FFF;
 }
 
