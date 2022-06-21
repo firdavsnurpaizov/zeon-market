@@ -16,7 +16,7 @@ const Collections = () => {
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    if(window.innerWidth <= 320) {
+    if (window.innerWidth <= 320) {
       dispatch(getCollectionsThunk(4, page));
     } else {
       dispatch(getCollectionsThunk(8, page));
@@ -49,6 +49,7 @@ const Collections = () => {
           <Pagination
             defaultCurrent={1}
             current={page}
+            defaultPageSize={limit}
             onChange={onChange}
             total={allCollections?.length}
             showSizeChanger={false}

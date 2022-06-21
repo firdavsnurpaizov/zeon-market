@@ -168,6 +168,13 @@
     padding-bottom: 64px;
 }
 
+
+@media screen and (max-width: 320px) {
+    .emptyCart {
+        padding: 22px 16px 64px 16px;
+    }
+}
+
 .emptyCart h4 {
     padding-top: 11px;
     text-align: start;
@@ -177,6 +184,13 @@
     font-size: 24px;
     line-height: 29px;
     color: #393939;
+}
+
+@media screen and (max-width: 320px) {
+    .emptyCart h4 {
+        font-size: 16px;
+        line-height: 20px;
+    }
 }
 
 .default {
@@ -199,4 +213,32 @@
     color: #393939;
     margin-top: 48px;
     margin-bottom: 16px;
+}
+
+.recommendation {
+    display: flex;
+    gap: 8px;
+}
+
+@media screen and (max-width: 320px) {
+
+    .default {
+        font-size: 13px;
+        line-height: 16px;
+    }
+
+    .recommendation {
+        overflow: auto;
+
+    }
+    .recommendation::-webkit-scrollbar {
+        display: none;
+    }
+
+    .interested {
+        font-size: 16px;
+        line-height: 22px;
+        margin-top: 58px;
+    }
+
 }

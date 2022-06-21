@@ -80,7 +80,7 @@ const Detail = ({ data }) => {
             {data.images.map((i) => {
               return (
                 <img
-                  style={{ width: 150, height: 240, objectFit: "cover" }}
+                  className={style.miniImage}
                   key={i.id}
                   src={i.src}
                   alt=""
@@ -116,7 +116,7 @@ const Detail = ({ data }) => {
               <div>О товаре:</div>
               <div className={style.description}>{data.description}</div>
             </div>
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <div className={style.details}>
               <div>
                 <div className={style.size}>
                   Размерный ряд:

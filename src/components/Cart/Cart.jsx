@@ -182,7 +182,7 @@ const Cart = () => {
               У Вас пока нет товаров в корзине
             </div>
             <h3 className={style.interested}>Возможно Вас заинтересует</h3>
-            <div style={{ display: "flex", gap: 8 }}>
+            <div className={style.recommendation}>
               {novelty.data?.map((item) => (
                 <Recommendation data={item} key={item.id} />
               ))}

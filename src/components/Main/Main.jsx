@@ -57,7 +57,7 @@ const Main = () => {
   return (
     <div className={style.main}>
       <div className="container">
-        <div>
+        <div className={style.sliderWrapper}>
           <Slider />
         </div>
         <h3>Хит продаж</h3>

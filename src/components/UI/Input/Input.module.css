@@ -43,9 +43,35 @@
 }
 
 @media screen and (max-width: 320px) {
-.inputUser{
-    width: 264px;
-}
+
+    .input {
+        width: 288px;
+        padding: 24px 16px;
+    }
+
+    .input h3 {
+        font-size: 14px;
+        line-height: 18px;
+    }
+
+    .text {
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    .inputUser {
+        width: 264px;
+    }
+
+    input::placeholder {
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 15px;
+        color: #BEBEBE;
+    }
+
 }
 
 .inputUser input {
@@ -84,4 +110,15 @@
     position: absolute;
     top: 17px;
     right: 17px;
+}
+
+@media screen and (max-width: 320px) {
+    .btn {
+        width: 256px;
+    }
+
+    .btn span {
+        font-size: 14px;
+        line-height: 17px;
+    }
 }

@@ -39,11 +39,10 @@ const Product = ({ data }) => {
   //   localStorage.setItem(`favorites`, JSON.stringify(favorites));
   //   dispatch({ type: "ADD_TO_STATE", favorites });
   // };
-  const addToFavorites = (e) => {
+
+  const addToFavorites = (e ) => {
     e.preventDefault();
     getDataFromAPI.setFav({...data, userId: currentUser?.id })
-
-
   };
 
   return (

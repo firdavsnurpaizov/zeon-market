@@ -10900,6 +10900,15 @@
       "country": "Кыргызстан",
       "city": "Бишкек",
       "phone": "+996123456789"
+    },
+    {
+      "id": "4TgU6IeNokT48FweXwHOZ5m1V9G2",
+      "name": "Айдарбек",
+      "email": "qwerty3@gmail.com",
+      "surname": "Маматов",
+      "country": "Кыргызстан",
+      "city": "Ноокат",
+      "phone": "+996123456789"
     }
   ],
   "orders": [
@@ -11011,6 +11020,129 @@
         {
           "id": 4,
           "src": "https://cdn.discordapp.com/attachments/978583989327638570/979297432573734972/dress4.png"
+        }
+      ],
+      "userId": "uWZ67zq5P3RQvygU73wTyadslDf2"
+    },
+    {
+      "id": 1,
+      "title": "Вечернее платья",
+      "collection": "summer2020",
+      "sale": false,
+      "price": 1365,
+      "size": "42-50",
+      "colors": [
+        {
+          "id": 1,
+          "color": "#BDD3D1"
+        },
+        {
+          "id": 2,
+          "color": "#C5E7AB"
+        },
+        {
+          "id": 3,
+          "color": "#B5A8A1"
+        },
+        {
+          "id": 4,
+          "color": "#AB844A"
+        },
+        {
+          "id": 5,
+          "color": "#B8BFF8"
+        },
+        {
+          "id": 6,
+          "color": "#FFFFFF"
+        },
+        {
+          "id": 7,
+          "color": "#909090"
+        },
+        {
+          "id": 8,
+          "color": "#FF8787"
+        }
+      ],
+      "images": [
+        {
+          "id": 1,
+          "src": "https://cdn.discordapp.com/attachments/978583989327638570/979301432530464798/dress1.png"
+        },
+        {
+          "id": 2,
+          "src": "https://cdn.discordapp.com/attachments/978583989327638570/979297441008480326/dress2.png"
+        },
+        {
+          "id": 3,
+          "src": "https://cdn.discordapp.com/attachments/978583989327638570/979297452383404062/dress3.png"
+        },
+        {
+          "id": 4,
+          "src": "https://cdn.discordapp.com/attachments/978583989327638570/979297432573734972/dress4.png"
+        }
+      ],
+      "userId": "4TgU6IeNokT48FweXwHOZ5m1V9G2"
+    },
+    {
+      "id": 4,
+      "title": "Вечернее платья",
+      "collection": "jeans2020",
+      "sale": true,
+      "previous": 1365,
+      "price": 1092,
+      "size": "42-50",
+      "colors": [
+        {
+          "id": 1,
+          "color": "#BDD3D1"
+        },
+        {
+          "id": 2,
+          "color": "#C5E7AB"
+        },
+        {
+          "id": 3,
+          "color": "#B5A8A1"
+        },
+        {
+          "id": 4,
+          "color": "#AB844A"
+        },
+        {
+          "id": 5,
+          "color": "#B8BFF8"
+        },
+        {
+          "id": 6,
+          "color": "#FFFFFF"
+        },
+        {
+          "id": 7,
+          "color": "#909090"
+        },
+        {
+          "id": 8,
+          "color": "#FF8787"
+        }
+      ],
+      "images": [
+        {
+          "id": 1,
+          "src": "https://cdn.discordapp.com/attachments/978583989327638570/979297432573734972/dress4.png"
+        },
+        {
+          "id": 2,
+          "src": "https://cdn.discordapp.com/attachments/978583989327638570/979301432530464798/dress1.png"
+        },
+        {
+          "id": 3,
+          "src": "https://cdn.discordapp.com/attachments/978583989327638570/979297441008480326/dress2.png"
+        },
+        {
+          "id": 4,
+          "src": "https://cdn.discordapp.com/attachments/978583989327638570/979297452383404062/dress3.png"
         }
       ],
       "userId": "uWZ67zq5P3RQvygU73wTyadslDf2"

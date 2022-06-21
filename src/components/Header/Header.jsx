@@ -6,12 +6,15 @@ import { ReactComponent as FullFavoriteIcon } from "./../../assets/svg/fullFavor
 import { ReactComponent as ShoppingBagIcon } from "./../../assets/svg/shoppingBagIcon.svg";
 import { ReactComponent as FullShoppingBagIcon } from "./../../assets/svg/fullShoppingBagIcon.svg";
 import { ReactComponent as SearchIcon } from "./../../assets/svg/searchIcon.svg";
+import serIcon from "./../../assets/svg/searchIcon.svg";
 import { ReactComponent as Upicon } from "./../../assets/svg/up.svg";
 import { ReactComponent as Chaticon } from "./../../assets/svg/callback.svg";
 import { ReactComponent as Telegram } from "./../../assets/svg/telegram.svg";
 import { ReactComponent as Telephone } from "./../../assets/svg/telephone.svg";
 import { ReactComponent as Whatsapp } from "./../../assets/svg/whatsapp.svg";
 import { ReactComponent as Delete } from "./../../assets/svg/delete.svg";
+import del from "./../../assets/svg/delete.svg";
+import { ReactComponent as Hamburger } from "./../../assets/svg/hamburger.svg";
 import { auth } from "./../../firebase";
 import { signOut } from "firebase/auth";
 
@@ -26,6 +29,7 @@ import {
 import Modal from "../UI/Modal/Modal";
 import Input from "../UI/Input/Input";
 import Success from "../UI/Success/Success";
+import SearchMob from "./SearchMob";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -34,6 +38,7 @@ const Header = () => {
   const [visible, setVisible] = useState(false);
   const [value, setValue] = useState("");
   const [hint, setHint] = useState(false);
+  const [menuVisible, setMenuVisible] = useState(false);
   const { logo, contacts, favorites, cart, search, currentUser } = useSelector(
     (state) => state.main
   );
@@ -46,6 +51,11 @@ const Header = () => {
   const openOrderCall = () => {
     setModal(true);
     setVisible(false);
+  };
+  const openOrderCallForMob = () => {
+    setModal(true);
+    setVisible(false);
+    setMenuVisible(false);
   };
 
   const openChat = () => {
@@ -86,7 +96,10 @@ const Header = () => {
     });
 
     e.target.value === "" ? setFilteredData([]) : setFilteredData(searchedData);
-    let result = [searchedData, e.target.value];
+    let result = {
+      items: searchedData,
+      value: e.target.value,
+    };
 
     dispatch(setSearchData({ result }));
   };
@@ -100,12 +113,25 @@ const Header = () => {
     await signOut(auth);
   }
 
+  const menuMob = [style.menuForMobile];
+  if (menuVisible) {
+    menuMob.push(style.activeMenu);
+  }
+
+  const [searchForMob, setSearchForMob] = useState(false);
+  // const searchModal = [style.searchModal];
+  // if (searchForMob) {
+  //   searchModal.push(style.activeModal);
+  // }
+
   const logoURL = logo[1];
   const phone = contacts[0];
   return (
     <>
       <div className={style.header}>
         <div className="container">
+          <SearchMob searchForMob={searchForMob} setSearchForMob={setSearchForMob} />
+          {/* <div className={style.modalForMob}> */}
           <Modal visible={modal}>
             {success ? (
               <Success onClick={continueShopping} />
@@ -113,6 +139,7 @@ const Header = () => {
               <Input setVisible={setModal} order={setSuccess} />
             )}
           </Modal>
+          {/* </div> */}
           <div className={style.menu}>
             <div className={style.nav}>
               <div className={style.link}>
@@ -134,11 +161,17 @@ const Header = () => {
             <a href={`tel:${phone?.tel}`} className={style.phone}>
               <span>Тел:</span> {phone?.tel}
             </a>
-            <div>
+            {/* <div>
               {currentUser ? (
                 <div>
-                  <Link to={"/user/profile"}>{currentUser.name}</Link>
-                  <button onClick={logOut} className={style.login}>
+                  <Link to={"/user/profile"}>
+                    <button className={style.login} > {currentUser.name}</button>
+                  </Link>
+                  <button onClick={logOut} className={style.login}    style={{
+                        marginLeft: 20,
+                        borderLeft: "1px solid #d3d3d3",
+                        paddingLeft: 20,
+                      }}>
                     Выйти
                   </button>
                 </div>
@@ -161,7 +194,7 @@ const Header = () => {
                   </NavLink>
                 </div>
               )}
-            </div>
+            </div> */}
           </div>
         </div>
         <div className={style.line}></div>
@@ -169,8 +202,133 @@ const Header = () => {
           <div className={style.toolbar}>
             <div className={style.logo}>
               <NavLink to={"/"}>
-                <img src={logoURL?.srcURL} alt="logo" />
+                <img style={{width:99, height:43}} src={logoURL?.srcURL} alt="logo" />
               </NavLink>
+              <img
+                className={style.mobsearchicon}
+                onClick={() => setSearchForMob((e) => !e)}
+                src={searchForMob ? del : serIcon}
+              />
+              <div className={style.hamburgerWrapper}>
+                <Hamburger
+                  className={style.hamburger}
+                  onClick={() => setMenuVisible(true)}
+                />
+              </div>
+              <div className={menuMob.join(" ")}>
+                <Delete
+                  className={style.deleteForMob}
+                  onClick={() => setMenuVisible(false)}
+                />
+                <h3>Меню</h3>
+                <div className={style.nav}>
+                  <div className={style.link}>
+                    <NavLink className={style.navlink} to={"/about"}>
+                      <div
+                        onClick={() => setMenuVisible(false)}
+                        className={style.linkItem}
+                      >
+                        О нас
+                      </div>
+                    </NavLink>
+                  </div>
+                  <div
+                    className={style.link}
+                    onClick={() => setMenuVisible(false)}
+                  >
+                    <NavLink className={style.navlink} to={"/collections"}>
+                      <div className={style.linkItem}>Коллекции</div>
+                    </NavLink>
+                  </div>
+                  <div className={style.link}>
+                    <NavLink className={style.navlink} to={"/news"}>
+                      <div
+                        onClick={() => setMenuVisible(false)}
+                        className={style.linkItem}
+                      >
+                        Новости
+                      </div>
+                    </NavLink>
+                  </div>
+                </div>
+                <div
+                  style={{ borderTop: "1px solid #d3d3d3", width: 100 }}
+                ></div>
+                <div className={style.favMob}>
+                  <div className={style.favorite}>
+                    {favorites.length ? (
+                      <FullFavoriteIcon
+                        onClick={() => setMenuVisible(false)}
+                        className={style.icon}
+                      />
+                    ) : (
+                      <FavoriteIcon
+                        onClick={() => setMenuVisible(false)}
+                        className={style.icon}
+                      />
+                    )}
+                    <NavLink
+                      to={"/favorites"}
+                      onClick={() => setMenuVisible(false)}
+                      className={style.favText}
+                    >
+                      Избранное
+                    </NavLink>
+                  </div>
+                  <div className={style.cart}>
+                    {cart?.length ? (
+                      <FullShoppingBagIcon
+                        onClick={() => setMenuVisible(false)}
+                        className={style.icon}
+                      />
+                    ) : (
+                      <ShoppingBagIcon
+                        onClick={() => setMenuVisible(false)}
+                        className={style.icon}
+                      />
+                    )}
+                    <NavLink
+                      to={"/cart"}
+                      onClick={() => setMenuVisible(false)}
+                      className={style.favText}
+                    >
+                      Корзина
+                    </NavLink>
+                  </div>
+                </div>
+                <div
+                  style={{
+                    marginTop: 245,
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "start",
+                  }}
+                >
+                  <h4>Свяжитесь с нами:</h4>
+                  <a href={`tel:${phone?.tel}`} className={style.phone}>
+                    <span>Тел:</span> {phone?.tel}
+                  </a>
+                  <div
+                    className={style.chatMob}
+                    onClick={() => setMenuVisible(false)}
+                  >
+                    <a href="https://telegram.org" target="_blank">
+                      <Telegram />
+                    </a>
+                    <a
+                      href="https://www.whatsapp.com"
+                      target="_blank"
+                      onClick={() => setMenuVisible(false)}
+                    >
+                      <Whatsapp />
+                    </a>
+                    <Telephone
+                      style={{ marginBottom: 6 }}
+                      onClick={openOrderCallForMob}
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
             <div className={style.label}>
               <input

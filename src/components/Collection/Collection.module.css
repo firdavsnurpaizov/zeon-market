@@ -1,8 +1,6 @@
-.wrapper {
+.wrapper {}
 
-}
-
-@media screen and (max-width: 320px){
+@media screen and (max-width: 320px) {
     .wrapper {
         padding-left: 16px;
         orphans: 16px;
@@ -29,10 +27,14 @@
     padding-bottom: 64px;
 }
 
-@media screen and (max-width: 320px){
+@media screen and (max-width: 320px) {
     .productN {
         flex-wrap: nowrap;
         overflow: auto;
+    }
+
+    .productN::-webkit-scrollbar {
+        display: none; 
     }
 }
 

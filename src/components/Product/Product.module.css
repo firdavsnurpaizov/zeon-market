@@ -38,14 +38,21 @@
 }
 
 .favoriteIcon {
+    position: absolute;
+    top: 12px;
+    right: 12px;
     display: none;
     z-index: 5;
 }
 
+@media screen and (max-width: 320px) {
+    .favoriteIcon {
+        display: block;
+    }
+}
+
 .product:hover .favoriteIcon {
-    position: absolute;
-    top: 12px;
-    right: 12px;
+
     display: block;
 }
 

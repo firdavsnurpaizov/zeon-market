@@ -17,6 +17,20 @@
     gap: 5px;
 }
 
+@media screen and (max-width: 320px) {
+    .product {
+        flex-wrap: nowrap;
+        overflow: auto;
+        padding-left: 16px;
+    }
+    .product::-webkit-scrollbar {
+        display: none;
+    }
+    .main {
+        padding-bottom: 220px;
+    }
+}
+
 .advantages {
     display: flex;
     justify-content: center;
@@ -24,6 +38,13 @@
     padding: 0px;
     gap: 8px;
     padding-bottom: 64px;
+}
+
+@media screen and (max-width: 320px) {
+    .advantages {
+        display: block;
+        padding-left: 16px;
+    }
 }
 
 .main h3 {
@@ -36,4 +57,10 @@
     margin-bottom: 18px;
     margin-top: 44px;
     text-align: center;
+}
+
+@media screen and (max-width: 320px) {
+    .main {
+        padding-top: 24px;
+    }
 }

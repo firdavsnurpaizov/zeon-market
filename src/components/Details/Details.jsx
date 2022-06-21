@@ -24,18 +24,20 @@ const Details = () => {
 
   return (
     <>
-      <div className="container">
-        <div className={style.details}>
-          {details.map((d) => {
-            return <Detail data={d} key={d.id} />;
-          })}
-        </div>
-        <div>
-          <h3>Похожие товары</h3>
-          <div className={style.similar}>
-            {similar.map((item) => (
-              <Recommendation data={item} key={item.id} />
-            ))}
+      <div className={style.d}>
+        <div className="container">
+          <div className={style.details}>
+            {details.map((d) => {
+              return <Detail data={d} key={d.id} />;
+            })}
+          </div>
+          <div className={style.s}>
+            <h3>Похожие товары</h3>
+            <div className={style.similar}>
+              {similar.map((item) => (
+                <Recommendation data={item} key={item.id} />
+              ))}
+            </div>
           </div>
         </div>
       </div>

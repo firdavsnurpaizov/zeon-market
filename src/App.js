@@ -54,6 +54,7 @@ function App() {
         </Routes>
       </div>
       <Footer />
+      
     </div>
   );
 }

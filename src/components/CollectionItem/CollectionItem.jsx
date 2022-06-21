@@ -12,7 +12,7 @@ const CollectionItem = ({ data }) => {
       <div className={style.collection}>
         <div
           style={{
-            backgroundImage: `url(${src})`,
+            backgroundImage: `url(${src})`
           }}
           className={style.avatar}
         >

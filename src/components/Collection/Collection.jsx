@@ -52,8 +52,9 @@ const Collection = () => {
           <Pagination
             defaultCurrent={1}
             current={page}
+            defaultPageSize={limit}
             onChange={onChange}
-            total={16}
+            total={8}
             showSizeChanger={false}
             className={style.pagination}
           />

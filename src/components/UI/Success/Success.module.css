@@ -27,6 +27,7 @@
     width: 280px;
     margin-top: 16px;
     background: #1D1D1B;
+    border: none;
 }
 
 .btn span {
@@ -36,4 +37,25 @@
     font-size: 14px;
     line-height: 17px;
     color: #FFFFFF;
+}
+
+@media screen and (max-width: 320px) {
+    .success {
+        width: 288px;
+        padding: 24px 16px;
+    }
+
+    .btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 256px;
+        height: 44px;
+    }
+
+    .text {
+        width: 260px;
+        font-size: 12px;
+        line-height: 18px;
+    }
 }

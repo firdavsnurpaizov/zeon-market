@@ -3,10 +3,32 @@
     padding-bottom: 64px;
 }
 
+@media screen and (max-width: 320px) {
+    .search {
+        padding: 24px 16px 64px 16px;
+    }
+
+    .search h3 {
+        font-size: 16px;
+        line-height: 20px;
+    }
+}
+
 .recommendation {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
+}
+
+@media screen and (max-width: 320px) {
+    .recommendation {
+        flex-wrap: nowrap;
+        overflow: auto;
+    }
+
+    .recommendation::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 .wrapper {
@@ -24,6 +46,7 @@
     margin-bottom: 48px;
 }
 
+
 .wrapper h3 {
     font-family: 'Montserrat';
     font-style: normal;
@@ -31,4 +54,96 @@
     font-size: 24px;
     line-height: 29px;
     color: #393939;
+}
+
+@media screen and (max-width: 320px) {
+.wrapper {
+    padding-top: 24px;
+}
+
+    .wrapper h4 {
+        font-size: 13px;
+        line-height: 16px;
+        margin-bottom: 32px;
+    }
+
+    .wrapper h3 {
+        font-size: 16px;
+        line-height: 20px;
+        margin-bottom: 16px;
+    }
+}
+
+ul {
+    text-align: end;
+    margin: 0 !important;
+    margin-right: 10px !important;
+    margin-top: 16px !important;
+}
+
+.pagination li {
+    border: none;
+    height: 44px;
+    width: 44px;
+    border-radius: 0;
+}
+
+@media screen and (max-width: 320px) {
+    .pagination li {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+.pagination :global .ant-pagination-item-active {
+    background: #1D1D1B;
+}
+
+.pagination :global .ant-pagination-item-active a {
+    color: #FFF;
+}
+
+.pagination li:hover {
+    background: #1D1D1B !important;
+}
+
+.pagination li a {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 44px;
+    color: #979797;
+    height: 44px;
+    width: 44px;
+}
+
+@media screen and (max-width: 320px) {
+    .pagination li a {
+        width: 32px;
+        height: 32px;
+        line-height: 32px;
+    }
+}
+
+.pagination li:hover a {
+    color: #FFF;
+}
+
+
+.pagination li button span {
+    color: #333333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination li button:hover {
+    border: none;
+}
+
+.pagination li button {
+    border: none !important;
+    cursor: pointer;
+    border-radius: 0 !important;
 }

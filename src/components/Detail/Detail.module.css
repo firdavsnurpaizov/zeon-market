@@ -6,6 +6,12 @@
     gap: 24px;
 }
 
+@media screen and (max-width: 320px) {
+    .product {
+        flex-direction: column;
+    }
+}
+
 .galery {
     display: flex;
     justify-content: center;
@@ -15,12 +21,42 @@
 
 }
 
+.miniImage {
+    width: 150px;
+    height: 240px;
+    object-fit: cover;
+}
+
+@media screen and (max-width: 320px) {
+    .galery {
+        flex-wrap: nowrap;
+        overflow: auto;
+        justify-content: start;
+    }
+
+    .galery::-webkit-scrollbar {
+        display: none;
+    }
+    .miniImage {
+        width: 308px;
+        height: 437px;
+    }
+}
+
 .detail {
     width: 624px;
     height: 434px;
     padding: 20px;
     background-color: #fff;
     text-align: start;
+}
+
+@media screen and (max-width: 320px) {
+    .detail {
+        margin-bottom: 50px;
+        padding: 0 12px;
+        width: 288px;
+    }
 }
 
 .detail h3 {
@@ -121,6 +157,24 @@
     color: #6A6A6A;
 }
 
+@media screen and (max-width: 320px) {
+    .description {
+        width: 264px;
+    }
+}
+
+
+.details {
+    display: flex;
+    justify-content: space-between;
+}
+
+@media screen and (max-width: 320px) {
+    .details {
+        flex-direction: column;
+    }
+}
+
 .size {
     font-family: 'Montserrat';
     font-style: normal;
@@ -158,6 +212,7 @@
     width: 428px;
     height: 44px;
     background: #1D1D1B;
+    border: none;
 }
 
 .btn span {
@@ -169,11 +224,24 @@
     color: #FFFFFF;
 }
 
+@media screen and (max-width: 320px) {
+    .buttons {
+        /* width: 244px; */
+        margin: 0;
+        margin-top: 21px;
+    }
+
+    .btn {
+        width: 212px;
+        padding: 0;
+    }
+}
+
 .fav {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    padding: 10px;
+    padding: 9px;
     gap: 10px;
     width: 44px;
     height: 44px;
