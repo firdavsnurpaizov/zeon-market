@@ -41,11 +41,11 @@ const Registration = () => {
 
   return (
     <>
-      <div style={{ backgroundColor: "#FFF" }}>
+      {/* <div style={{ backgroundColor: "#FFF" }}>
         <div className="container">
           <BreadCrumbs />
         </div>
-      </div>
+      </div> */}
       <div className="container">
         <h3>Введите данные для регистрации</h3>
         <div className={style.wrapper}>

@@ -72,7 +72,7 @@
         gap: 10px;
         display: block;
         width: 250px;
-        height: 640px;
+        height: 100vh;
         position: absolute;
         top: -10px;
         right: -40px;
@@ -246,6 +246,10 @@
     padding: 9px;
 }
 
+.mobsearchicon {
+    display: none;
+}
+
 @media screen and (max-width: 320px) {
     .toolbar {
         justify-content: center;
@@ -258,16 +262,16 @@
         position: relative;
     }
 
-    /* .logo img {
+    .logoImg {
         width: 99px;
         height: 43px;
-    } */
+    }
     .mobsearchicon {
-        /* width: 18px;
-        height: 18px; */
+        display: block;
         position: absolute;
         right: -95px;
         top: 15px;
+
     }
 }
 
@@ -277,7 +281,7 @@
     padding: 11px 0 13px 20px;
     background-color: #F8F8F8;
     border: 1px solid #E0E0E0;
-    z-index: 10;
+    z-index: 19;
 }
 
 .searchInput::placeholder {
@@ -297,7 +301,7 @@
     right: 41px;
     border: none;
     fill: #000;
-    z-index: 10;
+    z-index: 19;
 }
 
 .label {
@@ -320,7 +324,7 @@
     background-color: #fff;
     padding: 18px 20px;
     gap: 10px;
-    z-index: 9;
+    z-index: 18;
     width: 701px;
     height: 309px;
     top: 0;
@@ -338,14 +342,14 @@
     align-items: flex-start;
     height: 250px;
     top: 0;
-    z-index: 10;
+    z-index: 20;
     /* left: -30px;
     right: 8px; */
     border-radius: 3px;
 
 }
 
-.hintItem span {
+.hintItem div {
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 400;

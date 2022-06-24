@@ -2,6 +2,12 @@
     padding-bottom: 64px;
 }
 
+@media screen and (max-width: 320px) {
+    .wrapper {
+        padding: 0 16px;
+    }
+}
+
 .favorites h3 {
     font-family: 'Montserrat';
     font-style: normal;
@@ -31,8 +37,15 @@
 .product {
     display: flex;
     flex-wrap: wrap;
-    gap: 5px;
+    gap: 8px;
 }
+
+.productR {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
 
 .attention {
     font-family: 'Montserrat';
@@ -44,4 +57,30 @@
     text-align: start;
     margin-top: 16px;
     /* margin-bottom: 48px; */
+}
+
+
+@media screen and (max-width: 320px) {
+    .attention {
+        font-size: 13px;
+        line-height: 16px;
+        margin-bottom: 58px;
+    }
+
+    .favorites h3{
+        font-size: 16px;
+        line-height: 20px;
+    }
+    .productR {
+        flex-wrap: nowrap;
+        overflow: auto;
+    }
+    .productR::-webkit-scrollbar {
+        display: none;
+    }
+    .product {
+        flex-direction: column;
+        flex-wrap: nowrap;
+        gap: 8px;
+    }
 }

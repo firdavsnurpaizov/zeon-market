@@ -1,7 +1,7 @@
 import { getDataFromAPI } from "../api/api";
 
 
-const SET_NEWS = 'SET_NEWS';
+// const SET_NEWS = 'SET_NEWS';
 
 let initialState = {
     news: [],
@@ -10,7 +10,7 @@ let initialState = {
 
 const newsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case SET_NEWS: {
+        case "SET_NEWS": {
             const news = [...state.news, ...action.news.data]
             // console.log(news);
             return {
@@ -22,7 +22,7 @@ const newsReducer = (state = initialState, action) => {
     }
 }
 
-export const setNews = (news) => ({ type: SET_NEWS, news })
+export const setNews = (news) => ({ type: "SET_NEWS", news })
 
 
 export const getNewsThunk = (limit, currentPage) => {

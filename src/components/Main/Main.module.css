@@ -14,14 +14,15 @@
 .product {
     display: flex;
     flex-wrap: wrap;
-    gap: 5px;
+    gap: 8px;
 }
 
 @media screen and (max-width: 320px) {
     .product {
         flex-wrap: nowrap;
-        overflow: auto;
+        overflow-x: scroll !important;
         padding-left: 16px;
+        min-width: 100%;
     }
     .product::-webkit-scrollbar {
         display: none;

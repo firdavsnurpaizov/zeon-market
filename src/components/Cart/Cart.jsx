@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { getNoveltyThunk } from "../../redux/main-reducer";
+import { getNoveltyThunk, getUserFavoritesThunk } from "../../redux/main-reducer";
 import BreadCrumbs from "../BreadCrumbs/BreadCrumbs";
 import CartItem from "../CartItem/CartItem";
 import OrderRegistration from "../OrderRegistration/OrderRegistration";
@@ -12,17 +12,21 @@ import style from "./Cart.module.css";
 
 const Cart = () => {
   const dispatch = useDispatch();
-  const { cart, novelty } = useSelector((state) => state.main);
+  const { cart, novelty, userCart, currentUser } = useSelector((state) => state.main);
   const [carts, setCarts] = useState([]);
   // const [limit, setLimit] = useState(5);
   const [modal, setModal] = useState(false);
   const [success, setSuccess] = useState(false);
   const [hide, setHide] = useState(false);
 
+  const state = useSelector(state => state)
+  console.log(state);
+
   useEffect(() => {
     if (!cart.length) {
       dispatch(getNoveltyThunk(5));
     }
+    // dispatch(getUserFavoritesThunk(currentUser?.id));
   }, [cart]);
 
   const totalQuantity = cart.reduce(
@@ -68,7 +72,7 @@ const Cart = () => {
         </div>
       </div>
       <div className="container">
-        <Modal visible={modal}>
+        <Modal className={style.modal} visible={modal}>
           {success ? (
             <NavLink to={"/"}>
               <Success onClick={order} setVisible={setModal} />
@@ -89,7 +93,7 @@ const Cart = () => {
                 <CartItem data={product} key={product.id + i} />
               ))}
             </div>
-            {carts.length ? (
+            {cart.length ? (
               <div style={{ position: "relative" }}>
                 <div className={style.total}>
                   <h4>Сумма заказа</h4>

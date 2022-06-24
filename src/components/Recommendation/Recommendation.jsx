@@ -4,34 +4,62 @@ import { ReactComponent as FavoritesIcon } from "./../../assets/svg/favoritesIco
 import { ReactComponent as FullFavoritesIcon } from "./../../assets/svg/fullFavoritesIcon.svg";
 import { ReactComponent as SaleIcon } from "./../../assets/svg/saleIcon.svg";
 import { NavLink } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getDataFromAPI } from "../../api/api";
+import { getUserFavoritesThunk } from "../../redux/main-reducer";
 
 const Recommendation = ({ data }) => {
   const dispatch = useDispatch();
   const [index, setIndex] = useState(0);
+  const { currentUser, userFavorites } = useSelector((state) => state.main);
 
   const [inFavorites, setInFavorites] = useState(false);
-  const found = !!JSON.parse(localStorage.getItem("favorites"))?.find(
-    (f) => f.id === data.id
+  const found = !!userFavorites?.find(
+    (f) => f.id === data.id && currentUser.id === f.userId
   );
 
   useEffect(() => {
     found ? setInFavorites(true) : setInFavorites(false);
   }, []);
 
-  const addToFavorites = (e) => {
+  // const addToFavorites = (e) => {
+  //   e.preventDefault();
+  //   const isFavoritesPresent = localStorage.getItem("favorites");
+  //   let favorites = isFavoritesPresent ? JSON.parse(isFavoritesPresent) : [];
+  //   if (found) {
+  //     favorites = favorites.filter((f) => f.id !== data.id);
+  //     setInFavorites(false);
+  //   } else {
+  //     favorites.push(data);
+  //     setInFavorites(true);
+  //   }
+  //   localStorage.setItem(`favorites`, JSON.stringify(favorites));
+  //   dispatch({ type: "ADD_TO_STATE", favorites });
+  // };
+
+  const addToFavorites = async (e) => {
+    e.stopPropagation();
     e.preventDefault();
-    const isFavoritesPresent = localStorage.getItem("favorites");
-    let favorites = isFavoritesPresent ? JSON.parse(isFavoritesPresent) : [];
+
     if (found) {
-      favorites = favorites.filter((f) => f.id !== data.id);
+      const patch = userFavorites?.filter(
+        (f) => f?.product?.id === data.id && currentUser?.id === f?.userId
+      );
+
+      // console.log(patch);
+      await getDataFromAPI.removeFav(patch[0]);
       setInFavorites(false);
     } else {
-      favorites.push(data);
+      console.log("sdsds");
+      console.log("first");
+      const body = {
+        userId: currentUser.id,
+        product: { ...data },
+      };
+      await getDataFromAPI.setFav(body);
       setInFavorites(true);
     }
-    localStorage.setItem(`favorites`, JSON.stringify(favorites));
-    dispatch({ type: "ADD_TO_STATE", favorites });
+    dispatch(getUserFavoritesThunk(currentUser?.id));
   };
 
   return (

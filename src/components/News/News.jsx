@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getNewsThunk } from "../../redux/news-reducer";
 import BreadCrumbs from "../BreadCrumbs/BreadCrumbs";
+import Item from "./Item";
 import style from "./News.module.css";
 
 const News = () => {
   const dispatch = useDispatch();
-  const { news, totalCount } = useSelector((state) => state.news);
+  const news = useSelector((state) => state.news);
   const [limit, setLimit] = useState(4);
   const [currentPage, setCurrentPage] = useState(1);
   const [fetching, setFetching] = useState(true);
@@ -55,17 +56,7 @@ const News = () => {
           <h3 className={style.heading}>Новости</h3>
           <div>
             {news?.map((n) => {
-              return (
-                <div className={style.new} key={n.id}>
-                  <div>
-                    <img src={n?.images[0].src} alt="image" />
-                  </div>
-                  <div>
-                    <h4 className={style.title}>{n.title}</h4>
-                    <div className={style.body}>{n.body}</div>
-                  </div>
-                </div>
-              );
+              return <Item n={n}/>
             })}
           </div>
         </div>

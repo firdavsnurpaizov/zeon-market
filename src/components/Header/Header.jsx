@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import style from "./Header.module.css";
 import { ReactComponent as FavoriteIcon } from "./../../assets/svg/favorite.svg";
 import { ReactComponent as FullFavoriteIcon } from "./../../assets/svg/fullFavoriteIcon.svg";
@@ -39,9 +39,16 @@ const Header = () => {
   const [value, setValue] = useState("");
   const [hint, setHint] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
-  const { logo, contacts, favorites, cart, search, currentUser } = useSelector(
-    (state) => state.main
-  );
+  const {
+    logo,
+    contacts,
+    favorites,
+    cart,
+    search,
+    currentUser,
+    userFavorites,
+    userCart,
+  } = useSelector((state) => state.main);
 
   useEffect(() => {
     dispatch(getSearchThunk());
@@ -85,7 +92,6 @@ const Header = () => {
 
   const searchInput = (e) => {
     setValue(e.target.value);
-    setHint(true);
 
     const searchedData = search?.data?.filter((item) => {
       console.log(item.title);
@@ -94,6 +100,8 @@ const Header = () => {
         .trim()
         .includes(e.target.value.toLowerCase().trim());
     });
+
+    searchedData.length > 0 ? setHint(true) : setHint(false);
 
     e.target.value === "" ? setFilteredData([]) : setFilteredData(searchedData);
     let result = {
@@ -124,14 +132,23 @@ const Header = () => {
   //   searchModal.push(style.activeModal);
   // }
 
+  const location = useLocation();
+
+  console.log(location);
   const logoURL = logo[1];
   const phone = contacts[0];
   return (
     <>
       <div className={style.header}>
         <div className="container">
-          <SearchMob searchForMob={searchForMob} setSearchForMob={setSearchForMob} />
+          <SearchMob
+            style={{ display: "none" }}
+            searchForMob={searchForMob}
+            value={value}
+            setSearchForMob={setSearchForMob}
+          />
           {/* <div className={style.modalForMob}> */}
+
           <Modal visible={modal}>
             {success ? (
               <Success onClick={continueShopping} />
@@ -139,6 +156,7 @@ const Header = () => {
               <Input setVisible={setModal} order={setSuccess} />
             )}
           </Modal>
+
           {/* </div> */}
           <div className={style.menu}>
             <div className={style.nav}>
@@ -165,13 +183,17 @@ const Header = () => {
               {currentUser ? (
                 <div>
                   <Link to={"/user/profile"}>
-                    <button className={style.login} > {currentUser.name}</button>
+                    <button className={style.login}> {currentUser.name}</button>
                   </Link>
-                  <button onClick={logOut} className={style.login}    style={{
-                        marginLeft: 20,
-                        borderLeft: "1px solid #d3d3d3",
-                        paddingLeft: 20,
-                      }}>
+                  <button
+                    onClick={logOut}
+                    className={style.login}
+                    style={{
+                      marginLeft: 20,
+                      borderLeft: "1px solid #d3d3d3",
+                      paddingLeft: 20,
+                    }}
+                  >
                     Выйти
                   </button>
                 </div>
@@ -202,7 +224,11 @@ const Header = () => {
           <div className={style.toolbar}>
             <div className={style.logo}>
               <NavLink to={"/"}>
-                <img style={{width:99, height:43}} src={logoURL?.srcURL} alt="logo" />
+                <img
+                  className={style.logoImg}
+                  src={logoURL?.srcURL}
+                  alt="logo"
+                />
               </NavLink>
               <img
                 className={style.mobsearchicon}
@@ -212,20 +238,29 @@ const Header = () => {
               <div className={style.hamburgerWrapper}>
                 <Hamburger
                   className={style.hamburger}
-                  onClick={() => setMenuVisible(true)}
+                  onClick={() => {
+                    setMenuVisible(true);
+                    // document.body.style.overflow = "hidden";
+                  }}
                 />
               </div>
               <div className={menuMob.join(" ")}>
                 <Delete
                   className={style.deleteForMob}
-                  onClick={() => setMenuVisible(false)}
+                  onClick={() => {
+                    setMenuVisible(false);
+                    // document.body.style.overflow = "auto";
+                  }}
                 />
                 <h3>Меню</h3>
                 <div className={style.nav}>
                   <div className={style.link}>
                     <NavLink className={style.navlink} to={"/about"}>
                       <div
-                        onClick={() => setMenuVisible(false)}
+                        onClick={() => {
+                          setMenuVisible(false);
+                          // document.body.style.overflow = "auto";
+                        }}
                         className={style.linkItem}
                       >
                         О нас
@@ -234,7 +269,10 @@ const Header = () => {
                   </div>
                   <div
                     className={style.link}
-                    onClick={() => setMenuVisible(false)}
+                    onClick={() => {
+                      setMenuVisible(false);
+                      // document.body.style.overflow = "auto";
+                    }}
                   >
                     <NavLink className={style.navlink} to={"/collections"}>
                       <div className={style.linkItem}>Коллекции</div>
@@ -243,7 +281,10 @@ const Header = () => {
                   <div className={style.link}>
                     <NavLink className={style.navlink} to={"/news"}>
                       <div
-                        onClick={() => setMenuVisible(false)}
+                        onClick={() => {
+                          setMenuVisible(false);
+                          // document.body.style.overflow = "auto";
+                        }}
                         className={style.linkItem}
                       >
                         Новости
@@ -256,20 +297,29 @@ const Header = () => {
                 ></div>
                 <div className={style.favMob}>
                   <div className={style.favorite}>
-                    {favorites.length ? (
+                    {userFavorites.length ? (
                       <FullFavoriteIcon
-                        onClick={() => setMenuVisible(false)}
+                        onClick={() => {
+                          setMenuVisible(false);
+                          // document.body.style.overflow = "auto";
+                        }}
                         className={style.icon}
                       />
                     ) : (
                       <FavoriteIcon
-                        onClick={() => setMenuVisible(false)}
+                        onClick={() => {
+                          setMenuVisible(false);
+                          // document.body.style.overflow = "auto";
+                        }}
                         className={style.icon}
                       />
                     )}
                     <NavLink
                       to={"/favorites"}
-                      onClick={() => setMenuVisible(false)}
+                      onClick={() => {
+                        setMenuVisible(false);
+                        // document.body.style.overflow = "auto";
+                      }}
                       className={style.favText}
                     >
                       Избранное
@@ -278,18 +328,27 @@ const Header = () => {
                   <div className={style.cart}>
                     {cart?.length ? (
                       <FullShoppingBagIcon
-                        onClick={() => setMenuVisible(false)}
+                        onClick={() => {
+                          setMenuVisible(false);
+                          // document.body.style.overflow = "auto";
+                        }}
                         className={style.icon}
                       />
                     ) : (
                       <ShoppingBagIcon
-                        onClick={() => setMenuVisible(false)}
+                        onClick={() => {
+                          setMenuVisible(false);
+                          // document.body.style.overflow = "auto";
+                        }}
                         className={style.icon}
                       />
                     )}
                     <NavLink
                       to={"/cart"}
-                      onClick={() => setMenuVisible(false)}
+                      onClick={() => {
+                        setMenuVisible(false);
+                        // document.body.style.overflow = "auto";
+                      }}
                       className={style.favText}
                     >
                       Корзина
@@ -338,15 +397,21 @@ const Header = () => {
                 onClick={() => setHint(true)}
                 onChange={(e) => searchInput(e)}
               />
+
               {hint && value ? (
                 <div className={style.hint}>
-                  <NavLink to={"/search"}>
-                    <div className={style.hintItem} onClick={getSearchedData}>
-                      {filteredData.map((item) => {
-                        return <span>{item.title}</span>;
-                      })}
-                    </div>
-                  </NavLink>
+                  <div className={style.hintItem} onClick={getSearchedData}>
+                    {filteredData.map((item) => {
+                      return (
+                        <NavLink
+                          to={`/collections/${item.collection}/${item.id}`}
+                          style={{ color: "#333" }}
+                        >
+                          <div>{item.title}</div>
+                        </NavLink>
+                      );
+                    })}
+                  </div>
                 </div>
               ) : null}
             </div>
@@ -355,6 +420,7 @@ const Header = () => {
                 <SearchIcon
                   className={style.searchButton}
                   onClick={getSearchedData}
+                  style={{ cursor: "pointer" }}
                 />
               </NavLink>
             ) : (
@@ -363,7 +429,7 @@ const Header = () => {
 
             <div className={style.fav}>
               <div className={style.favorite}>
-                {favorites.length ? (
+                {userFavorites.length ? (
                   <FullFavoriteIcon className={style.icon} />
                 ) : (
                   <FavoriteIcon className={style.icon} />
@@ -387,7 +453,10 @@ const Header = () => {
               className={style.upIcon}
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             />
-            <Chaticon className={styles.join(" ")} onClick={openChat} />
+            {location.pathname === "/cart" ? null : (
+              <Chaticon className={styles.join(" ")} onClick={openChat} />
+            )}
+
             <div className={classes.join(" ")}>
               <a href="https://telegram.org" target="_blank">
                 <Telegram />

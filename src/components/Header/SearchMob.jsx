@@ -21,11 +21,11 @@ const SearchMob = ({ searchForMob, setSearchForMob }) => {
   const getSearchedData = () => {
     console.log("work");
     setHint(false);
+    setSearchForMob(false);
   };
 
   const searchInput = (e) => {
     setValue(e.target.value);
-    setHint(true);
 
     let searchedData = search?.data?.filter((item) => {
       console.log(item.title);
@@ -39,11 +39,10 @@ const SearchMob = ({ searchForMob, setSearchForMob }) => {
       items: searchedData,
       value: e.target.value,
     };
+    searchedData.length > 0 ? setHint(true) : setHint(false);
 
     dispatch(setSearchData({ result }));
   };
-
-
 
   return (
     <div
@@ -60,17 +59,29 @@ const SearchMob = ({ searchForMob, setSearchForMob }) => {
           onClick={() => setHint(true)}
           onChange={(e) => searchInput(e)}
         />
-        <SearchIcon className={style.searchButton} />
+        {value ? (
+          <NavLink to={"/search"}>
+            <SearchIcon
+              className={style.searchButton}
+              onClick={() => setSearchForMob(false)}
+            />
+          </NavLink>
+        ) : (
+          <SearchIcon className={style.searchButton} />
+        )}
       </form>
       {hint && value ? (
         <div className={style.hint}>
-          <NavLink to={"/search"}>
-            <div className={style.hintItem} onClick={getSearchedData}>
-              {filteredData.map((item) => {
-                return <span>{item.title}</span>;
-              })}
-            </div>
-          </NavLink>
+          <div className={style.hintItem} onClick={getSearchedData}>
+            {filteredData.map((item) => {
+              console.log(item);
+              return (
+                <NavLink to={`/collections/${item?.collection}/${item.id}`}>
+                  <div className={style.hintDiv}>{item.title}</div>
+                </NavLink>
+              );
+            })}
+          </div>
         </div>
       ) : null}
     </div>
@@ -79,7 +90,7 @@ const SearchMob = ({ searchForMob, setSearchForMob }) => {
 
 export default SearchMob;
 
-{
+// {
   /* <div>
 <div className={style.label}>
   <input
@@ -112,4 +123,4 @@ export default SearchMob;
   <SearchIcon className={style.searchButton} />
 )}
 </div> */
-}
+// }

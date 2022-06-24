@@ -76,7 +76,7 @@ export const getDataFromAPI = {
     getNews(limit, currentPage) {
         return instance.get(`news?_limit=${limit}&_page=${currentPage}`)
             .then(response => {
-                console.log(response);
+                // console.log(response);
                 return response
             })
     },
@@ -111,10 +111,10 @@ export const getDataFromAPI = {
 
     getUser(id) {
         return instance.get(`users/${id}`)
-        .then(response => {
-            // console.log(response.data);
-            return response.data
-        })
+            .then(response => {
+                // console.log(response.data);
+                return response.data
+            })
     },
 
     // USER SIGNUP
@@ -122,8 +122,44 @@ export const getDataFromAPI = {
     setUser(user) {
         return instance.post(`users`, user)
     },
+    // favorites
+
+    getUserFavorites(userId) {
+        return instance.get(`users/${userId}/favourites`)
+            .then(response => {
+                // console.log(response.data);
+                return response.data
+            })
+    },
+
     setFav(data) {
         return instance.post(`favourites`, data)
+    },
+
+    // removeFav(id) {
+    //     return instance.delete(`favourites/${id}`)
+    // },
+    
+    removeFav( data) {
+        return instance.delete(`favourites/${data?.id}`, data)
+    },
+
+    // cart
+
+    getUserCart(userId) {
+        return instance.get(`users/${userId}/cart`)
+            .then(response => {
+                // console.log(response.data);
+                return response.data
+            })
+    },
+
+    setToCart(data) {
+        return instance.post(`cart`, data)
+    },
+    removeFromCart(id){
+        return instance.delete(`cart/${id}`)
     }
+
 
 }

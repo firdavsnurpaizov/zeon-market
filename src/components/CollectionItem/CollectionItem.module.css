@@ -58,6 +58,7 @@
     height: 44px;
     border: none;
     background: #1D1D1B;
+    cursor: pointer;
 }
 
 .button span {

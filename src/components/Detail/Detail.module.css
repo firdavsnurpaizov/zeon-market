@@ -18,7 +18,14 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 8px;
+}
 
+.galery img {
+    transition: transform 0.3s;
+}
+
+.galery img:hover {
+    transform: scale(1.1);
 }
 
 .miniImage {
@@ -97,9 +104,6 @@
     margin-bottom: 20px;
 }
 
-.productColor div {
-    /* margin-right: 10px; */
-}
 
 .productColor span {
     font-family: 'Montserrat';

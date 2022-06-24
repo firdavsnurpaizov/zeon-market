@@ -4,10 +4,14 @@
     }
     .s {
         margin-top: 50px;
+        padding: 0 16px;
     }
 
     .s h3 {
         text-align: center;
+    }
+    .bread {
+        padding: 0 16px;
     }
 }
 

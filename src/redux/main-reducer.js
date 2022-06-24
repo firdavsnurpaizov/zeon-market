@@ -17,6 +17,8 @@ const SET_DECREMENT = 'SET_DECREMENT';
 const REMOVE_ITEM_FROM_CART = 'REMOVE_ITEM_FROM_CART';
 const ADD_SEARCH_RESULT = 'ADD_SEARCH_RESULT';
 const SET_USER = 'SET_USER';
+const SET_USER_FAVORITES = 'SET_USER_FAVORITES';
+const SET_USER_CART = 'SET_USER_CART';
 
 let initialState = {
     search: [],
@@ -33,7 +35,9 @@ let initialState = {
     cart: JSON.parse(localStorage.getItem("cart")) || [],
     searchResult: [],
     currentUser: null,
-    
+    userFavorites: [],
+    userCart: []
+
 }
 
 const mainReducer = (state = initialState, action) => {
@@ -87,6 +91,18 @@ const mainReducer = (state = initialState, action) => {
                 collections: action.collections
             }
         }
+        case SET_USER_FAVORITES: {
+            return {
+                ...state,
+                userFavorites: action.data
+            }
+        }
+        case SET_USER_CART: {
+            return {
+                ...state,
+                userCart: action.data
+            }
+        }
         case SET_ALL_COLLECTIONS: {
             return {
                 ...state,
@@ -117,6 +133,18 @@ const mainReducer = (state = initialState, action) => {
                 cart: action.cart
             }
         }
+        // case REMOVE_ITEM_FROM_CART: {
+        //     const index = state.userCart.findIndex(
+        //         (item) =>
+        //             item.id === action.data.id && item.colors === action.data.colors
+        //     );
+        //     const copyState = [...state.userCart];
+        //     copyState.splice(index, 1);
+        //     console.log(index);
+        //         getDataFromAPI.removeFromCart(action.data.id)
+        //        getUserFavoritesThunk(state.currentUser?.id)
+        //     return { ...state, userCart: copyState }
+        // }
         case REMOVE_ITEM_FROM_CART: {
             const index = state.cart.findIndex(
                 (item) =>
@@ -128,11 +156,11 @@ const mainReducer = (state = initialState, action) => {
             localStorage.setItem("cart", JSON.stringify(copyState));
             return { ...state, cart: copyState }
         }
-        case "CLEAR_CART" : {
-            
-            return { 
-                ...state, 
-                cart:  localStorage.clear("cart")
+        case "CLEAR_CART": {
+
+            return {
+                ...state,
+                cart: localStorage.clear("cart")
             }
         }
         case ADD_QUANTITY: {
@@ -194,6 +222,8 @@ export const setDecrement = (data) => ({ type: SET_DECREMENT, data })
 export const removeItemFromCart = (data) => ({ type: REMOVE_ITEM_FROM_CART, data })
 export const setSearchData = (data) => ({ type: ADD_SEARCH_RESULT, data })
 export const setUser = (data) => ({ type: SET_USER, data })
+export const setUserFavorites = (data) => ({ type: SET_USER_FAVORITES, data })
+export const setUserCart = (data) => ({ type: SET_USER_CART, data })
 
 export const getUserThunk = (id) => {
     return async (dispatch) => {
@@ -272,6 +302,22 @@ export const getAdvantagesThunk = () => {
         return data
     }
 }
+export const getUserCartThunk = (userId) => {
+    return async (dispatch) => {
+        const data = await getDataFromAPI.getUserCart(userId)
+        dispatch(setUserCart(data))
+        return data
+    }
+}
+export const getUserFavoritesThunk = (userId) => {
+    return async (dispatch) => {
+        const data = await getDataFromAPI.getUserFavorites(userId)
+        dispatch(setUserFavorites(data))
+        return data
+    }
+}
+
+
 
 
 

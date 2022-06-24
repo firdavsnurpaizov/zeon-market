@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getDetailsThunk, getSimilarThunk } from "../../redux/details-reducer";
+import BreadCrumbs from "../BreadCrumbs/BreadCrumbs";
 import Detail from "../Detail/Detail";
 import Product from "../Product/Product";
 import Recommendation from "../Recommendation/Recommendation";
@@ -24,14 +25,19 @@ const Details = () => {
 
   return (
     <>
-      <div className={style.d}>
+      <div style={{ backgroundColor: "#FFF" }}>
         <div className="container">
-          <div className={style.details}>
-            {details.map((d) => {
-              return <Detail data={d} key={d.id} />;
-            })}
-          </div>
-          <div className={style.s}>
+          <BreadCrumbs  />
+        </div>
+      </div>
+      <div className={style.d}>
+        <div className={style.details}>
+          {details.map((d) => {
+            return <Detail data={d} key={d.id} />;
+          })}
+        </div>
+        <div className={style.s}>
+          <div className="container">
             <h3>Похожие товары</h3>
             <div className={style.similar}>
               {similar.map((item) => (

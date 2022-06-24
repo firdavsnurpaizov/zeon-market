@@ -29,6 +29,7 @@ const Collections = () => {
 
   const onChange = (page) => {
     setPage(page);
+    window.scrollTo({top: 0, behavior: "smooth" })
   };
 
   return (

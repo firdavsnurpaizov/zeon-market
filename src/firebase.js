@@ -28,7 +28,7 @@ export function useAuth() {
     useEffect(() => {
         const unsub = onAuthStateChanged(auth, user => {
             if (user) {
-                // console.log(user);
+                console.log('USER',user);
                 setCurrentUser(user)
                 dispatch(getUserThunk(user.uid));
             } else {

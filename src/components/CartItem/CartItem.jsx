@@ -6,7 +6,9 @@ import {
   setDecrement,
   setInctement,
   removeItemFromCart,
+  getUserFavoritesThunk,
 } from "../../redux/main-reducer";
+import { getDataFromAPI } from "../../api/api";
 
 const CartItem = ({ data }) => {
   const dispatch = useDispatch();
@@ -14,6 +16,13 @@ const CartItem = ({ data }) => {
   const remove = () => {
     dispatch(removeItemFromCart(data));
   };
+  // const { currentUser } = useSelector((state) => state.main);
+
+  // const remove = () => {
+  //   dispatch(removeItemFromCart(data));
+  //   console.log("remove");
+  //   // dispatch(getUserFavoritesThunk(currentUser?.id));
+  // };
 
   const addQuantity = () => {
     dispatch(setInctement(data));
@@ -28,10 +37,7 @@ const CartItem = ({ data }) => {
         <div className={style.cartItem}>
           <Delete className={style.delete} onClick={remove} />
           <div>
-            <img
-              src={data.images[0].src}
-              alt="product image"
-            />
+            <img src={data.images[0].src} alt="product image" />
           </div>
           <div style={{ textAlign: "start" }} className={style.description}>
             <h4>{data.title}</h4>
@@ -41,14 +47,14 @@ const CartItem = ({ data }) => {
               <span
                 style={
                   data.colors === "#FFFFFF"
-          ? {
-              backgroundColor: `${data.colors}`,
-              border: "1px solid #D1D1D1",
-            }
-          : {
-              backgroundColor: `${data.colors}`,
-            }
-              }
+                    ? {
+                        backgroundColor: `${data.colors}`,
+                        border: "1px solid #D1D1D1",
+                      }
+                    : {
+                        backgroundColor: `${data.colors}`,
+                      }
+                }
               ></span>
             </div>
             <div className={style.price}>

@@ -12,7 +12,7 @@ const CollectionItem = ({ data }) => {
       <div className={style.collection}>
         <div
           style={{
-            backgroundImage: `url(${src})`
+            backgroundImage: `url(${src})`,
           }}
           className={style.avatar}
         >
@@ -21,6 +21,7 @@ const CollectionItem = ({ data }) => {
         <NavLink
           style={{ textDecoration: "none" }}
           to={`/collections/${data.collection}`}
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
           <button className={style.button}>
             <span> Смотреть все</span>

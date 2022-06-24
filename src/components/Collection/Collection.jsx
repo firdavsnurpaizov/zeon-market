@@ -6,20 +6,32 @@ import { getCollectionThunk, getNoveltyThunk } from "../../redux/main-reducer";
 import BreadCrumbs from "../BreadCrumbs/BreadCrumbs";
 import Product from "../Product/Product";
 import style from "./Collection.module.css";
+import Recommendation from "../Recommendation/Recommendation";
 
 const Collection = () => {
   const dispatch = useDispatch();
   const { collection, novelty } = useSelector((state) => state.main);
   const params = useParams();
-  const [limitNovelty, setLimitNovelty] = useState(4);
+  const [limitNovelty, setLimitNovelty] = useState(5);
   const [limit, setLimit] = useState(4);
   const [page, setPage] = useState(1);
 
   // console.log(collection);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    dispatch(getCollectionThunk(params.name, limit, page));
+    dispatch(getCollectionThunk(params.name, limit, page)).then(() => {
+      setLoaded(true);
+    });
   }, [page]);
+
+  useEffect(() => {
+    if (window.innerWidth <= 320) {
+      dispatch(getCollectionThunk(params.name, 4, page));
+    } else {
+      dispatch(getCollectionThunk(params.name, 8, page));
+    }
+  }, [page, window.innerWidth]);
 
   useEffect(() => {
     dispatch(getNoveltyThunk(limitNovelty));
@@ -27,11 +39,15 @@ const Collection = () => {
 
   const onChange = (page) => {
     setPage(page);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
+  console.log(collection);
+  useEffect(() => {}, [collection]);
 
   return (
     <>
-      <div style={{ backgroundColor: "#FFF" }}>
+      <div style={{ backgroundColor: "#FFF", width: "100vw" }}>
         <div className="container">
           <BreadCrumbs />
         </div>
@@ -40,7 +56,7 @@ const Collection = () => {
         <div className={style.wrapper}>
           <h3 style={{ paddingTop: 32, margin: 0, paddingBottom: 18 }}>
             {/* Коллекция {params.name} */}
-            {/* Коллекция {collection?.data[0]?.title} */}
+            Коллекция {loaded && collection?.data[0]?.titleCol}
           </h3>
 
           <div className={style.product}>
@@ -62,7 +78,7 @@ const Collection = () => {
           <h3>Новинки</h3>
           <div className={style.productN}>
             {novelty?.data?.map((b) => (
-              <Product data={b} key={b.id} />
+              <Recommendation data={b} key={b.id} />
             ))}
           </div>
         </div>

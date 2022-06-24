@@ -26,20 +26,35 @@ const Footer = () => {
         <div className="container">
           <div className={style.footer}>
             <div className={style.logo}>
-              <NavLink to={"/"}>
+              <NavLink
+                to={"/"}
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              >
                 <img src={logoURL?.srcURL} alt="logo" />
               </NavLink>
             </div>
 
             <div className={style.company}>
               <h3>Компания</h3>
-              <NavLink className={style.navlink} to={"/about"}>
+              <NavLink
+                className={style.navlink}
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                to={"/about"}
+              >
                 <div className={style.companyItem}>О нас</div>
               </NavLink>
-              <NavLink className={style.navlink} to={"/news"}>
+              <NavLink
+                className={style.navlink}
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                to={"/news"}
+              >
                 <div className={style.companyItem}>Новости</div>
               </NavLink>
-              <NavLink className={style.navlink} to={"/help"}>
+              <NavLink
+                className={style.navlink}
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                to={"/help"}
+              >
                 <div className={style.companyItem}>Помощь</div>
               </NavLink>
             </div>

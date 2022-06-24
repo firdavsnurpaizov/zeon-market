@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import style from "./Product.module.css";
+import style from "./Card.module.css";
 import { ReactComponent as FavoritesIcon } from "./../../assets/svg/favoritesIcon.svg";
 import { ReactComponent as FullFavoritesIcon } from "./../../assets/svg/fullFavoritesIcon.svg";
 import { ReactComponent as SaleIcon } from "./../../assets/svg/saleIcon.svg";
@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getDataFromAPI } from "../../api/api";
 import { getUserFavoritesThunk } from "../../redux/main-reducer";
 
-const Product = ({ data }) => {
+const Card = ({ data }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [index, setIndex] = useState(0);
@@ -16,7 +16,7 @@ const Product = ({ data }) => {
 
   const [inFavorites, setInFavorites] = useState(false);
 
-console.log(userFavorites);
+  // console.log(userFavorites);
 
   // console.log(currentUser);
 
@@ -24,12 +24,15 @@ console.log(userFavorites);
   //   (f) => f.id === data.id
   // );
   const found = !!userFavorites?.find(
-    (f) => f?.product?.id === data.id && currentUser?.id === f.userId
+    (f) => {
+        // console.log(data);
+       return  f?.product?.id === data?.product?.id && currentUser?.id === f.userId
+    }
   );
- 
+    // console.log(currentUser);
+
   useEffect(() => {
     found ? setInFavorites(true) : setInFavorites(false);
-    console.log(userFavorites);
   }, [found]);
 
   // const addToFavorites = (e) => {
@@ -54,36 +57,38 @@ console.log(userFavorites);
 
     if (found) {
       const patch = userFavorites?.filter(
-        (f) => f?.product?.id === data.id && currentUser?.id === f?.userId
+        (f) => f?.product?.id === data?.product?.id && currentUser?.id === f?.userId
       );
-
-        // console.log(patch);
+        console.log(patch);
+      // console.log(patch);
       await getDataFromAPI.removeFav(patch[0]);
       setInFavorites(false);
     } else {
-      console.log("sdsds");
-      console.log("first");
+        
+        console.log(found)
       const body = {
         userId: currentUser.id,
-        product: {...data}
-      }
+        product: { ...data },
+      };
       await getDataFromAPI.setFav(body);
       setInFavorites(true);
     }
     dispatch(getUserFavoritesThunk(currentUser?.id));
   };
 
-// console.log(userFavorites);
+  // console.log(userFavorites);
 
   return (
     <div
       onClick={() => {
-        navigate(`/collections/${data.collection}/${data.id}`);
+        navigate(
+          `/collections/${data?.product?.collection}/${data?.product?.id}`
+        );
         window.scrollTo({ top: 0, behavior: "smooth" });
       }}
       className={style.product}
     >
-      {data.sale ? (
+      {data?.product?.sale ? (
         <div className={style.saleIcon}>
           {" "}
           <SaleIcon /> <div>20%</div>
@@ -103,9 +108,9 @@ console.log(userFavorites);
         />
       )}
       <div onMouseLeave={() => setIndex(0)} style={{ position: "relative" }}>
-        <img src={data?.images[index].src} alt="image" />
+      <img src={data?.product?.images[index].src} alt="image" />
         <div className={style.hover}>
-          {data.images?.map((image, i) => {
+          {data?.product?.images?.map((image, i) => {
             return (
               <img
                 onMouseMove={() => setIndex(i)}
@@ -124,17 +129,21 @@ console.log(userFavorites);
         </div>
       </div>
       <div className={style.description}>
-        <div className={style.productTitle}>{data.title}</div>
+        <div className={style.productTitle}>{data?.product.title}</div>
         <div className={style.productPrice}>
-          {data.price.toLocaleString()} р{" "}
-          {data.sale ? <span>{data.previous.toLocaleString()} p</span> : ""}
+          {data?.product?.price} р{" "}
+          {data?.product?.sale ? (
+            <span>{data?.product?.previous.toLocaleString()} p</span>
+          ) : (
+            ""
+          )}
         </div>
         <div className={style.productSize}>
           <span>Размер:</span>
-          {data.size}
+          {data?.product?.size}
         </div>
         <div className={style.productColor}>
-          {data.colors.map((c) => (
+          {data?.product?.colors?.map((c) => (
             <div key={c.id} className={style.productColorItemBorder}>
               <div
                 className={style.productColorItem}
@@ -159,4 +168,4 @@ console.log(userFavorites);
   );
 };
 
-export default Product;
+export default Card;

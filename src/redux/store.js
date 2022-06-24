@@ -1,4 +1,4 @@
-import {applyMiddleware, combineReducers,  legacy_createStore as createStore} from "redux"; 
+import {applyMiddleware, combineReducers, legacy_createStore as createStore} from "redux"; 
 import thunkMiddleware from "redux-thunk";
 import aboutReducer from "./about-reducer";
 import detailsReducer from "./details-reducer";
@@ -10,6 +10,7 @@ let redusers = combineReducers({
     about: aboutReducer,
     news: newsReducer,
     details: detailsReducer
+
 });
 
 

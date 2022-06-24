@@ -7,6 +7,8 @@ import { ReactComponent as WhiteHeart } from "./../../assets/svg/whiteHeart.svg"
 import { ReactComponent as ShopBag } from "./../../assets/svg/shopBag.svg";
 import Active from "./Active/Active";
 import BreadCrumbs from "../BreadCrumbs/BreadCrumbs";
+import { getDataFromAPI } from "../../api/api";
+import { getUserFavoritesThunk } from "../../redux/main-reducer";
 
 const Detail = ({ data }) => {
   // console.log(data);
@@ -15,10 +17,16 @@ const Detail = ({ data }) => {
   const [choosedColor, setChoosedColor] = useState("#BDD3D1");
   const [inCart, setInCart] = useState(false);
   const [quantity, setQuantity] = useState(0);
+  const { currentUser, userFavorites, userCart } = useSelector(
+    (state) => state.main
+  );
 
   const found = !!JSON.parse(localStorage.getItem("cart"))?.find(
     (c) => c.id === data.id && c.colors === choosedColor
   );
+  // const found = !!userCart?.find(
+  //   (c) => c.id === data.id && c.colors === choosedColor
+  // );
 
   useEffect(() => {
     found ? setInCart(true) : setInCart(false);
@@ -38,37 +46,70 @@ const Detail = ({ data }) => {
     dispatch({ type: "ADD_TO_CART", cart });
     dispatch({ type: "ADD_QUANTITY", quantity: 1 });
   };
+  // const addToCart = (e) => {
+  //   setQuantity(quantity + 1);
+  //   if(found){
+  //     setInCart(true);
+  //   }else {
+  //     getDataFromAPI.setToCart({ ...data, colors: choosedColor, count: 1, userId: currentUser?.id  })
+  //     setInCart(true);
+  //   }
+  // };
 
+  // const [inFavorites, setInFavorites] = useState(false);
+  // const foundFav = !!JSON.parse(localStorage.getItem("favorites"))?.find(
+  //   (f) => f.id === data.id
+  // );
   const [inFavorites, setInFavorites] = useState(false);
-  const foundFav = !!JSON.parse(localStorage.getItem("favorites"))?.find(
-    (f) => f.id === data.id
+  const foundFav = !!userFavorites?.find(
+    (f) => f?.product?.id === data.id && currentUser?.id === f.userId
   );
 
   useEffect(() => {
     foundFav ? setInFavorites(true) : setInFavorites(false);
   }, []);
 
-  const addToFavorites = (e) => {
-    const isFavoritesPresent = localStorage.getItem("favorites");
-    let favorites = isFavoritesPresent ? JSON.parse(isFavoritesPresent) : [];
+  // const addToFavorites = (e) => {
+  //   const isFavoritesPresent = localStorage.getItem("favorites");
+  //   let favorites = isFavoritesPresent ? JSON.parse(isFavoritesPresent) : [];
+  //   if (foundFav) {
+  //     favorites = favorites.filter((f) => f.id !== data.id);
+  //     setInFavorites(false);
+  //   } else {
+  //     favorites.push(data);
+  //     setInFavorites(true);
+  //   }
+  //   localStorage.setItem(`favorites`, JSON.stringify(favorites));
+  //   dispatch({ type: "ADD_TO_STATE", favorites });
+  // };
+
+  const addToFavorites = async (e) => {
+    e.preventDefault();
+
     if (foundFav) {
-      favorites = favorites.filter((f) => f.id !== data.id);
+      const patch = userFavorites?.filter(
+        (f) => f?.product?.id === data.id && currentUser?.id === f?.userId
+      );
+      await getDataFromAPI.removeFav(patch[0]);
       setInFavorites(false);
     } else {
-      favorites.push(data);
+      const body = {
+        userId: currentUser.id,
+        product: { ...data },
+      };
+      await getDataFromAPI.setFav(body);
       setInFavorites(true);
     }
-    localStorage.setItem(`favorites`, JSON.stringify(favorites));
-    dispatch({ type: "ADD_TO_STATE", favorites });
+    dispatch(getUserFavoritesThunk(currentUser?.id));
   };
 
   return (
     <>
-      <div style={{ backgroundColor: "#FFF" }}>
+      {/* <div style={{ backgroundColor: "#FFF" }}>
         <div className="container">
           <BreadCrumbs />
         </div>
-      </div>
+      </div> */}
       <div className="container">
         <div className={style.product}>
           <div className={style.galery}>
@@ -141,7 +182,12 @@ const Detail = ({ data }) => {
             <div className={style.buttons}>
               {inCart ? (
                 <Link to={"/cart"}>
-                  <button className={style.btn}>
+                  <button
+                    className={style.btn}
+                    onClick={() =>
+                      window.scrollTo({ top: 0, behavior: "smooth" })
+                    }
+                  >
                     <span>Перейти в корзину</span>
                   </button>
                 </Link>

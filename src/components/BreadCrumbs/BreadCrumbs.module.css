@@ -3,8 +3,42 @@
     background-color: #fff;
 }
 
+.breadcrumb nav ol li span a {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    color: #393939;
+}
+
+.breadcrumb nav ol li span {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    color: #979797;
+}
+
 @media screen and (max-width: 320px) {
     .breadcrumb {
-        padding: 22px 0 21px 16px;
+        padding-left: 16px;
+        /* padding-right: 16px; */
     }
-  }
+
+    .breadcrumb nav {
+        display: flex !important;
+        flex-direction: column;
+        flex-wrap: nowrap !important;
+        overflow: auto !important;
+    }
+
+    .breadcrumb nav ol {
+        width: 400px;
+    }
+
+    .breadcrumb nav::-webkit-scrollbar {
+        display: none;
+    }
+}
